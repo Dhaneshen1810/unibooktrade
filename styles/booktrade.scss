@@ -1,0 +1,52 @@
+body{
+    height: 100%;
+}
+
+
+
+
+.login-page{
+    display: flex;
+    flex-direction: column;
+ 
+height: 100vh;
+background-color: rgba(0, 0, 0, 0.4);
+background: url('../public/static/macEwanpic.jpg') no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+
+}
+
+.my-title{
+    font-size: 24px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 70%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-left: 5%;
+}
+.my-intro{
+    width: 50%;
+    color: white;
+    margin-top: 5%;
+    margin-left: 5%;
+    align-self: left;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.btn-fb{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 200px
+}
+
+@media only screen and (min-width: 750px){
+    
+}

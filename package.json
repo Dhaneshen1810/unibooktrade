@@ -1,0 +1,30 @@
+{
+  "name": "booktrade",
+  "version": "1.0.0",
+  "description": "This is a web app for trading books at university level",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhaneshen1810/unibooktrade.git"
+  },
+  "keywords": [
+    "Dhan"
+  ],
+  "author": "Dhaneshwaran Moonian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dhaneshen1810/unibooktrade/issues"
+  },
+  "homepage": "https://github.com/Dhaneshen1810/unibooktrade#readme",
+  "dependencies": {
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-facebook": "^8.1.4"
+  }
+}
