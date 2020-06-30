@@ -1,45 +1,24 @@
 {
-  "devFiles": [],
+  "devFiles": [
+    "static/runtime/react-refresh.js",
+    "static/development/dll/dll_f9de5cbc314a1e41f91e.js",
+    "static/development/dll/dll_f9de5cbc314a1e41f91e.js.map"
+  ],
   "lowPriorityFiles": [
-    "static/l09OlZGW_Wbi0YOcHuYIp/_buildManifest.js",
-    "static/l09OlZGW_Wbi0YOcHuYIp/_ssgManifest.js"
+    "static/development/_buildManifest.js",
+    "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/runtime/webpack-c212667a5f965e81e004.js",
-      "static/chunks/framework.619a4f70c1d4d3a29cbc.js",
-      "static/chunks/commons.5710832812a0c61e0585.js",
-      "static/runtime/main-5a6f3cf7bf05639ae35d.js"
-    ],
     "/_app": [
-      "static/runtime/webpack-c212667a5f965e81e004.js",
-      "static/chunks/framework.619a4f70c1d4d3a29cbc.js",
-      "static/css/36038c2ee0ef852d1fe5.css",
-      "static/chunks/27b4350a.399f109fdec6a50191d5.js",
-      "static/chunks/commons.5710832812a0c61e0585.js",
-      "static/css/88be4f88f186e02ae390.css",
-      "static/runtime/main-5a6f3cf7bf05639ae35d.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_error": [
-      "static/runtime/webpack-c212667a5f965e81e004.js",
-      "static/chunks/framework.619a4f70c1d4d3a29cbc.js",
-      "static/chunks/commons.5710832812a0c61e0585.js",
-      "static/runtime/main-5a6f3cf7bf05639ae35d.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills-2f74f7d9820760171318.js"
-    ],
-    "/index": [
-      "static/runtime/webpack-c212667a5f965e81e004.js",
-      "static/chunks/framework.619a4f70c1d4d3a29cbc.js",
-      "static/chunks/commons.5710832812a0c61e0585.js",
-      "static/runtime/main-5a6f3cf7bf05639ae35d.js"
-    ],
-    "/posts": [
-      "static/runtime/webpack-c212667a5f965e81e004.js",
-      "static/chunks/framework.619a4f70c1d4d3a29cbc.js",
-      "static/chunks/commons.5710832812a0c61e0585.js",
-      "static/runtime/main-5a6f3cf7bf05639ae35d.js"
+      "static/runtime/polyfills.js"
     ]
   }
 }

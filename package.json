@@ -22,9 +22,14 @@
   },
   "homepage": "https://github.com/Dhaneshen1810/unibooktrade#readme",
   "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.20",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-facebook": "^8.1.4"
+    "react-facebook": "^8.1.4",
+    "serverless-mysql": "^1.5.4",
+    "sql-template-strings": "^2.2.2"
   }
 }
