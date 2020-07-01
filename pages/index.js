@@ -19,11 +19,13 @@ const Index = () => {
 
         var myID = data.profile.id;
         var myName = data.profile.name;
+        var firstName = data.profile.first_name;
 
         Router.push({
             pathname: '/posts',
             query: { name: myName,
-                    id: myID
+                    id: myID,
+                    firstName: firstName
             }
         })
       };
