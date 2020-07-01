@@ -1,8 +1,0 @@
-{
-    "env": {
-      "MYSQL_HOST": "@%",
-      "MYSQL_USER": "@users",
-      "MYSQL_PASSWORD": "@SQL_USERS_PASSWORD",
-      "MYSQL_DATABASE": "@users"
-    }
-  }
