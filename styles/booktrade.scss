@@ -47,6 +47,84 @@ background-size: cover;
     width: 200px
 }
 
+
+//Book page
+.option-page{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: orange;
+    
+}
+
+.book-greeting{
+    background-color: rgb(128,0,0);
+    width: 100%;
+    height: 150px;
+    justify-self: center;
+    color: white;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.greeting-text{
+    margin-left: 4%;
+}
+
+
+//Form
+.my-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50%;
+    width: 100%;
+    align-items: center;
+}
+.my-group{
+    width: 80%;
+}
+
+.my-btn{
+    align-self: start;
+    margin-top:5%
+}
+
+.my-divider{
+    width: 80%;
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 0.4px;
+    margin-left: 10%;
+    margin-top: 6%;
+}
+.my-btn-viewall{
+    margin-top: 5%;
+    align-self: center;
+    width: 50%;
+    margin-left: 25%;
+
+}
+
+
+
+//Booklist page
+.book-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-item{
+    width: 320px;
+    height:90px;
+    border-radius: 2%;
+    background-color: grey;margin-top: 2%;
+
+}
+
 @media only screen and (min-width: 750px){
     
 }
