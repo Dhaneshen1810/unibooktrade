@@ -6,8 +6,14 @@ import fetch from 'isomorphic-unfetch';
 
 
 const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => (
+
+    
     <div>
 
+
+    
+            
+        
         <div className='book-greeting'>
             <div className='greeting-text'>
                 <p>the title is {mytitle}</p> 
@@ -26,18 +32,35 @@ const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => (
         <div className='book-list'>
         {books.map(book => {
             var check=0;
-            if (book.title == mytitle){
 
-            
-            return (
-                <div key={book._id} className='book-item'>
-                    {book.title}
-                </div>
-            )
+            if (mytitle=='' && author==''){
+                return (
+                    <div key={book._id} className='book-item'>
+                        {book.title}
+                        {book.author}
+                    </div>
+                )
             }
             else{
-                
+                if (book.title == mytitle || book.author == author){
+
+            
+                    return (
+                        <div key={book._id} className='book-item'>
+                            {book.title}
+                            <p>Book author:</p>
+                            {book.author}
+                        </div>
+                    )
+                }
+                    
+                    else {
+                        
+                    }
+            
             }
+
+            
         })}
         </div>
         

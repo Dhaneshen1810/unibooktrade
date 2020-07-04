@@ -63,6 +63,21 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
 
         <div className='book-greeting'>
             <div className='greeting-text'>
+                <div className='icon-box'>
+                    <Link href='/'>
+                        <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
+                    </Link>
+                    <div className='my-icon-end'>
+                    <img src="/icons/four-square.png" alt="my books" className='my-icon'/>
+                    <img src="/icons/plus.png" alt="Add book" className='my-icon'/>
+                    </div>
+                    
+
+
+                    
+                </div>
+
+                
                 <h2>Hi, {firstName}!</h2>
 
                 <p>Find your book by entering 
