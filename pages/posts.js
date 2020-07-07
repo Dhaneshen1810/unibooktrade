@@ -67,9 +67,13 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
+                    
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon'/>
+                    <Link href='./new'>
                     <img src="/icons/plus.png" alt="Add book" className='my-icon'/>
+                    </Link>
+                    
                     </div>
                     
 

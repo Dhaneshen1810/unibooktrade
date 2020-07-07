@@ -5,9 +5,12 @@ import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
 
-const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => (
 
-    
+const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => {
+
+
+    return(
+
     <div>
 
 
@@ -16,69 +19,52 @@ const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => (
         
         <div className='book-greeting'>
             <div className='greeting-text'>
-                <p>the title is {mytitle}</p> 
+                <p>{mytitle}</p>
                 <p>Find your book by entering 
                     the <b>Author</b> or <b>Book name
                         below.
                     </b>
                 </p>
             </div>
-                
-            
-
             
         </div>
         
         <div className='book-list'>
-        {books.map(book => {
-            var check=0;
-
-            if (mytitle=='' && author==''){
+              
+        
+        {books.map( book => {
+            
+           
+            //if (mytitle=='' && author==''){
                 return (
                     <div key={book._id} className='book-item'>
-                        {book.title}
-                        {book.author}
+                        <p>Title: {book.title}</p>
+                        <p>Author: {book.author}</p>
+                        
                     </div>
                 )
-            }
-            else{
-                if (book.title == mytitle || book.author == author){
-
-            
-                    return (
-                        <div key={book._id} className='book-item'>
-                            {book.title}
-                            <p>Book author:</p>
-                            {book.author}
-                        </div>
-                    )
-                }
-                    
-                    else {
-                        
-                    }
-            
-            }
-
             
         })}
-        </div>
-        
-
-
-        
+    
+    
+        </div>        
     </div>
-));
+)});
 
-posts.getInitialProps = async () =>{
-    const res = await fetch('http://localhost:3000/api/books');
+
+
+posts.getInitialProps = async (mytitle) =>{
+    console.log('book is');
+    console.log(mytitle.query.mytitle)
+    const res = await fetch('http://localhost:3000/api/books', {
+        headers: {
+            title: mytitle.query.mytitle
+        }
+    });
     const { data } = await res.json();
 
     return{ books: data }
 }
-  
 
     
 export default posts;
-
-

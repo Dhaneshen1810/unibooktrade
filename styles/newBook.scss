@@ -1,0 +1,25 @@
+.newBook-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+    align-items: center;
+}
+
+.create-book-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 300px;
+    align-items: center;
+    border-radius: 5%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.new-book-title{
+    width:100%
+}
+
+@media only screen and (min-width: 750px){
+    
+}

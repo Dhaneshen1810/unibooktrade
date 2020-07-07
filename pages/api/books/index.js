@@ -5,15 +5,21 @@ dbConnect();
 
 export default async (req, res) => {
 
-
-
-    
+ 
     const { method } = req;
+
+    const myTitle = req.headers.title;
+
 
     switch(method){
         case 'GET':
             try {
-                const books = await Book.find({});
+                
+                const books = await Book.find({
+                    //Sort here
+                    'title': myTitle
+                });
+                
 
                 res.status(200).json({ success: true, data: books })
             } catch (error) {
