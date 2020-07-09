@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { useRouter } from 'next/router';
+import { Router, useRouter, withRouter } from 'next/router';
 
 
-const NewBook = () => {
+const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     const [form, setForm] = useState({ title:'', description:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,7 +52,7 @@ const NewBook = () => {
             //router.push("/booklist")
         } catch (error) {
             console.log(error)
-            
+
         }
     }
 
@@ -83,6 +83,9 @@ const NewBook = () => {
         <div className='newBook-page'>
             <div className='book-greeting'>
             <div className='greeting-text'>
+            <p>Name: {name}</p>
+            <p>firstName: {firstname}</p>
+            <p>Id: {id}</p>
                 <p>Find your book by entering 
                     the <b>Author</b> or <b>Book name
                         below.
@@ -124,6 +127,6 @@ const NewBook = () => {
             
         </div>
     )
-}
+});
 
 export default NewBook;
