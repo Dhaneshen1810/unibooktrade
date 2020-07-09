@@ -52,6 +52,7 @@ const NewBook = () => {
             //router.push("/booklist")
         } catch (error) {
             console.log(error)
+            
         }
     }
 

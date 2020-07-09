@@ -13,17 +13,26 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
         const [isSubmitting, setIsSubmitting] = useState(false);
         const [errors, setErrors] = useState();
         const router = useRouter;
-        useEffect(() => {
-            if (isSubmitting){
-                if (Object.keys(errors).length ===0){
-                    //bookmatch();
 
-                    //alert('Sucees, gotta match books')
+
+        
+        useEffect(() => {
+
+            // We are directed to the booklist page
+            // Forwarding the following data to booklist
+            // Fullname, firstname, id, book author and book title
+            if (isSubmitting){
+
+                if (Object.keys(errors).length ===0){
+
                     Router.push({
                         pathname: '/booklist',
                         query: { 
                                 mytitle: form.title,
-                                author: form.author
+                                author: form.author,
+                                name: name,
+                                id: id,
+                                firstname: firstName
                                 
                         }
                     });
@@ -35,6 +44,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
             }
         }, [errors])
 
+
+        // When th user submits
         const handleSubmit = (e) => { 
             e.preventDefault();
             let errs = validate();
@@ -43,6 +54,9 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
 
 
         }
+
+        // Handle changes made to the input box
+        // That is, when the user types in the box
         const handleChange = (e) => { 
             setForm({
                 ...form,
@@ -56,6 +70,20 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
 
             
             return err;
+        }
+
+
+        // User chooses to view all available books
+        const viewAll = () => {
+            Router.push({
+                pathname: '/booklist',
+                query: { 
+                        mytitle: '',
+                        author: ''
+                        
+                }
+            });
+
         }
 
     return(
@@ -118,9 +146,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                 </form>
 
                 <div className='my-divider'></div>
-                <Link href='/booklist'>
-                    <div className='btn btn-success my-btn-viewall'>View all</div>
-                </Link>
+                    <div className='btn btn-success my-btn-viewall' onClick={viewAll}>View all</div>
             
         </div>
 

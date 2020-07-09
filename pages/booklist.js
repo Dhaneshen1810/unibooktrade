@@ -6,7 +6,7 @@ import fetch from 'isomorphic-unfetch';
 
 
 
-const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => {
+const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
 
 
     return(
@@ -19,7 +19,11 @@ const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => {
         
         <div className='book-greeting'>
             <div className='greeting-text'>
-                <p>{mytitle}</p>
+                <p>Name: {name}</p>
+                <p>Id: {id}</p>
+                <p>Firstname: {firstname}</p>
+                <p>title: {mytitle}</p>
+                <p>Author: {author}</p>
                 <p>Find your book by entering 
                     the <b>Author</b> or <b>Book name
                         below.
@@ -35,7 +39,6 @@ const posts = withRouter(({ router:  { query:{mytitle, author}}, books} ) => {
         {books.map( book => {
             
            
-            //if (mytitle=='' && author==''){
                 return (
                     <div key={book._id} className='book-item'>
                         <p>Title: {book.title}</p>
@@ -58,7 +61,8 @@ posts.getInitialProps = async (mytitle) =>{
     console.log(mytitle.query.mytitle)
     const res = await fetch('http://localhost:3000/api/books', {
         headers: {
-            title: mytitle.query.mytitle
+            title: mytitle.query.mytitle,
+            author: mytitle.query.author
         }
     });
     const { data } = await res.json();
