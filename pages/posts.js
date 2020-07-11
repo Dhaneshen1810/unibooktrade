@@ -85,6 +85,20 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
             });
         }
 
+        const myProfile = () => {
+            Router.push({
+                pathname: '/myprofile',
+                query: { 
+                        mytitle: '',
+                        author: '',
+                        name: name,
+                        id: id,
+                        firstname: firstName
+                        
+                }
+            });
+        }
+
         const myBooks = () => {
             Router.push({
                 pathname: '/new',
@@ -108,7 +122,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                     </Link>
                     
                     <div className='my-icon-end'>
-                    <img src="/icons/four-square.png" alt="my books" className='my-icon'/>
+                    <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
                     

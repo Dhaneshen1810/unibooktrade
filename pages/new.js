@@ -5,7 +5,7 @@ import { Router, useRouter, withRouter } from 'next/router';
 
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
-    const [form, setForm] = useState({ title:'', description:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -38,9 +38,10 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     }, [errors])
 
 
-    
+    //Create new book post
     const createBook = async () => {
         try {
+            
             const res = await fetch('http://localhost:3000/api/books', {
                 method: 'POST',
                 headers: {
@@ -48,6 +49,13 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(form)
+                
+               
+               
+               
+                
+                
+                
             })
             //router.push("/booklist")
         } catch (error) {
@@ -58,6 +66,14 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
 
     const handleSubmit = (e) => { 
         e.preventDefault();
+
+
+        setForm({
+            ...form,
+                 ownerID: id,
+                 ownerName: name
+        })
+
         let errs = validate();
         setErrors(errs);
         setIsSubmitting(true);
@@ -86,10 +102,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
             <p>Name: {name}</p>
             <p>firstName: {firstname}</p>
             <p>Id: {id}</p>
-                <p>Find your book by entering 
-                    the <b>Author</b> or <b>Book name
-                        below.
-                    </b>
+                <p>Post a book.
                 </p>
 
 

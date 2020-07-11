@@ -41,6 +41,8 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
+                    console.log('post');
+                    console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
@@ -83,6 +85,8 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
+                    console.log('post');
+                    console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
@@ -119,6 +123,8 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
+                    console.log('post');
+                    console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
@@ -154,6 +160,8 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
+                    console.log('post');
+                    console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {

@@ -15,11 +15,9 @@ const BookSchema = new mongoose.Schema({
 
     ownerID:{
         type: Number,
-        required: true,
     },
     ownerName:{
         type: String,
-        required: true
     }
 
 })

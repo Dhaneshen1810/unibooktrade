@@ -43,6 +43,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     <div key={book._id} className='book-item'>
                         <p>Title: {book.title}</p>
                         <p>Author: {book.author}</p>
+                        <p>Owner: {book.ownerID}</p>
+                        <p>Book id: {book._id}</p>
                         
                     </div>
                 )
@@ -57,8 +59,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
 
 posts.getInitialProps = async (mytitle) =>{
-    console.log('book is');
-    console.log(mytitle.query.mytitle)
+
     const res = await fetch('http://localhost:3000/api/books', {
         headers: {
             title: mytitle.query.mytitle,
