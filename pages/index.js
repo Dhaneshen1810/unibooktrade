@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
-
+ nm
 import { View } from 'react';
 import { FacebookProvider, LoginButton } from 'react-facebook';
 

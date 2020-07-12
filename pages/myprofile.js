@@ -1,4 +1,4 @@
-import { withRouter, useRouter } from "next/router";
+import { withRouter, useRouter, Router } from "next/router";
 import Link from 'next/link';
 
 //Getting book data from database
@@ -22,17 +22,18 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     const deleteBook = async () =>{
         const bookID = router.query.id;
         try {
-            const deleted = await fetch('http://localhost:3000/api/books/5eff758bd4567e58240cfafd', {
-                method:"Delete"
+            const deleted = await fetch('http://localhost:3000/api/books/5f06384d0cada74f14bc4c79', {
+                method:"DELETE"
+               
             });
         } catch (error) {
             
         }
+
     }
 
     const handleDelete = async () => {
         setIsDeleting(true);
-        close();
     }
 
     return(
