@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 
 const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
     const [isDeleting, setIsDeleting] = useState(false);
+    const [bookName, setBookName] = useState('null');
+    const [bookID, setBookID] = useState(0);
     const router = useRouter();
 
     useEffect(() => {
@@ -19,10 +21,11 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     }, [isDeleting])
 
 
-    const deleteBook = async () =>{
-        const bookID = router.query.id;
+    const deleteBook = async (e) =>{
+        console.log('Book to delete: '+bookName+' with id: '+bookID);
+
         try {
-            const deleted = await fetch('http://localhost:3000/api/books/5f06384d0cada74f14bc4c79', {
+            const deleted = await fetch('http://localhost:3000/api/books/'+bookID, {
                 method:"DELETE"
                
             });
@@ -30,10 +33,42 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
         }
 
+        window.location.reload(false);
+
     }
 
-    const handleDelete = async () => {
+    const handleDelete = async (e) => {
+        console.log(e.target);
+        setBookName(e.target.name);
+        setBookID(e.target.id);
         setIsDeleting(true);
+    }
+
+    //Handle page switch for header icons
+    const myProfile = () => {
+        Router.push({
+            pathname: '/myprofile',
+            query: { 
+                    mytitle: '',
+                    author: '',
+                    name: name,
+                    id: id,
+                    firstname: firstName
+                    
+            }
+        });
+    }
+
+    const myBooks = () => {
+        Router.push({
+            pathname: '/new',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname
+                    
+            }
+        });
     }
 
     return(
@@ -45,7 +80,27 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 
             
             <div className='book-greeting'>
+                
                 <div className='greeting-text'>
+                <div className='icon-box'>
+                    <Link href='/'>
+                        <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
+                    </Link>
+                    
+                    <div className='my-icon-end'>
+                    <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
+                    
+                    <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
+                    
+                    
+                    </div>
+                    
+
+
+                    
+                </div>
+
+
                     <p>Name: {name}</p>
                     <p>Id: {id}</p>
                     <p>Firstname: {firstname}</p>
@@ -75,8 +130,9 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                             <p>Owner: {book.ownerID}</p>
                             
                         </div>
+
                         <div className='book-delete-section'>
-                            <img src='/icons/cross.png' className='delete-icon' onClick={handleDelete}/>
+                            <img src='/icons/cross.png' className='delete-icon' onClick={handleDelete} id={book._id} name={book.title}/>
                         </div>
 
                         </div>
