@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { Router, useRouter, withRouter } from 'next/router';
+import { useRouter, withRouter } from 'next/router';
+import Router from 'next/router';
 
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
@@ -95,10 +96,57 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
         return err;
     }
 
+        //Handle page switch for header icons
+        const myProfile = () => {
+            Router.push({
+                pathname: '/myprofile',
+                query: { 
+                        mytitle: '',
+                        author: '',
+                        name: name,
+                        id: id,
+                        firstname: firstname
+                        
+                }
+            });
+        }
+    
+        //Go to section to create new listing
+        const myBooks = () => {
+            Router.push({
+                pathname: '/new',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstname
+                        
+                }
+            });
+        }
+
     return (
         <div className='newBook-page'>
             <div className='book-greeting'>
             <div className='greeting-text'>
+            <div className='icon-box'>
+                    <Link href='/'>
+                        <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
+                    </Link>
+                    
+                    <div className='my-icon-end'>
+                    <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
+                    
+                    <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
+                    
+                    
+                    </div>
+                    
+
+
+                    
+            </div>
+
+
             <p>Name: {name}</p>
             <p>firstName: {firstname}</p>
             <p>Id: {id}</p>

@@ -19,6 +19,14 @@
     ],
     "/_polyfills": [
       "static/runtime/polyfills.js"
+    ],
+    "/booklist": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/posts": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

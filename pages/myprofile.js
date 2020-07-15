@@ -1,5 +1,6 @@
-import { withRouter, useRouter, Router } from "next/router";
+import { withRouter, useRouter } from "next/router";
 import Link from 'next/link';
+import Router from "next/router";
 
 //Getting book data from database
 import fetch from 'isomorphic-unfetch';
@@ -53,20 +54,20 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     author: '',
                     name: name,
                     id: id,
-                    firstname: firstName
+                    firstname: firstname
                     
             }
         });
     }
 
+    //Go to section to create new listing
     const myBooks = () => {
         Router.push({
             pathname: '/new',
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
-                    
+                    firstname: firstname  
             }
         });
     }

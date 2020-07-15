@@ -1,4 +1,5 @@
 import { withRouter } from "next/router";
+import Router from "next/router";
 import Link from 'next/link';
 
 //Getting book data from database
@@ -14,9 +15,6 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
     <div>
 
 
-    
-            
-        
         <div className='book-greeting'>
             <div className='greeting-text'>
                 <p>Name: {name}</p>
@@ -35,10 +33,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         
         <div className='book-list'>
               
-        
+      
         {books.map( book => {
             
-           
+    
                 return (
                     <div key={book._id} className='book-item'>
                         <p>Title: {book.title}</p>
@@ -50,25 +48,42 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 )
             
         })}
+
     
     
         </div>        
     </div>
-)});
+)
 
+
+
+});
 
 
 posts.getInitialProps = async (mytitle) =>{
-
-    const res = await fetch('http://localhost:3000/api/books', {
+    
+        const res = await fetch('http://localhost:3000/api/books', {
         headers: {
             title: mytitle.query.mytitle,
             author: mytitle.query.author
         }
     });
-    const { data } = await res.json();
 
-    return{ books: data }
+    
+  
+        const { data } = await res.json();
+
+        /*
+        await new Promise(acc => {
+            setTimeout(() => {
+                
+            }, (acc, 3000));
+        });
+        */
+
+        return{ books: data }
+   
+    
 }
 
     

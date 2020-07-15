@@ -26,6 +26,7 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
     "next": "^9.4.4",
+    "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-facebook": "^8.1.4",
