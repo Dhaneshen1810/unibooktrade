@@ -6,7 +6,7 @@ dbConnect();
 export default async (req, res) => {
 
  
-    const { method } = req;
+    const { method } = req; 
 
     const myTitle = req.headers.title;
     const myAuthor = req.headers.author;
@@ -47,6 +47,7 @@ export default async (req, res) => {
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
                     res.status(400).json({ success: false });
+                    console.log("couldn't post 1");
                     
                 }
                 break;
@@ -91,6 +92,7 @@ export default async (req, res) => {
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
                     res.status(400).json({ success: false });
+                    console.log("couldn't post 2");
                     
                 }
                 break;
@@ -103,6 +105,8 @@ export default async (req, res) => {
     // User input both the title and the author
     // Return book matching both
     else if (myTitle!='' && myAuthor!=''){
+        console.log('my title is: '+ myTitle);
+        console.log('my author is: '+ myAuthor);
         switch(method){
             case 'GET':
                 try {
@@ -123,12 +127,14 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
-                    console.log('post');
                     console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
+                    console.log('succeeded, '+ myTitle+' '+myAuthor)
                 } catch (error) {
                     res.status(400).json({ success: false });
+                    console.log("couldn't post 3");
+                    console.log('Failed: '+myTitle+' '+myAuthor);
                     
                 }
                 break;
@@ -166,6 +172,7 @@ export default async (req, res) => {
                     res.status(201).json({ success: true, data: book })
                 } catch (error) {
                     res.status(400).json({ success: false });
+                    console.log("couldn't post 4");
                     
                 }
                 break;

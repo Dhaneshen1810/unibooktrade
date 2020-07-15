@@ -5,9 +5,14 @@ import Link from 'next/link';
 //Getting book data from database
 import fetch from 'isomorphic-unfetch';
 
+import { useState, useEffect } from "react";
+
+
 
 
 const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
+    
+
 
 
     return(
@@ -46,6 +51,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         
                     </div>
                 )
+        
             
         })}
 
@@ -60,12 +66,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 });
 
 
-posts.getInitialProps = async (mytitle) =>{
+posts.getInitialProps = async (ctx) =>{
     
         const res = await fetch('http://localhost:3000/api/books', {
         headers: {
-            title: mytitle.query.mytitle,
-            author: mytitle.query.author
+            title: ctx.query.mytitle,
+            author: ctx.query.author
         }
     });
 
@@ -73,13 +79,7 @@ posts.getInitialProps = async (mytitle) =>{
   
         const { data } = await res.json();
 
-        /*
-        await new Promise(acc => {
-            setTimeout(() => {
-                
-            }, (acc, 3000));
-        });
-        */
+        
 
         return{ books: data }
    

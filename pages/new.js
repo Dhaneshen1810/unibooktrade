@@ -53,11 +53,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 
                
                
-               
-                
-                
-                
             })
+            
             //router.push("/booklist")
         } catch (error) {
             console.log(error)
