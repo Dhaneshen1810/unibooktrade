@@ -51,7 +51,7 @@ const Index = () => {
    
 
     
-    <FacebookProvider appId="1338252696564421">
+    <FacebookProvider appId="2605624903036488">
     
         <LoginButton
           scope="email"
