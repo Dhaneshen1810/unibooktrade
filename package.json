@@ -35,5 +35,8 @@
     "semantic-ui-react": "^0.88.2",
     "serverless-mysql": "^1.5.4",
     "sql-template-strings": "^2.2.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0"
   }
 }
