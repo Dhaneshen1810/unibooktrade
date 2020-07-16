@@ -7,7 +7,7 @@ import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
-var cors = require('cors');
+import Cors from 'cors';
 
 const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) => {
 
@@ -16,6 +16,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
         const [errors, setErrors] = useState();
         const router = useRouter;
 
+        // Initializing the cors middleware
+        const cors = Cors({
+        methods: ['GET', 'HEAD'],
+    })
 
         
         useEffect(() => {
@@ -89,7 +93,6 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
         }
 
         const myProfile = () => {
-            Router.use(cors());
             Router.push({
                 pathname: '/myprofile',
                 query: { 
@@ -100,7 +103,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                         firstname: firstName
                         
                 }
-            });
+            }, cors);
         }
 
         const myBooks = () => {
