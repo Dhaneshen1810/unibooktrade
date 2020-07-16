@@ -26,7 +26,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         console.log('Book to delete: '+bookName+' with id: '+bookID);
 
         try {
-            const deleted = await fetch('http://localhost:3000/api/books/'+bookID, {
+            const deleted = await fetch('https://unibooktrade.vercel.app/api/books'+bookID, {
                 method:"DELETE"
                
             });
