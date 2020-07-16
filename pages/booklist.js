@@ -68,7 +68,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
 posts.getInitialProps = async (ctx) =>{
     
-        const res = await fetch('http://localhost:3000/api/books', {
+        const res = await fetch('https://unibooktrade.vercel.app/api/books', {
         headers: {
             title: ctx.query.mytitle,
             author: ctx.query.author
