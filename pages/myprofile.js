@@ -9,11 +9,14 @@ import { useState, useEffect } from "react";
 
 
 
+
 const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [bookName, setBookName] = useState('null');
     const [bookID, setBookID] = useState(0);
     const router = useRouter();
+
+
 
     useEffect(() => {
         if (isDeleting) {
@@ -26,7 +29,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         console.log('Book to delete: '+bookName+' with id: '+bookID);
 
         try {
-            const deleted = await fetch('https://unibooktrade.vercel.app/api/books'+bookID, {
+            const deleted = await fetch('https://unibooktrade.vercel.app/api/books'+bookID,{
                 method:"DELETE"
                
             });
@@ -152,7 +155,9 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
 myprofile.getInitialProps = async (mytitle) =>{
 
-    const res = await fetch('http://localhost:3000/api/books', {
+            
+
+    const res = await fetch('https://unibooktrade.vercel.app/api/books', {
         headers: {
             title: mytitle.query.mytitle,
             author: mytitle.query.author

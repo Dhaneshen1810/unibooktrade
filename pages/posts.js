@@ -103,7 +103,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                         firstname: firstName
                         
                 }
-            }, cors);
+            });
         }
 
         const myBooks = () => {
