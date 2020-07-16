@@ -7,6 +7,8 @@ import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
 
+var cors = require('cors');
+
 const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) => {
 
         const [form, setForm] = useState({ title: '' });
@@ -75,6 +77,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
 
         // User chooses to view all available books
         const viewAll = () => {
+
             Router.push({
                 pathname: '/booklist',
                 query: { 
@@ -86,6 +89,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
         }
 
         const myProfile = () => {
+            Router.use(cors());
             Router.push({
                 pathname: '/myprofile',
                 query: { 
