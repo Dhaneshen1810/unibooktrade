@@ -9,6 +9,8 @@ export default async (req, res) => {
     method
   }= req;
 
+  console.log('query');
+
   switch(method){
     case 'GET':
       try {
@@ -46,6 +48,7 @@ export default async (req, res) => {
       break;
 
     case 'DELETE':
+      console.log('Set to delete: '+id);
       try {
         const deletedBook = await Book.deleteOne({ _id: id });
 

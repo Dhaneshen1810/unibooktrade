@@ -29,15 +29,16 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         console.log('Book to delete: '+bookName+' with id: '+bookID);
 
         try {
-            const deleted = await fetch('https://unibooktrade.vercel.app/api/books'+bookID,{
+            const deleted = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID,{
                 method:"DELETE"
+
                
             });
         } catch (error) {
             
         }
 
-        window.location.reload(false);
+        //window.location.reload(false);
 
     }
 
