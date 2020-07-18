@@ -39,13 +39,12 @@ const Index = () => {
         <title>MacEwan Book Trade</title>
     </Head>
     <div className='my-title'>
-        <h1>MacEwan</h1>
-        <h1>Book</h1>
-        <h1>Trade</h1>
+        <div>MacEwan</div>
+        <div>Used books</div>
+        <div>Exchange</div>
         </div>
     <div className='my-intro'>
-        <p>Making it easier for those who need to find their books
-        And those selling their old ones.</p>
+        <p>Trading used books made easier.</p>
         
     </div>
    
@@ -59,7 +58,7 @@ const Index = () => {
           onError={handleError}
           className="btn btn-primary btn-fb"
         >
-          <span>Login via Facebook</span>
+          <span><b>Login via Facebook</b></span>
         </LoginButton>
         
       </FacebookProvider>

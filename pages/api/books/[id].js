@@ -9,7 +9,7 @@ export default async (req, res) => {
     method
   }= req;
 
-  console.log('query');
+  console.log('method');
 
   switch(method){
     case 'GET':
@@ -59,7 +59,7 @@ export default async (req, res) => {
 
         res.status(200).json({ success: true, data: {} });
       } catch (error) {
-        return res.status(400).json({ success: false });
+        return res.status(400).json({ success: 'some error happenn' });
 
       }
       break;

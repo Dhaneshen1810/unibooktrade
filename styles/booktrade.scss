@@ -21,18 +21,26 @@ background-size: cover;
 }
 
 .my-title{
-    font-size: 24px;
+    font-size: 30px;
     color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'serif';
+    font-weight: 600;
     margin-top: 70%;
     width: 90%;
     display: flex;
     flex-direction: column;
     align-items: left;
     margin-left: 5%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: 2px;
+
 }
 .my-intro{
-    width: 50%;
+    width: 70%;
+    font-size: 18px;
     color: white;
     margin-top: 5%;
     margin-left: 5%;
@@ -42,9 +50,11 @@ background-size: cover;
     text-align: left;
 }
 .btn-fb{
-    margin-top: 5%;
-    margin-left: 5%;
-    width: 200px
+    margin-top: 10%;
+    margin-left: 6%;
+    font-size: 15px;
+    width: 160px;
+    height: 60px;
 }
 
 
