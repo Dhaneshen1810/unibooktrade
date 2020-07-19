@@ -76,14 +76,22 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         });
     }
 
+    const Search = () => {
+        Router.push({
+            pathname: '/posts',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstName
+                    
+            }
+        });
+    }
+    
     return(
 
-        <div>
+        <div className='profile-page'>
     
-    
-        
-                
-            
             <div className='book-greeting'>
                 
                 <div className='greeting-text'>
@@ -97,7 +105,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
                     
-                    
+                    <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
                     </div>
                     
 

@@ -67,7 +67,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
     return(
 
-    <div>
+    <div className='booklist-page'>
 
 
         <div className='book-greeting'>
