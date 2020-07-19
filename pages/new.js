@@ -56,7 +56,17 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                
             })
             
-            //router.push("/booklist")
+            //Redirect to profile
+            Router.push({
+                pathname: '/myprofile',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstname
+                        
+                }
+            });
+
         } catch (error) {
             console.log(error)
 
@@ -128,7 +138,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstName
+                        firstname: firstname
                         
                 }
             });
