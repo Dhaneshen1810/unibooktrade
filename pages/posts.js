@@ -112,7 +112,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstName
+                        firstname: firstname
                         
                 }
             });

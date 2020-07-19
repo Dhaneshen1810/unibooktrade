@@ -58,7 +58,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstName
+                    firstname: firstname
                     
             }
         });

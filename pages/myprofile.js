@@ -82,12 +82,12 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstName
+                    firstname: firstname
                     
             }
         });
     }
-    
+
     return(
 
         <div className='profile-page'>
