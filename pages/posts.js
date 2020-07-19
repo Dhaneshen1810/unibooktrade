@@ -118,6 +118,18 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
             });
         }
 
+        const Search = () => {
+            Router.push({
+                pathname: '/posts',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstName
+                        
+                }
+            });
+        }
+
     return(
     <div className='option-page'>
 
@@ -132,12 +144,9 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
-                    
+                    <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
                     
                     </div>
-                    
-
-
                     
                 </div>
 
