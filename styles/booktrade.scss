@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 body{
     height: 100%;
 }
@@ -176,7 +178,7 @@ background-size: cover;
     display: flex;
     flex-direction: row;
     width: 320px;
-    height: 100px;
+    height: 250px;
     margin-top: 2%;
 }
 

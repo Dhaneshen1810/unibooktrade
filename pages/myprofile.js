@@ -133,11 +133,25 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
             {books.map( book => {
                 
-               
+            //var imageBase64 = book.imageFront.contentType;
+            console.log(book);
+            if (book.imageFront){
+                console.log('image')
+                console.log(book.imageFront.contentType)
+                const imageData = book.imageFront.data;
+                const myImage = 'data:image/png;base64,'+imageData;
+            }
+            else{
+                console.log('no image')
+                const myImage ='2352235'
+            }
+            console.log('hi');
                     return (
                         <div className='book-item-section'>
                            
                         <div key={book._id} className='book-item-profile'>
+
+                            <img src={myImage} style={{width:'50px', height:'50px'}}/>
                             <p>Title: {book.title}</p>
                             <p>Author: {book.author}</p>
                             <p>Owner: {book.ownerID}</p>

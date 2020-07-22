@@ -201,6 +201,12 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                     required
                     />
                 
+                <input
+                type="file"
+                name="file"
+                id="input-files"
+                class="form-control-file border"
+              />
   
                 <button type="submit" className="btn btn-primary my-btn">POST</button>
                 </div>

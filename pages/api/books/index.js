@@ -13,11 +13,14 @@ export default async (req, res) => {
 
     console.log('title is '+myTitle);
     console.log('author is '+ myAuthor);
+    //console.log(req.body.imageFront.data[0]);
 
     // In case we have only the author as input, we will looking
     // for all books with that author
     if (myTitle=='' && myAuthor!=''){
         console.log('No title')
+
+
 
         switch(method){
             case 'GET':
@@ -32,7 +35,7 @@ export default async (req, res) => {
     
                     res.status(200).json({ success: true, data: books })
                 } catch (error) {
-                    res.status(400).json({ success: false });
+                    res.status(400).json({ success: false }); 
 
                     console.log('Author not found');
                 }
@@ -127,10 +130,11 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
-                    console.log(req.body);
+                    //console.log(req.body.imageFront.contentType)
+                    //console.log(req.body);
     
                     res.status(201).json({ success: true, data: book })
-                    console.log('succeeded, '+ myTitle+' '+myAuthor)
+                    //console.log('succeeded, '+ myTitle+' '+myAuthor)
                 } catch (error) {
                     res.status(400).json({ success: false });
                     console.log("couldn't post 3");

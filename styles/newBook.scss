@@ -20,6 +20,17 @@
     width:100%
 }
 
+/*
+input[type="file"] {
+    display: none;
+}
+*/
+
+.input-file-btn{
+    background-color: blue;
+    display: flex;
+}
+
 @media only screen and (min-width: 750px){
     
 }

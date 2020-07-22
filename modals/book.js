@@ -18,6 +18,11 @@ const BookSchema = new mongoose.Schema({
     },
     ownerName:{
         type: String,
+    },
+    imageFront: 
+    { 
+        data: Buffer, 
+        contentType: String 
     }
 
 })
