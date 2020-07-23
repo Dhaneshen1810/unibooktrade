@@ -21,7 +21,7 @@ const BookSchema = new mongoose.Schema({
     },
     imageFront: 
     { 
-        data: Buffer, 
+        data: String, 
         contentType: String 
     }
 

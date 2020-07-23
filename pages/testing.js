@@ -164,12 +164,13 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
 
             fileUpload(e)
             .then((data) => {
-                console.log("base64 :",data.base64);
+                var str = data.base64;
+                console.log("base64 :", str);
                 
                 setForm({
                     ...form,
                  imageFront:{
-                     data: data.base64, 
+                     data: str, 
                      contentType: 'image/png'
                  }
 

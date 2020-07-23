@@ -130,11 +130,10 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
-                    //console.log(req.body.imageFront.contentType)
-                    //console.log(req.body);
+                    //var str = req.body.imageFront.data;
+                    //console.log(str)
     
                     res.status(201).json({ success: true, data: book })
-                    //console.log('succeeded, '+ myTitle+' '+myAuthor)
                 } catch (error) {
                     res.status(400).json({ success: false });
                     console.log("couldn't post 3");

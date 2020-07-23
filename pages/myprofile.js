@@ -134,24 +134,38 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             {books.map( book => {
                 
             //var imageBase64 = book.imageFront.contentType;
+            var imageData;
+            var base64data;
+
             console.log(book);
             if (book.imageFront){
                 console.log('image')
                 console.log(book.imageFront.contentType)
-                const imageData = book.imageFront.data;
-                const myImage = 'data:image/png;base64,'+imageData;
+                
+                imageData = book.imageFront.data;
+                console.log(imageData)
+                console.log('length: '+ imageData.length);
+
+                //var myURL = book.imageFront.data;
+                //let buff = new Buffer(myURL)
+                //base64data = buff.toString('base64');
+                //console.log(base64data);
+                //const myImage = 'data:image/png;base64,'+base64data;
+                //console.log('str data: '+base64data.length);
+                //console.log('type: '+ book.imageFront.contentType);
             }
             else{
-                console.log('no image')
-                const myImage ='2352235'
+                console.log('no image');
+                imageData='eweffwf';
             }
+            
             console.log('hi');
                     return (
                         <div className='book-item-section'>
                            
                         <div key={book._id} className='book-item-profile'>
 
-                            <img src={myImage} style={{width:'50px', height:'50px'}}/>
+                        <img src={"data:image/png;base64," +  imageData}  style={{ width:'60px', height:'60px'}}/>
                             <p>Title: {book.title}</p>
                             <p>Author: {book.author}</p>
                             <p>Owner: {book.ownerID}</p>

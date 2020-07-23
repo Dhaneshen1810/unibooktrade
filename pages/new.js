@@ -4,9 +4,13 @@ import fetch from 'isomorphic-unfetch';
 import { useRouter, withRouter } from 'next/router';
 import Router from 'next/router';
 
+import { Form } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
+
+const fileUpload = require('fuctbase64');
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -19,6 +23,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 //bookmatch();
 
                 //alert('New book created')
+
 
                 createBook();
                 /*
@@ -43,20 +48,24 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     const createBook = async () => {
         try {
             
+            
             //const res = await fetch('http://localhost:3000/api/books', {
             const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+
                 method: 'POST',
+                
                 headers: {
                     "Accept": 'application/json',
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(form)
-                
-               
                
             })
             
+            
+            
             //Redirect to profile
+            /*
             Router.push({
                 pathname: '/myprofile',
                 query: { 
@@ -66,6 +75,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                         
                 }
             });
+            */
 
         } catch (error) {
             console.log(error)
@@ -76,12 +86,16 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     const handleSubmit = (e) => { 
         e.preventDefault();
 
+        console.log(form.imageFront)
 
         setForm({
             ...form,
                  ownerID: id,
-                 ownerName: name
+                 ownerName: name,
+                
+
         })
+
 
         let errs = validate();
         setErrors(errs);
@@ -144,6 +158,32 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
             });
         }
 
+        //Handle image upload
+        const image1Upload = (e) => {
+            console.log('changed');
+
+            fileUpload(e)
+            .then((data) => {
+                var str = data.base64;
+                console.log("base64 :", str);
+                
+                setForm({
+                    ...form,
+                 imageFront:{
+                     data: str, 
+                     contentType: 'image/png'
+                 }
+
+        })
+ })
+
+        
+        
+        }
+
+        
+           
+
     return (
         <div className='newBook-page'>
             <div className='book-greeting'>
@@ -201,12 +241,23 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                     required
                     />
                 
+                <label className='input-file-btn'>
                 <input
                 type="file"
                 name="file"
                 id="input-files"
-                class="form-control-file border"
+                className='input-file-btn'
+                onChange={image1Upload}
               />
+              </label>
+
+              <label htmlFor="file-upload" className="input-file-btn" >
+                Custom Upload
+            </label>
+            
+            <input id="file-upload" type="file" onChange={image1Upload}/>
+
+            
   
                 <button type="submit" className="btn btn-primary my-btn">POST</button>
                 </div>
