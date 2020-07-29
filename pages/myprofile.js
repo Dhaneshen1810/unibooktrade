@@ -165,7 +165,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                            
                         <div key={book._id} className='book-item-profile'>
 
-                        <img src={"data:image/png;base64," +  imageData}  style={{ width:'60px', height:'60px'}}/>
+                        <img src={imageData}  style={{ width:'60px', height:'60px'}}/>
                             <p>Title: {book.title}</p>
                             <p>Author: {book.author}</p>
                             <p>Owner: {book.ownerID}</p>

@@ -130,6 +130,7 @@ export default async (req, res) => {
             case 'POST':
                 try {
                     const book = await Book.create(req.body);
+                    //var str = req.body.imageFront;
                     //var str = req.body.imageFront.data;
                     //console.log(str)
     

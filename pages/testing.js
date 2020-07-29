@@ -7,6 +7,9 @@ import Router from 'next/router';
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
 
+//Image resize
+import Resizer from 'react-image-file-resizer';
+
 const fileUpload = require('fuctbase64');
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
@@ -160,13 +163,18 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
 
         //Handle image upload
         const image1Upload = (e) => {
+            /*
             console.log('changed');
 
             fileUpload(e)
             .then((data) => {
-                var str = data.base64;
-                console.log("base64 :", str);
+                console.log('width: '+ data.width);
                 
+                //Convert image to base 64
+                var str = data.base64;
+
+                console.log('image size: '+data.length)
+
                 setForm({
                     ...form,
                  imageFront:{
@@ -177,7 +185,37 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
         })
  })
 
-        
+        */
+       var fileInput = false;
+       if (e.target.files[0]){
+           fileInput = true;
+       }
+       if (fileInput) {
+           Resizer.imageFileResizer(
+            event.target.files[0],
+            100,
+            100,
+            'png',
+            100,
+            0,
+            uri => {
+                console.log(uri)
+
+                setForm({
+                    ...form,
+                 imageFront:{
+                     data: uri, 
+                     contentType: 'image/png'
+                 }
+            
+            })
+            },
+            'base64'
+
+           );
+       }
+
+       
         
         }
 
