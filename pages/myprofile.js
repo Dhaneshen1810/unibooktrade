@@ -38,7 +38,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
         }
 
-        //window.location.reload(false);
+        window.location.reload(false);
 
     }
 
