@@ -193,8 +193,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
        if (fileInput) {
            Resizer.imageFileResizer(
             event.target.files[0],
-            100,
-            100,
+            300,
+            300,
             'png',
             100,
             0,

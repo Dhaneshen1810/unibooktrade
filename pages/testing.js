@@ -1,232 +1,103 @@
+import { withRouter, useRouter } from "next/router";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Router from "next/router";
+
+//Getting book data from database
 import fetch from 'isomorphic-unfetch';
-import { useRouter, withRouter } from 'next/router';
-import Router from 'next/router';
+import { Confirm, Butto, Loader } from 'semantic-ui-react';
+import { useState, useEffect } from "react";
 
-import { Form } from 'react-bootstrap';
-import { Label } from 'semantic-ui-react';
 
-//Image resize
-import Resizer from 'react-image-file-resizer';
 
-const fileUpload = require('fuctbase64');
 
-const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:''}
-    );
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errors, setErrors] = useState({});
+const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [bookName, setBookName] = useState('null');
+    const [bookID, setBookID] = useState(0);
     const router = useRouter();
 
 
+
     useEffect(() => {
-        if (isSubmitting){
-            if (Object.keys(errors).length ===0){
-                //bookmatch();
-
-                //alert('New book created')
-
-
-                createBook();
-                /*
-                Router.push({
-                    pathname: '/booklist',
-                    query: { 
-                            mytitle: form.title,
-                            author: form.author
-                            
-                    }
-                });*/
-              
-            }
-            else{
-                setIsSubmitting(false);
-            }
+        if (isDeleting) {
+            deleteBook();
         }
-    }, [errors])
+    }, [isDeleting])
 
 
-    //Create new book post
-    const createBook = async () => {
+    const deleteBook = async (e) =>{
+        console.log('Book to delete: '+bookName+' with id: '+bookID);
+
         try {
-            
-            
-            const res = await fetch('http://localhost:3000/api/books', {
-            //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+            //const deleted = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID,{
+            //http://localhost:3000/api/books
+            const deleted = await fetch('http://localhost:3000/api/books'+bookID,{
+                method:"DELETE"
 
-                method: 'POST',
-                
-                headers: {
-                    "Accept": 'application/json',
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
                
-            })
-            
-            
-            
-            //Redirect to profile
-            /*
-            Router.push({
-                pathname: '/myprofile',
-                query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname
-                        
-                }
             });
-            */
-
         } catch (error) {
-            console.log(error)
-
-        }
-    }
-
-    const handleSubmit = (e) => { 
-        e.preventDefault();
-
-        console.log(form.imageFront)
-
-        setForm({
-            ...form,
-                 ownerID: id,
-                 ownerName: name,
-                
-
-        })
-
-
-        let errs = validate();
-        setErrors(errs);
-        setIsSubmitting(true);
-
-
-    }
-    const handleChange = (e) => { 
-        setForm({
-            ...form,
-                [e.target.name]: e.target.value
             
-        })
-    }
-
-    const validate = () => {
-        let err = {};
-
-        
-        return err;
-    }
-
-        //Handle page switch for header icons
-        const myProfile = () => {
-            Router.push({
-                pathname: '/myprofile',
-                query: { 
-                        mytitle: '',
-                        author: '',
-                        name: name,
-                        id: id,
-                        firstname: firstname
-                        
-                }
-            });
         }
+
+        window.location.reload(false);
+
+    }
+
+    const handleDelete = async (e) => {
+        console.log(e.target);
+        setBookName(e.target.name);
+        setBookID(e.target.id);
+        setIsDeleting(true);
+    }
+
+    //Handle page switch for header icons
+    const myProfile = () => {
+        Router.push({
+            pathname: '/myprofile',
+            query: { 
+                    mytitle: '',
+                    author: '',
+                    name: name,
+                    id: id,
+                    firstname: firstname
+                    
+            }
+        });
+    }
+
+    //Go to section to create new listing
+    const myBooks = () => {
+        Router.push({
+            pathname: '/new',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname  
+            }
+        });
+    }
+
+    const Search = () => {
+        Router.push({
+            pathname: '/posts',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname
+                    
+            }
+        });
+    }
+
+    return(
+
+        <div className='profile-page'>
     
-        //Go to section to create new listing
-        const myBooks = () => {
-            Router.push({
-                pathname: '/new',
-                query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname
-                        
-                }
-            });
-        }
-
-        const Search = () => {
-            Router.push({
-                pathname: '/posts',
-                query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname
-                        
-                }
-            });
-        }
-
-        //Handle image upload
-        const image1Upload = (e) => {
-            /*
-            console.log('changed');
-
-            fileUpload(e)
-            .then((data) => {
-                console.log('width: '+ data.width);
-                
-                //Convert image to base 64
-                var str = data.base64;
-
-                console.log('image size: '+data.length)
-
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: str, 
-                     contentType: 'image/png'
-                 }
-
-        })
- })
-
-        */
-       var fileInput = false;
-       if (e.target.files[0]){
-           fileInput = true;
-       }
-       if (fileInput) {
-           Resizer.imageFileResizer(
-            event.target.files[0],
-            100,
-            100,
-            'png',
-            100,
-            0,
-            uri => {
-                console.log(uri)
-
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: uri, 
-                     contentType: 'image/png'
-                 }
-            
-            })
-            },
-            'base64'
-
-           );
-       }
-
-       
-        
-        }
-
-        
-           
-
-    return (
-        <div className='newBook-page'>
             <div className='book-greeting'>
-            <div className='greeting-text'>
-            <div className='icon-box'>
+                
+                <div className='greeting-text'>
+                <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
@@ -242,67 +113,112 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
 
 
                     
-            </div>
-
-
-            <p>Name: {name}</p>
-            <p>firstName: {firstname}</p>
-            <p>Id: {id}</p>
-                <p>Post a book.
-                </p>
-
-
-                
-            </div>
-                
-        </div>
-           
-        <form className='create-book-form' onSubmit={handleSubmit}>
-        <div className="form-group my-group" style={{marginTop:'5%'}}>
-                <input 
-                    type="text" 
-                    className="form-control new-book-input" 
-                    id="exampleInputEmail1" 
-                    placeholder="Enter book title"
-                    name="title"
-                    required
-                    onChange={handleChange}/>
-                    
                 </div>
-                <div className="form-group my-group">
-                <input 
-                    type="text" 
-                    className="form-control new-book-input" 
-                    placeholder="Enter Author"
-                    name='author'
-                    onChange={handleChange}
-                    required
-                    />
-                
-                <label className='input-file-btn'>
-                <input
-                type="file"
-                name="file"
-                id="input-files"
-                className='input-file-btn'
-                onChange={image1Upload}
-              />
-              </label>
 
-              <label htmlFor="file-upload" className="input-file-btn" >
-                Custom Upload
-            </label>
-            
-            <input id="file-upload" type="file" onChange={image1Upload}/>
 
-            
-  
-                <button type="submit" className="btn btn-primary my-btn">POST</button>
+                    <p>Name: {name}</p>
+                    <p>Id: {id}</p>
+                    <p>Firstname: {firstname}</p>
+                    <p>title: {mytitle}</p>
+                    <p>Author: {author}</p>
+                    <p>Find your book by entering 
+                        the <b>Author</b> or <b>Book name
+                            below.
+                        </b>
+                    </p>
                 </div>
-                </form>
+                
+            </div>
             
+            <div className='book-list'>
+                  
+            
+            {books.map( book => {
+                
+            //var imageBase64 = book.imageFront.contentType;
+            var imageData;
+            var base64data;
+
+            console.log(book);
+            if (book.imageFront){
+                console.log('image')
+                console.log(book.imageFront.contentType)
+                
+                imageData = book.imageFront.data;
+                console.log(imageData)
+                console.log('length: '+ imageData.length);
+
+                //var myURL = book.imageFront.data;
+                //let buff = new Buffer(myURL)
+                //base64data = buff.toString('base64');
+                //console.log(base64data);
+                //const myImage = 'data:image/png;base64,'+base64data;
+                //console.log('str data: '+base64data.length);
+                //console.log('type: '+ book.imageFront.contentType);
+            }
+            else{
+                console.log('no image');
+                imageData='eweffwf';
+            }
+            
+            console.log('hi');
+                    return (
+                        <div className='book-item-section'>
+                           
+                        <div key={book._id} className='book-item-profile'>
+
+                            <div className='section1'>
+                                <div className='section1-image'>
+                                    <img src={imageData}  style={{ width:'60px', height:'60px'}}/>
+                                </div>
+                                <div className='section1-info'>
+                                    <p>Title: {book.title}</p>
+                                    <p>Author: {book.author}</p>
+                                    <p>Owner: {book.ownerID}</p>
+                                </div>
+                            
+                            </div>
+
+                            <div className='section2'>
+                                <button className='btn btn-success'>Edit</button>
+                                <button className='btn btn-danger'>Delete</button>
+                            </div>
+                        
+                            
+                        </div>
+
+                        
+
+                        </div>
+                    )
+                
+            })}
+        
+        
+            </div>        
         </div>
     )
+
+
 });
 
-export default NewBook;
+
+myprofile.getInitialProps = async (mytitle) =>{
+
+            
+
+    //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        //http://localhost:3000/api/books
+        const res = await fetch('http://localhost:3000/api/books', {
+        headers: {
+            title: mytitle.query.mytitle,
+            author: mytitle.query.author
+        }
+    });
+    const { data } = await res.json();
+
+    return{ books: data }
+}
+
+
+export default myprofile;
