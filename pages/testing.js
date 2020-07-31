@@ -169,19 +169,21 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section1'>
                                 <div className='section1-image'>
-                                    <img src={imageData}  style={{ width:'60px', height:'60px'}}/>
+                                    <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
                                 </div>
                                 <div className='section1-info'>
-                                    <p>Title: {book.title}</p>
-                                    <p>Author: {book.author}</p>
-                                    <p>Owner: {book.ownerID}</p>
+                                    <p><b>{book.title}</b></p>
+                                    <p>{book.author}</p>
+                                    <p>$50</p>
                                 </div>
                             
                             </div>
 
                             <div className='section2'>
-                                <button className='btn btn-success'>Edit</button>
-                                <button className='btn btn-danger'>Delete</button>
+                                <div className='buttons-section'>
+                                <button className='btn btn-success' style={{ width:'80px', height:'40px'}}>Edit</button>
+                                <button className='btn btn-secondary' style={{ width:'80px', height:'40px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
+                                </div>
                             </div>
                         
                             
