@@ -31,7 +31,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         try {
             //const deleted = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID,{
             //http://localhost:3000/api/books
-            const deleted = await fetch('http://localhost:3000/api/books'+bookID,{
+            const deleted = await fetch('http://localhost:3000/api/books/'+bookID,{
                 method:"DELETE"
 
                
@@ -40,7 +40,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
         }
 
-        window.location.reload(false);
+        //window.location.reload(false);
 
     }
 
@@ -181,8 +181,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section2'>
                                 <div className='buttons-section'>
-                                <button className='btn btn-success' style={{ width:'80px', height:'40px'}}>Edit</button>
-                                <button className='btn btn-secondary' style={{ width:'80px', height:'40px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
+                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}}>Edit</button>
+                                <button className='btn btn-secondary' style={{ width:'100px', height:'45px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
                                 </div>
                             </div>
                         

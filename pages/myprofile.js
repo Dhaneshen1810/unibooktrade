@@ -179,8 +179,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section2'>
                                 <div className='buttons-section'>
-                                <button className='btn btn-success' style={{ width:'80px', height:'40px'}}>Edit</button>
-                                <button className='btn btn-secondary' style={{ width:'80px', height:'40px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
+                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}}>Edit</button>
+                                <button className='btn btn-secondary' style={{ width:'100px', height:'45px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
                                 </div>
                             </div>
                         
