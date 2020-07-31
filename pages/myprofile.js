@@ -108,24 +108,16 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
                     </div>
                     
-
-
-                    
                 </div>
-
-
-                    <p>Name: {name}</p>
-                    <p>Id: {id}</p>
-                    <p>Firstname: {firstname}</p>
-                    <p>title: {mytitle}</p>
-                    <p>Author: {author}</p>
-                    <p>Find your book by entering 
-                        the <b>Author</b> or <b>Book name
-                            below.
-                        </b>
-                    </p>
+                <br/>
+                   
                 </div>
                 
+            </div>
+                
+
+            <div className='library-header'>
+                <p style={{letterSpacing:'1px'}}><b><u>{firstname}'s Library</u></b></p>
             </div>
             
             <div className='book-list'>
