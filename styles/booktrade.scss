@@ -174,7 +174,9 @@ background-size: cover;
 .book-item{
     width: 90%;
     border-radius: 20px;
-    height:130px;
+    //height:130px;
+    height: auto;
+    min-height: 130px;
     margin-top: 4%;
     background-color: maroon;
     display: flex;
