@@ -113,7 +113,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     <div key={book._id} className='book-item'>
                         <p>Title: {book.title}</p>
                         <p>Author: {book.author}</p>
-                        <p>Owner: {book.ownerID}</p>
+                        <p>Owner: {book.ownerName}</p>
                         <p>Book id: {book._id}</p>
                         
                     </div>

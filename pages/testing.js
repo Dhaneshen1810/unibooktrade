@@ -107,14 +107,35 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
               
       
         {books.map( book => {
+            //processing image data
+            var imageData;
+
+            if (book.imageFront){
+                console.log('image')
+                console.log(book.imageFront.contentType)
+                
+                imageData = book.imageFront.data;
+                console.log(imageData)
+                console.log('length: '+ imageData.length);
+            }
+            else{
+                console.log('no image');
+                //using dummy data if image data is not present
+                imageData='eweffwf';
+            }
             
     
                 return (
+
                     <div key={book._id} className='book-item'>
-                        <p>Title: {book.title}</p>
-                        <p>Author: {book.author}</p>
-                        <p>Owner: {book.ownerName}</p>
-                        <p>Book id: {book._id}</p>
+                        <div className='item-section1'>
+                        <img src={imageData}  style={{ width:'110px', height:'110px', borderRadius:'10px', marginTop:'10px', marginLeft:'10px'}}/>
+                        </div>
+                        <div className='item-section2'>
+                        <p>{book.title}</p>
+                        <p>{book.author}</p>
+                        <a href='#'><b>Contact {book.ownerName}</b></a>
+                        </div>
                         
                     </div>
                 )

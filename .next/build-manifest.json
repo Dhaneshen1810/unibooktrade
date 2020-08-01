@@ -20,11 +20,7 @@
     "/_polyfills": [
       "static/runtime/polyfills.js"
     ],
-    "/booklist": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/new": [
+    "/testing": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
