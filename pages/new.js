@@ -17,6 +17,10 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
+
+    //state of the preview image
+    const [prevImage, setPrevImage] = useState('/static/default-image.svg');
+
     const router = useRouter();
 
 
@@ -163,29 +167,10 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
 
         //Handle image upload
         const image1Upload = (e) => {
-            /*
-            console.log('changed');
 
-            fileUpload(e)
-            .then((data) => {
-                console.log('width: '+ data.width);
-                
-                //Convert image to base 64
-                var str = data.base64;
+            
 
-                console.log('image size: '+data.length)
-
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: str, 
-                     contentType: 'image/png'
-                 }
-
-        })
- })
-
-        */
+          
        var fileInput = false;
        if (e.target.files[0]){
            fileInput = true;
@@ -201,6 +186,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
             uri => {
                 console.log(uri)
 
+                //Update form with new image data
                 setForm({
                     ...form,
                  imageFront:{
@@ -209,6 +195,11 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                  }
             
             })
+
+            //Update image preview
+            setPrevImage(uri);
+
+            
             },
             'base64'
 
@@ -245,11 +236,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
             </div>
 
 
-            <p>Name: {name}</p>
-            <p>firstName: {firstname}</p>
-            <p>Id: {id}</p>
-                <p>Post a book.
-                </p>
+            
+           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Add a new book posting.</p></div>
 
 
                 
@@ -257,8 +245,9 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 
         </div>
            
-        <form className='create-book-form' onSubmit={handleSubmit}>
-        <div className="form-group my-group" style={{marginTop:'5%'}}>
+        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'3%' }}>
+        <img src={prevImage} alt='default-image' className='image-preview'/>
+        <div className="form-group my-group" style={{marginTop:'8%'}}>
                 <input 
                     type="text" 
                     className="form-control new-book-input" 
@@ -290,10 +279,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
               </label>
 
               <label htmlFor="file-upload" className="input-file-btn" >
-                Custom Upload
             </label>
             
-            <input id="file-upload" type="file" onChange={image1Upload}/>
 
             
   
