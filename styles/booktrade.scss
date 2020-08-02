@@ -25,11 +25,11 @@ background-size: cover;
 }
 
 .my-title{
-    font-size: 30px;
+    font-size: 40px;
     color: white;
-    font-family: 'Poppins', 'serif';
+    font-family: "Bookman Old Style";
     font-weight: 600;
-    margin-top: 70%;
+    margin-top: 50vh;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ background-size: cover;
 
 }
 .my-intro{
-    width: 70%;
+    width: 80%;
     font-size: 18px;
     color: white;
     margin-top: 5%;
@@ -52,13 +52,15 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     text-align: left;
+    font-family: "Bookman Old Style";
 }
 .btn-fb{
     margin-top: 10%;
     margin-left: 6%;
     font-size: 15px;
-    width: 160px;
+    width: 170px;
     height: 60px;
+    font-family: "Bookman Old Style";
 }
 
 

@@ -24,7 +24,7 @@ const Index = () => {
             pathname: '/posts',
             query: { name: myName,
                     id: myID,
-                    firstName: firstName
+                    firstname: firstName
             }
         })
       };

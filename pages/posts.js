@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 import Cors from 'cors';
 
-const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) => {
+const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
 
         const [form, setForm] = useState({ title: '' });
         const [isSubmitting, setIsSubmitting] = useState(false);
@@ -100,7 +100,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                         author: '',
                         name: name,
                         id: id,
-                        firstname: firstName
+                        firstname: firstname
                         
                 }
             });
@@ -112,7 +112,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstName
+                        firstname: firstname
                         
                 }
             });
@@ -124,7 +124,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstName
+                        firstname: firstname
                         
                 }
             });
@@ -151,10 +151,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                 </div>
 
                 
-                <h2>Hi, {firstName}!</h2>
+                <h2>Hi, {firstname}!</h2>
 
                 <p>Find your book by entering 
-                    the <b>Author</b> or <b>Book name</b> below.
+                    the <b>Author</b> or/and <b>Book name</b> below.
                 </p>
             </div>
                 
@@ -170,7 +170,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstName}}, books} ) =>
                     onChange={handleChange}/>
                     
                 </div>
-                <b>OR</b>
+                <br/>
                 <div className="form-group my-group">
                 <label>Author</label>
                 <input 
