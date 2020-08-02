@@ -1,5 +1,5 @@
-import '../styles/booktrade.scss'
 import "bootstrap/dist/css/bootstrap.css";
+import '../styles/booktrade.scss'
 import '../styles/newBook.scss'
 import 'semantic-ui-css/semantic.min.css';
 

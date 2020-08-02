@@ -123,8 +123,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 //using dummy data if image data is not present
                 imageData='eweffwf';
             }
+            
     
                 return (
+
                     <div key={book._id} className='book-item'>
                         <div className='item-section1'>
                         <img src={imageData}  style={{ width:'110px', height:'110px', borderRadius:'10px', marginTop:'10px', marginLeft:'10px'}}/>
@@ -155,6 +157,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 posts.getInitialProps = async (ctx) =>{
     
         const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        //const res = await fetch('http://localhost:3000/api/books', {
         headers: {
             title: ctx.query.mytitle,
             author: ctx.query.author
