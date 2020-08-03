@@ -42,11 +42,23 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
     }
 
+    // The user clicks on the delete button
     const handleDelete = async (e) => {
         console.log(e.target);
         setBookName(e.target.name);
         setBookID(e.target.id);
         setIsDeleting(true);
+    }
+
+    // The user clicks on the edit button
+    // The user is sent to the edit page
+    // The data about this particular book post is the to the page as well
+    const handleEdit = async (e) => {
+        console.log('name: '+e.target.name);
+        console.log('id: '+e.target.id);
+        console.log('author: '+e.target.author);
+        
+        
     }
 
     //Handle page switch for header icons
@@ -171,7 +183,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section2'>
                                 <div className='buttons-section'>
-                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}}>Edit</button>
+                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}} onClick={handleEdit} id={book._id} name={book.title} author={book.author}>Edit</button>
                                 <button className='btn btn-secondary' style={{ width:'100px', height:'45px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
                                 </div>
                             </div>

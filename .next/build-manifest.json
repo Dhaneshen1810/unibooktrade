@@ -19,14 +19,6 @@
     ],
     "/_polyfills": [
       "static/runtime/polyfills.js"
-    ],
-    "/new": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/testing": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
     ]
   }
 }
