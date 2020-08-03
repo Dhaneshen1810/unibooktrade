@@ -54,9 +54,18 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     // The user is sent to the edit page
     // The data about this particular book post is the to the page as well
     const handleEdit = async (e) => {
-        console.log('name: '+e.target.name);
-        console.log('id: '+e.target.id);
-        console.log('author: '+e.target.author);
+        //Update bookID
+        setBookID(e.target.id);
+        Router.push({
+            pathname: '/edit',
+            query: { 
+                    bookID: bookID,
+                    name: name,
+                    id: id,
+                    firstname: firstname
+                    
+            }
+        });
         
         
     }
@@ -141,7 +150,6 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             var imageData;
             var base64data;
 
-            console.log(book);
             if (book.imageFront){
                 console.log('image')
                 console.log(book.imageFront.contentType)
@@ -150,20 +158,12 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 console.log(imageData)
                 console.log('length: '+ imageData.length);
 
-                //var myURL = book.imageFront.data;
-                //let buff = new Buffer(myURL)
-                //base64data = buff.toString('base64');
-                //console.log(base64data);
-                //const myImage = 'data:image/png;base64,'+base64data;
-                //console.log('str data: '+base64data.length);
-                //console.log('type: '+ book.imageFront.contentType);
             }
             else{
                 console.log('no image');
                 imageData='eweffwf';
             }
             
-            console.log('hi');
                     return (
                         <div className='book-item-section'>
                            
@@ -183,7 +183,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section2'>
                                 <div className='buttons-section'>
-                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}} onClick={handleEdit} id={book._id} name={book.title} author={book.author}>Edit</button>
+                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}} onClick={handleEdit} id={book._id} name={book.title}>Edit</button>
                                 <button className='btn btn-secondary' style={{ width:'100px', height:'45px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
                                 </div>
                             </div>
