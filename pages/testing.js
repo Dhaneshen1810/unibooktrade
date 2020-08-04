@@ -12,7 +12,7 @@ import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
-const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
+const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, books} ) => {
     const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +22,12 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     const [prevImage, setPrevImage] = useState('/static/default-image.svg');
 
     const router = useRouter();
+
+
+    console.log('Test');
+    console.log(books);
+
+   
 
 
     useEffect(() => {
@@ -292,4 +298,31 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
     )
 });
 
-export default NewBook;
+
+//Get the specific book, using its id
+EditBook.getInitialProps = async (myData) =>{
+
+    console.log('hi world');
+
+
+    //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        const res = await fetch('http://localhost:3000/api/books/bookbyid', {
+        headers: {
+            id: myData.query.id,
+        }
+    });
+    const { data } = await res.json();
+
+
+    console.log('data here');
+    console.log(myData.query.bookID);
+
+    console.log(data);
+
+    return{ books: data }
+
+    
+}
+
+
+export default EditBook;
