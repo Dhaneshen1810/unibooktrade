@@ -12,11 +12,10 @@ export default async (req, res) => {
     //const myAuthor = req.headers.author;
     const myID = req.headers.id;
 
-    console.log('title is '+myTitle);
-    console.log('author is '+ myAuthor);
 
     // In case we have only the author as input, we will looking
     // for all books with that author
+    
     if (myID!=''){
 
         switch(method){
@@ -26,7 +25,7 @@ export default async (req, res) => {
                     const books = await Book.find({
                         //Sort here
                         //'title': myTitle
-                        'id': myID
+                        'author': "Be"
                     });
                     
     

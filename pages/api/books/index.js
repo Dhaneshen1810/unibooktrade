@@ -10,11 +10,47 @@ export default async (req, res) => {
 
     const myTitle = req.headers.title;
     const myAuthor = req.headers.author;
+    
 
     console.log('title is '+myTitle);
     console.log('author is '+ myAuthor);
     //console.log(req.body.imageFront.data[0]);
 
+
+    const IDcheck;
+    if (req.headers.id){
+        IDcheck = true;
+    }
+    else{
+        IDcheck = false;
+    }
+
+    if (IDcheck){
+        switch(method){
+            case 'GET':
+                try {
+                    
+                    const books = await Book.find({
+                        //Sort here
+                        //'title': myTitle
+                        'author': "Be"
+                    });
+                    
+    
+                    res.status(200).json({ success: true, data: books })
+                } catch (error) {
+                    res.status(400).json({ success: false }); 
+
+                    console.log('book by id not found');
+                }
+
+                break;
+            default:
+                res.status(400).json({ success: false });
+                break;
+        }
+
+    }
     // In case we have only the author as input, we will looking
     // for all books with that author
     if (myTitle=='' && myAuthor!=''){

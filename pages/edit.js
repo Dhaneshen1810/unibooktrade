@@ -27,9 +27,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
     console.log('Test');
     console.log(books);
 
-    books.map( book => {
-        console.log(book);
-    });
+   
 
 
     useEffect(() => {
@@ -307,16 +305,17 @@ EditBook.getInitialProps = async (myData) =>{
     console.log('hi world');
 
 
-    const res = await fetch('https://unibooktrade.vercel.app/api/books/bookbyid', {
+    const res = await fetch('https://unibooktrade.vercel.app/api/books', {
         headers: {
             id: myData.query.id,
         }
     });
     const { data } = await res.json();
 
+
+    console.log('data here');
     console.log(myData.query.bookID);
 
-    console.log(myData.query);
     console.log(data);
 
     return{ books: data }

@@ -55,7 +55,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     const handleEdit = async (e) => {
         //Update bookID
         setBookID(e.target.id);
-        console.log(e.target.id);
+        console.log('Book id: '+e.target.id);
         
         Router.push({
             pathname: '/edit',
