@@ -13,7 +13,7 @@ import Resizer from 'react-image-file-resizer';
 const fileUpload = require('fuctbase64');
 
 const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, books} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:''}
+    const [form, setForm] = useState({ title:books[0].title, author:books[0].author, ownerID:'', ownerName:'', imageFront:books[0].imageFront.data}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -25,7 +25,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
 
 
     console.log('Test');
-    console.log(books);
+    console.log(books[0].title);
 
    
 
@@ -252,7 +252,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
         </div>
            
         <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'3%' }}>
-        <img src={prevImage} alt='default-image' className='image-preview'/>
+        <img src={form.imageFront} alt='default-image' className='image-preview'/>
         <div className="form-group my-group" style={{marginTop:'8%'}}>
                 <input 
                     type="text" 
@@ -260,6 +260,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
                     id="exampleInputEmail1" 
                     placeholder="Enter book title"
                     name="title"
+                    value = {form.title}
                     required
                     onChange={handleChange}/>
                     
@@ -271,6 +272,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
                     placeholder="Enter Author"
                     name='author'
                     onChange={handleChange}
+                    value= {form.author}
                     required
                     />
                 
@@ -288,8 +290,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
             </label>
             
 
-            
-  
                 <button type="submit" className="btn btn-primary my-btn">POST</button>
                 </div>
                 </form>
