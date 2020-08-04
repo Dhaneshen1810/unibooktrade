@@ -26,7 +26,6 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
 
     const deleteBook = async (e) =>{
-        console.log('Book to delete: '+bookName+' with id: '+bookID);
 
         try {
             const deleted = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID,{
@@ -56,16 +55,19 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     const handleEdit = async (e) => {
         //Update bookID
         setBookID(e.target.id);
+        console.log(e.target.id);
+        
         Router.push({
             pathname: '/edit',
             query: { 
-                    bookID: bookID,
                     name: name,
                     id: id,
-                    firstname: firstname
+                    firstname: firstname,
+                    bookID: e.target.id
                     
             }
         });
+        
         
         
     }
@@ -151,12 +153,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             var base64data;
 
             if (book.imageFront){
-                console.log('image')
-                console.log(book.imageFront.contentType)
                 
                 imageData = book.imageFront.data;
-                console.log(imageData)
-                console.log('length: '+ imageData.length);
 
             }
             else{
