@@ -61,13 +61,14 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID}}, 
 
     //Create new book post
     const createBook = async () => {
+
+        
         try {
             
-            
             //const res = await fetch('http://localhost:3000/api/books', {
-            const res = await fetch('https://unibooktrade.vercel.app/api/books/bookbyid', {
+            const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
 
-                method: 'POST',
+                method: 'PUT',
                 
                 headers: {
                     "Accept": 'application/json',
