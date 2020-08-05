@@ -7,6 +7,8 @@ import Router from 'next/router';
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
 
+//Test github
+
 //Image resize
 import Resizer from 'react-image-file-resizer';
 
