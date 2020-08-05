@@ -52,21 +52,28 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     // The user clicks on the edit button
     // The user is sent to the edit page
     // The data about this particular book post is the to the page as well
-    const handleEdit = async (e) => {
+    const handleEdit = (myBookID, myTitle, myAuthor, imageData) => {
         //Update bookID
-        setBookID(e.target.id);
-        console.log('Book id: '+e.target.id);
+        //setBookID(e.target.id);
+        //console.log('Book id: '+e.target.id);
+        console.log(myTitle);
+        console.log(myAuthor);
+        
         
         Router.push({
             pathname: '/edit',
             query: { 
-                    name: name,
-                    id: id,
-                    firstname: firstname,
-                    bookID: e.target.id
+                name: name,
+                id: id,
+                firstname: firstname,
+                bookID: myBookID,
+                bookTitle: myTitle,
+                bookAuthor: myAuthor,
+                bookImage: imageData
                     
             }
         });
+        
         
         
         
@@ -181,7 +188,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
                             <div className='section2'>
                                 <div className='buttons-section'>
-                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}} onClick={handleEdit} id={book._id} name={book.title}>Edit</button>
+                                <button className='btn btn-success' style={{ width:'100px', height:'45px'}} onClick={() => handleEdit(book._id, book.title, book.author, imageData)} id={book._id} name={book.title}>Edit</button>
                                 <button className='btn btn-secondary' style={{ width:'100px', height:'45px'}} onClick={handleDelete} id={book._id} name={book.title}>Delete</button>
                                 </div>
                             </div>
