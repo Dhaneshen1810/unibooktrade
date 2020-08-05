@@ -64,11 +64,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
         try {
             
             //const res = await fetch('http://localhost:3000/api/books', {
-<<<<<<< HEAD
             const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
-=======
-            const res = await fetch('https://unibooktrade.vercel.app/api/books', {
->>>>>>> 40346c9c2338de10a19d37ccc5c39dc4eade24f1
 
                 method: 'PUT',
                 
