@@ -305,7 +305,7 @@ EditBook.getInitialProps = async (myData) =>{
     console.log('hi world');
 
 
-    //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+    //const res = await fetch('https://unibooktrade.vercel.app/api/books/bookbyid', {
         const res = await fetch('http://localhost:3000/api/books/bookbyid', {
         headers: {
             id: myData.query.id,
