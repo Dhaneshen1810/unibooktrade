@@ -56,8 +56,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         //Update bookID
         //setBookID(e.target.id);
         //console.log('Book id: '+e.target.id);
-        console.log(myTitle);
-        console.log(myAuthor);
+        console.log('Owner name: '+ name);
+        console.log('ownerID: '+id);
         
         
         Router.push({
@@ -69,7 +69,6 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 bookID: myBookID,
                 bookTitle: myTitle,
                 bookAuthor: myAuthor,
-                bookImage: imageData
                     
             }
         });

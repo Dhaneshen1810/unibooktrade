@@ -14,8 +14,8 @@ import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
-const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID, bookTitle, bookAuthor, bookImage}}} ) => {
-    const [form, setForm] = useState({ title:bookTitle, author:bookAuthor, ownerID:'', ownerName:'', imageFront: bookImage}
+const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor}}} ) => {
+    const [form, setForm] = useState({ title:bookTitle, author:bookAuthor, ownerID:id, ownerName:name, imageFront:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -25,9 +25,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
 
     const router = useRouter();
 
-
-    console.log(form.title);
-    console.log(form.author);
 
 
     useEffect(() => {
@@ -60,10 +57,19 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
     //Create new book post
     const createBook = async () => {
 
+        setForm({
+            ...form,
+                title: bookTitle,
+                author: bookAuthor,
+                 ownerID: id,
+                 ownerName: name,
+                 imageFront:''
+        })
+
         
         try {
             
-            //const res = await fetch('http://localhost:3000/api/books', {
+            //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
             const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
 
                 method: 'PUT',
@@ -100,8 +106,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
     const handleSubmit = (e) => { 
         e.preventDefault();
 
-        console.log(form.imageFront)
 
+        /*
         setForm({
             ...form,
                  ownerID: id,
@@ -109,7 +115,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
                 
 
         })
-
+        */
 
         let errs = validate();
         setErrors(errs);
@@ -175,9 +181,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
         //Handle image upload
         const image1Upload = (e) => {
 
-            
 
-          
        var fileInput = false;
        if (e.target.files[0]){
            fileInput = true;
@@ -211,6 +215,14 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
             'base64'
 
            );
+       }
+       else{
+           setForm({
+               imageFront:{
+                   data: form.imageFront,
+                   contentType: 'image/png'
+               }
+           })
        }
 
        
@@ -299,33 +311,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookBookID
     )
 });
 
-
-//Get the specific book, using its id
-/*
-EditBook.getInitialProps = async (myData) =>{
-
-    console.log('hi world');
-
-
-    const res = await fetch('https://unibooktrade.vercel.app/api/books/bookbyid', {
-        //const res = await fetch('http://localhost:3000/api/books/bookbyid', {
-        headers: {
-            id: myData.query.id,
-        }
-    });
-    const { data } = await res.json();
-
-
-    console.log('data here');
-    console.log(myData.query.bookID);
-
-    console.log(data);
-
-    return{ books: data }
-
-    
-}
-*/
 
 
 
