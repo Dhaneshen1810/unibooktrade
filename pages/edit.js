@@ -124,6 +124,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
     }
     const handleChange = (e) => { 
+        console.log(e.target)
+
         setForm({
             ...form,
                 [e.target.name]: e.target.value
@@ -273,7 +275,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     id="exampleInputEmail1" 
                     placeholder="Enter book title"
                     name="title"
-                    value = {form.title}
                     required
                     onChange={handleChange}/>
                     
@@ -285,7 +286,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     placeholder="Enter Author"
                     name='author'
                     onChange={handleChange}
-                    value= {form.author}
                     required
                     />
                 

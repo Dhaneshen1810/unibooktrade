@@ -181,6 +181,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                                     <p><b>{book.title}</b></p>
                                     <p>{book.author}</p>
                                     <p>$50</p>
+                                    <p>Book id: {book._id}</p>
                                 </div>
                             
                             </div>

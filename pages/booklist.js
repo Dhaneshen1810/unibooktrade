@@ -19,8 +19,11 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         Router.push({
             pathname: '/booklist',
             query: { 
-                    mytitle: '',
-                    author: ''
+                name: name,
+                id: id,
+                firstname: firstname,
+                mytitle: '',
+                author: ''
                     
             }
         });
