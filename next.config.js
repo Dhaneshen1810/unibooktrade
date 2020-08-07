@@ -1,4 +1,4 @@
-/*
+
 
 module.exports = {
     env: {
@@ -6,4 +6,3 @@ module.exports = {
     }
 }
 
-*/
