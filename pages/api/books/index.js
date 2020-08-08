@@ -2,6 +2,7 @@ import dbConnect from '../../../utils/dbConnect';
 import Book from '../../../modals/book';
 
 dbConnect();
+console.log('inside books')
 
 export default async (req, res) => {
 

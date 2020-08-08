@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
 
 
+    const [booklist, setBooklist] = useState([]);
 
     const [isDeleting, setIsDeleting] = useState(false);
     const [bookName, setBookName] = useState('null');
@@ -23,6 +24,10 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
 
     useEffect(() => {
+        setBooklist(books)
+
+
+
         if (isDeleting) {
             deleteBook();
         }
@@ -158,7 +163,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             <div className='book-list'>
                   
             
-            {books.map( book => {
+            {booklist.map( book => {
                 
             //var imageBase64 = book.imageFront.contentType;
             var imageData;
@@ -232,22 +237,29 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
 myprofile.getInitialProps = async (mytitle) =>{
 
-    var data = [];
+            
+
+    
+
+   try {
 
     //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-    const res = await fetch('http://localhost:3000/api/books', {
-        headers: {
-            title: mytitle.query.mytitle,
-            author: mytitle.query.author
-        }
-    });
-    //const { data } = await res.json();
-    data = await res.json();
-
-    if (data){
-        return{ books: data }
-    }
+        const res = await fetch('http://localhost:3000/api/books', {
+            headers: {
+                title: mytitle.query.mytitle,
+                author: mytitle.query.author
+            }
+        });
+        const { data } = await res.json();
     
+       
+       return{ books:data }
+       
+   } catch (error) {
+
+    return { books: [] }
+       
+   }
     
 }
 
