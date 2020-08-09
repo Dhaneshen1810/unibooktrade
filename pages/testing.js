@@ -247,7 +247,8 @@ myprofile.getInitialProps = async (mytitle) =>{
         const res = await fetch('http://localhost:3000/api/books', {
             headers: {
                 title: mytitle.query.mytitle,
-                author: mytitle.query.author
+                author: mytitle.query.author,
+                id: mytitle.query.id
             }
         });
         const { data } = await res.json();

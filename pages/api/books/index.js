@@ -34,6 +34,7 @@ export default async (req, res) => {
                         'author': myAuthor
                     });
                     
+                    
     
                     res.status(200).json({ success: true, data: books })
                 } catch (error) {
@@ -115,13 +116,13 @@ export default async (req, res) => {
         switch(method){
             case 'GET':
                 try {
-                    
+
                     const books = await Book.find({
                         //Sort here
                         'title': myTitle,
                         'author': myAuthor
                     });
-                    
+                    console.log('books are ready')
     
                     res.status(200).json({ success: true, data: books })
                 } catch (error) {
@@ -154,12 +155,14 @@ export default async (req, res) => {
     // There is no given title and author
     // We return all books available
     else if (myTitle=='' && myAuthor==''){
+        console.log('in number 4')
+        console.log('User id: '+req.headers.id)
         switch(method){
             case 'GET':
                 try {
                     
                     const books = await Book.find({
-                        
+                        ownerID: req.headers.id
                     });
                     
     

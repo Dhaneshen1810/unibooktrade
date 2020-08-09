@@ -1,7 +1,15 @@
 import dbConnect from '../../../utils/dbConnect';
 import Book from '../../../modals/book';
 
-dbConnect();
+try {
+  dbConnect();
+  console.log('db connected')
+  
+} catch (error) {
+console.log('Could not connect to database.')
+  
+}
+
 
 export default async (req, res) => {
   const {
