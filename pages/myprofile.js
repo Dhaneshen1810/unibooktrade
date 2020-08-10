@@ -36,10 +36,21 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
     const deleteBook = async (e) =>{
 
+        console.log(bookID)
         try {
-            const deleted = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID,{
-            //const deleted = await fetch('http://localhost:3000/api/books/'+bookID,{
-                method:"DELETE"
+            const deleted = await fetch('https://unibooktrade.vercel.app/api/books',{
+            //const deleted = await fetch('http://localhost:3000/api/books',{
+                method:'DELETE',
+                headers:{
+                    "Accept": 'application/json',
+                    "Content-Type": "application/json"
+                },
+                body:JSON.stringify({
+                    title:'',
+                    author:'',
+                    id: bookID,
+                })
+
 
                
             });
@@ -47,7 +58,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
         }
 
-        window.location.reload(false);
+        //window.location.reload(false);
 
     }
 
@@ -247,7 +258,8 @@ myprofile.getInitialProps = async (mytitle) =>{
         //const res = await fetch('http://localhost:3000/api/books', {
             headers: {
                 title: mytitle.query.mytitle,
-                author: mytitle.query.author
+                author: mytitle.query.author,
+                id: mytitle.query.id
             }
         });
         const { data } = await res.json();

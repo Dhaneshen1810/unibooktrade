@@ -2,15 +2,31 @@ import dbConnect from '../../../utils/dbConnect';
 import Book from '../../../modals/book';
 
 dbConnect();
-console.log('inside books')
+
+console.log('inside the main book ')
+
+
 
 export default async (req, res) => {
 
  
     const { method } = req; 
 
-    const myTitle = req.headers.title;
-    const myAuthor = req.headers.author;
+    console.log('method is '+ method)
+
+
+    
+
+    var myTitle = req.headers.title;
+    var myAuthor = req.headers.author;
+
+    if (req.body.id){
+        console.log('id present.')
+        const myID = req.body.id;
+        myTitle = req.body.title;
+        myAuthor = req.body.author;
+
+    }
     
 
     console.log('title is '+myTitle);
@@ -156,13 +172,31 @@ export default async (req, res) => {
     // We return all books available
     else if (myTitle=='' && myAuthor==''){
         console.log('in number 4')
-        console.log('User id: '+req.headers.id)
         switch(method){
+            
             case 'GET':
+                if (req.headers.id){
+                try {
+                    console.log('awaiting book now:')
+
+                    const books = await Book.find({
+                        ownerID: req.headers.id
+                    });
+
+                    console.log('Got books');
+                    
+    
+                    res.status(200).json({ success: true, data: books })
+                } catch (error) {
+                    res.status(400).json({ success: false });
+                }
+
+            }
+            else{
+                
                 try {
                     
                     const books = await Book.find({
-                        ownerID: req.headers.id
                     });
                     
     
@@ -170,6 +204,7 @@ export default async (req, res) => {
                 } catch (error) {
                     res.status(400).json({ success: false });
                 }
+            }
                 
                 break;
             case 'POST':
@@ -185,6 +220,24 @@ export default async (req, res) => {
                     
                 }
                 break;
+
+            //Deleting book post here instead of in [id].js
+            case 'DELETE':
+                console.log('Attempting to delete: '+ req.body.id);
+                try {
+                    const deletedBook = await Book.deleteOne({ _id: req.body.id });
+
+                    if (!deletedBook){
+                    return res.status(400).json({ success: false });
+
+                    }
+
+        res.status(200).json({ success: true, data: {} });
+      } catch (error) {
+        return res.status(400).json({ success: 'some error happenn' });
+
+      }
+
             default:
                 res.status(400).json({ success: false });
                 break;

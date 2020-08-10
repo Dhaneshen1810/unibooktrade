@@ -1,14 +1,8 @@
 import dbConnect from '../../../utils/dbConnect';
 import Book from '../../../modals/book';
 
-try {
-  dbConnect();
-  console.log('db connected')
-  
-} catch (error) {
-console.log('Could not connect to database.')
-  
-}
+
+dbConnect();
 
 
 export default async (req, res) => {
@@ -18,7 +12,7 @@ export default async (req, res) => {
   }= req;
 
   
-
+console.log('method is '+method);
 
   switch(method){
     case 'GET':

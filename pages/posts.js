@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 
 import Cors from 'cors';
 
+
+
 const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
 
         const [form, setForm] = useState({ title: '' });
