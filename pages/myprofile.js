@@ -58,7 +58,21 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             
         }
 
-        //window.location.reload(false);
+        /*
+        Router.push({
+            pathname: '/myprofile',
+            query: { 
+                    mytitle: '',
+                    author: '',
+                    name: name,
+                    id: id,
+                    firstname: firstname
+                    
+            }
+        })
+        */
+
+        window.location.reload(false);
 
     }
 
