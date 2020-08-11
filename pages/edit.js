@@ -70,7 +70,10 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
         try {
             
             //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
-            const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
+            //const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
+            const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+             //const res = await fetch('http://localhost:3000/api/books', {
+
 
                 method: 'PUT',
                 
@@ -78,24 +81,34 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     "Accept": 'application/json',
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(form)
+                //body: JSON.stringify(form)
+                body: JSON.stringify({
+                    title: form.title,
+                    author: form.author,
+                    id: bookID,
+                    ownerID: id,
+                    ownerName: name,
+                    imageFront:'',
+                })
                
             })
+
             
             
             
             //Redirect to profile
-            /*
             Router.push({
                 pathname: '/myprofile',
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        mytitle: '',
+                        author: ''
                         
                 }
             });
-            */
+            
 
         } catch (error) {
             console.log(error)
@@ -303,7 +316,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
             </label>
             
 
-                <button type="submit" className="btn btn-primary my-btn">POST</button>
+                <button type="submit" className="btn btn-success my-btn">Update</button>
                 </div>
                 </form>
             

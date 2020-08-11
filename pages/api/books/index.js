@@ -25,6 +25,8 @@ export default async (req, res) => {
         const myID = req.body.id;
         myTitle = req.body.title;
         myAuthor = req.body.author;
+        //const ownerID = req.body.ownerID;
+        console.log(req.body);
 
     }
     
@@ -159,6 +161,22 @@ export default async (req, res) => {
                     console.log("couldn't post 3");
                     console.log('Failed: '+myTitle+' '+myAuthor);
                     
+                }
+                break;
+            case 'PUT':
+                try {
+                    const book = await Book.findByIdAndUpdate(req.body.id, req.body, {
+                        new: true,
+                        runValidators: true
+                      });
+              
+                      if (!book){
+                        return res.status(400).json({ success: '!book' });
+                      }
+
+                      res.status(200).json({ success: true, data: book });
+                } catch (error) {
+                    res.status(400).json({ success: false });
                 }
                 break;
             default:
