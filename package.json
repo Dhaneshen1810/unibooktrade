@@ -33,7 +33,7 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
     "multer": "^1.4.2",
-    "next": "^9.5.1",
+    "next": "^9.5.2",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
@@ -45,7 +45,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
     "serverless-mysql": "^1.5.4",
-    "sql-template-strings": "^2.2.2"
+    "sql-template-strings": "^2.2.2",
+    "vercel": "^19.2.0"
   },
   "devDependencies": {
     "webpack": "^4.43.0"

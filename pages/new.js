@@ -166,8 +166,6 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
         //Handle image upload
         const image1Upload = (e) => {
 
-            
-
           
        var fileInput = false;
        if (e.target.files[0]){

@@ -7,15 +7,13 @@ import Router from 'next/router';
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
 
-//Test github
-
 //Image resize
 import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
 const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor}}} ) => {
-    const [form, setForm] = useState({ title:bookTitle, author:bookAuthor, ownerID:id, ownerName:name, imageFront:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -27,7 +25,25 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
 
 
+    
     useEffect(() => {
+        // Set form data to that from Router
+        setForm({
+            ...form,
+                title: bookTitle,
+                author: bookAuthor,
+                ownerID: id,
+                ownerName: name
+        })
+
+        console.log(form);
+        console.log('name is '+ name)
+
+
+
+
+
+
         if (isSubmitting){
             if (Object.keys(errors).length ===0){
                 //bookmatch();
@@ -88,7 +104,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     id: bookID,
                     ownerID: id,
                     ownerName: name,
-                    imageFront:'',
+                    imageFront: form.imageFront,
                 })
                
             })
@@ -137,7 +153,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
     }
     const handleChange = (e) => { 
-        console.log(e.target)
 
         setForm({
             ...form,
@@ -210,9 +225,10 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
             100,
             0,
             uri => {
-                console.log(uri)
+                console.log('im inside')
 
                 //Update form with new image data
+                /*
                 setForm({
                     ...form,
                  imageFront:{
@@ -221,16 +237,26 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                  }
             
             })
+            */
+           setForm({
+            ...form,
+            title:uri,
+         imageFront:'URI'
+    
+    })
+
+
+            console.log(form)
 
             //Update image preview
             setPrevImage(uri);
-
             
             },
             'base64'
 
            );
        }
+       /*
        else{
            setForm({
                imageFront:{
@@ -239,9 +265,11 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                }
            })
        }
+       */
 
        
-        
+        console.log('Below is the imageFront')
+        console.log(form.imageFront)
         }
 
         
@@ -280,7 +308,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
         </div>
            
         <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'3%' }}>
-        <img src={form.imageFront} alt='default-image' className='image-preview'/>
+        <img src={prevImage} alt='default-image' className='image-preview'/>
         <div className="form-group my-group" style={{marginTop:'8%'}}>
                 <input 
                     type="text" 
