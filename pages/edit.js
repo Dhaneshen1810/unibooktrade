@@ -13,7 +13,7 @@ import Resizer from 'react-image-file-resizer';
 const fileUpload = require('fuctbase64');
 
 const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:{data:'/static/default-image.svg', contentType:'image/png'}}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -84,6 +84,25 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
         
         try {
+
+            // Use default image as book image if no image has been given
+            /*
+            if (form.imageFront==''){
+                console.log('default image is given')
+                console.log(prevImage)
+                setForm({
+                    ...form,
+                 imageFront:{
+                     data: prevImage, 
+                     contentType: 'image/png'
+                 }
+            
+            })
+            }
+            */
+
+            console.log(form.imageFront.data);
+            console.log(form)
             
             //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
             //const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
@@ -228,7 +247,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 console.log('im inside')
 
                 //Update form with new image data
-                /*
                 setForm({
                     ...form,
                  imageFront:{
@@ -237,13 +255,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                  }
             
             })
-            */
-           setForm({
-            ...form,
-            title:uri,
-         imageFront:'URI'
-    
-    })
+            
 
 
             console.log(form)
@@ -268,8 +280,6 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
        */
 
        
-        console.log('Below is the imageFront')
-        console.log(form.imageFront)
         }
 
         
