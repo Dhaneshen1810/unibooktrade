@@ -1,174 +1,102 @@
+import { withRouter } from "next/router";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { useRouter, withRouter } from 'next/router';
+
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 
-import { Form } from 'react-bootstrap';
-import { Label } from 'semantic-ui-react';
-
-//Image resize
-import Resizer from 'react-image-file-resizer';
-
-const fileUpload = require('fuctbase64');
-
-const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:''}
-    );
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errors, setErrors] = useState({});
-
-    //state of the preview image
-    const [prevImage, setPrevImage] = useState('/static/default-image.svg');
-
-    const router = useRouter();
+import Cors from 'cors';
 
 
 
-    
-    useEffect(() => {
-        // Set form data to that from Router
-        setForm({
-            ...form,
-                title: bookTitle,
-                author: bookAuthor,
-                ownerID: id,
-                ownerName: name
-        })
+const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
 
-        console.log(form);
-        console.log('name is '+ name)
+        const [form, setForm] = useState({ title: '' });
+        const [isSubmitting, setIsSubmitting] = useState(false);
+        const [errors, setErrors] = useState();
+        const router = useRouter;
 
-
-
-
-
-
-        if (isSubmitting){
-            if (Object.keys(errors).length ===0){
-                //bookmatch();
-
-                //alert('New book created')
-
-
-                createBook();
-                /*
-                Router.push({
-                    pathname: '/booklist',
-                    query: { 
-                            mytitle: form.title,
-                            author: form.author
-                            
-                    }
-                });*/
-              
-            }
-            else{
-                setIsSubmitting(false);
-            }
-        }
-    }, [errors])
-
-
-    //Create new book post
-    const createBook = async () => {
-
-        setForm({
-            ...form,
-                title: bookTitle,
-                author: bookAuthor,
-                 ownerID: id,
-                 ownerName: name,
-                 imageFront:''
-        })
+        // Initializing the cors middleware
+        const cors = Cors({
+        methods: ['GET', 'HEAD'],
+    })
 
         
-        try {
-            
-            //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
-            //const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
-            //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-             const res = await fetch('http://localhost:3000/api/books', {
+        useEffect(() => {
+
+            // We are directed to the booklist page
+            // Forwarding the following data to booklist
+            // Fullname, firstname, id, book author and book title
+            if (isSubmitting){
+
+                if (Object.keys(errors).length ===0){
+
+                    Router.push({
+                        pathname: '/booklist',
+                        query: { 
+                                mytitle: form.title,
+                                author: form.author,
+                                name: name,
+                                id: id,
+                                firstname: firstname
+                                
+                        }
+                    });
+                  
+                }
+                else{
+                    setIsSubmitting(false);
+                }
+            }
+        }, [errors])
 
 
-                method: 'PUT',
+        // When th user submits
+        const handleSubmit = (e) => { 
+            e.preventDefault();
+            let errs = validate();
+            setErrors(errs);
+            setIsSubmitting(true);
+
+
+        }
+
+        // Handle changes made to the input box
+        // That is, when the user types in the box
+        const handleChange = (e) => { 
+            setForm({
+                ...form,
+                    [e.target.name]: e.target.value
                 
-                headers: {
-                    "Accept": 'application/json',
-                    "Content-Type": "application/json"
-                },
-                //body: JSON.stringify(form)
-                body: JSON.stringify({
-                    title: form.title,
-                    author: form.author,
-                    id: bookID,
-                    ownerID: id,
-                    ownerName: name,
-                    imageFront: form.imageFront,
-                })
-               
             })
+        }
+
+        const validate = () => {
+            let err = {};
 
             
-            
-            
-            //Redirect to profile
+            return err;
+        }
+
+
+        // User chooses to view all available books
+        const viewAll = () => {
+
             Router.push({
-                pathname: '/myprofile',
+                pathname: '/booklist',
                 query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname,
-                        mytitle: '',
-                        author: ''
+                    name: name,
+                    id: id,
+                    firstname: firstname,
+                    mytitle: '',
+                    author: ''
                         
                 }
             });
-            
-
-        } catch (error) {
-            console.log(error)
-
         }
-    }
 
-    const handleSubmit = (e) => { 
-        e.preventDefault();
-
-
-        /*
-        setForm({
-            ...form,
-                 ownerID: id,
-                 ownerName: name,
-                
-
-        })
-        */
-
-        let errs = validate();
-        setErrors(errs);
-        setIsSubmitting(true);
-
-
-    }
-    const handleChange = (e) => { 
-
-        setForm({
-            ...form,
-                [e.target.name]: e.target.value
-            
-        })
-    }
-
-    const validate = () => {
-        let err = {};
-
-        
-        return err;
-    }
-
-        //Handle page switch for header icons
         const myProfile = () => {
             Router.push({
                 pathname: '/myprofile',
@@ -182,8 +110,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 }
             });
         }
-    
-        //Go to section to create new listing
+
         const myBooks = () => {
             Router.push({
                 pathname: '/new',
@@ -208,78 +135,12 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
             });
         }
 
-        //Handle image upload
-        const image1Upload = (e) => {
+    return(
+    <div className='option-page'>
 
-
-       var fileInput = false;
-       if (e.target.files[0]){
-           fileInput = true;
-       }
-       if (fileInput) {
-           Resizer.imageFileResizer(
-            event.target.files[0],
-            300,
-            300,
-            'png',
-            100,
-            0,
-            uri => {
-                console.log('im inside')
-
-                //Update form with new image data
-                /*
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: uri, 
-                     contentType: 'image/png'
-                 }
-            
-            })
-            */
-           setForm({
-            ...form,
-            title:uri,
-         imageFront:'URI'
-    
-    })
-
-
-            console.log(form)
-
-            //Update image preview
-            setPrevImage(uri);
-            
-            },
-            'base64'
-
-           );
-       }
-       /*
-       else{
-           setForm({
-               imageFront:{
-                   data: form.imageFront,
-                   contentType: 'image/png'
-               }
-           })
-       }
-       */
-
-       
-        console.log('Below is the imageFront')
-        console.log(form.imageFront)
-        }
-
-        
-           
-
-    return (
-        <div className='newBook-page'>
-            <div className='book-greeting'>
+        <div className='book-greeting'>
             <div className='greeting-text'>
-            <div className='icon-box'>
+                <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
@@ -288,71 +149,65 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
-                    
                     <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
+                    
                     </div>
                     
-
-
-                    
-            </div>
-
-
-            
-           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Add a new book posting.</p></div>
-
+                </div>
 
                 
+                <h2 style={{ marginTop:'5%' }}>Hi, {firstname}!</h2>
+
+                <p>Find your book by entering 
+                    the <b>Author</b> or/and <b>Book name</b> below.
+                </p>
             </div>
                 
-        </div>
-           
-        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'3%' }}>
-        <img src={prevImage} alt='default-image' className='image-preview'/>
-        <div className="form-group my-group" style={{marginTop:'8%'}}>
+            <form className='my-form' onSubmit={handleSubmit}>
+                <div className="form-group my-group">
+                <label>Title</label>
                 <input 
                     type="text" 
-                    className="form-control new-book-input" 
+                    className="form-control my-form-control" 
                     id="exampleInputEmail1" 
                     placeholder="Enter book title"
                     name="title"
-                    required
                     onChange={handleChange}/>
                     
                 </div>
+                <br/>
                 <div className="form-group my-group">
+                <label>Author</label>
                 <input 
                     type="text" 
-                    className="form-control new-book-input" 
+                    className="form-control" 
                     placeholder="Enter Author"
                     name='author'
                     onChange={handleChange}
-                    required
                     />
                 
-                <label className='input-file-btn'>
-                <input
-                type="file"
-                name="file"
-                id="input-files"
-                className='input-file-btn'
-                onChange={image1Upload}
-              />
-              </label>
-
-              <label htmlFor="file-upload" className="input-file-btn" >
-            </label>
-            
-
-                <button type="submit" className="btn btn-success my-btn">Update</button>
+  
+                <button type="submit" className="btn btn-primary my-btn">Search</button>
                 </div>
                 </form>
+
+                <div className='my-divider'></div>
+                    <div className='btn btn-success my-btn-viewall' onClick={viewAll}>View all</div>
             
         </div>
+
+
+        
+    </div>
+
     )
+    
 });
+  
 
 
 
+    
+export default posts;
 
-export default EditBook;
+

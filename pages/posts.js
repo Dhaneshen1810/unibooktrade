@@ -13,7 +13,7 @@ import Cors from 'cors';
 
 const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
 
-        const [form, setForm] = useState({ title: '' });
+        const [form, setForm] = useState({ title: '', author:'' });
         const [isSubmitting, setIsSubmitting] = useState(false);
         const [errors, setErrors] = useState();
         const router = useRouter;
@@ -156,7 +156,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 </div>
 
                 
-                <h2>Hi, {firstname}!</h2>
+                <h2 style={{ marginTop:'5%' }}>Hi, {firstname}!</h2>
 
                 <p>Find your book by entering 
                     the <b>Author</b> or/and <b>Book name</b> below.
