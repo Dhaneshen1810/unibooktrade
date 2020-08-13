@@ -2,8 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/testing": "pages/testing.js",
-  "/new": "pages/new.js",
   "/posts": "pages/posts.js",
-  "/myprofile": "pages/myprofile.js"
+  "/testing": "pages/testing.js",
+  "/api/books": "pages/api/books.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }

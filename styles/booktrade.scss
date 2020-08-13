@@ -111,7 +111,9 @@ background-size: cover;
 }
 
 .book-greeting{
-    background-color: rgb(128,0,0);
+    //background-color: rgb(128,0,0);
+    background-image: url('../public/static/maroonPoster.png');
+    background-size: cover;
     width: 100%;
     height: 165px;
     justify-self: center;

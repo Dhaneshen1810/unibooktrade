@@ -91,17 +91,13 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 </div>
 
 
-
-                <p>Name: {name}</p>
-                <p>Id: {id}</p>
-                <p>Firstname: {firstname}</p>
-                <p>title: {mytitle}</p>
-                <p>Author: {author}</p>
-                <p>Find your book by entering 
-                    the <b>Author</b> or <b>Book name
-                        below.
-                    </b>
-                </p>
+                <div style={{ marginTop:'4%', padding:'10px' }}>
+                    
+                <p style={{ fontSize:'18px' }}>This is a collection of all the books matching your search 
+                
+                <br/><span style={{ fontSize: '16px' }}>Once you find the one you want, get in contact with the owner.</span></p>
+                
+                </div>
             </div>
             
         </div>
