@@ -309,7 +309,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
 
             
-           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Add a new book posting.</p></div>
+           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Update your book posting</p></div>
 
 
                 

@@ -67,6 +67,28 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
+    // Redirect to contact page
+    // Information transferred are user, book and bookowner information
+    const Contact = (bookID, bookOwnerName) => {
+        var splitFullName = bookOwnerName.split(" ");
+        var ownerFirstName = splitFullName[0];
+
+        Router.push({
+            pathname: '/contact',
+            query: { 
+                    //User information
+                    id: id,
+                    name: name,
+                    firstname: firstname,
+                    //Book information
+                    bookID: bookID,
+                    //book owner information
+                    bookOwnerName: bookOwnerName,
+                    ownerFirstName: ownerFirstName
+            }
+        });
+    }
+
 
     return(
 
@@ -133,7 +155,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <div className='item-section2'>
                         <p>{book.title}</p>
                         <p>{book.author}</p>
-                        <a href='#'><b>Contact {book.ownerName}</b></a>
+                        <a onClick={() => Contact(book._id, book.ownerName)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         
                     </div>
