@@ -104,9 +104,10 @@ background-size: cover;
     flex-direction: column;
     height: 100vh;
     background-color: white;
-    background-image: url('../public/static/searchBookPhone.jpg');
+    background-image: url('../public/static/stars.jpg');
     background-attachment: fixed;
     background-size: cover;
+    overflow: scroll;
     
 }
 .profile-page{
@@ -196,10 +197,12 @@ background-size: cover;
     height: auto;
     min-height: 130px;
     max-height: 300px;
-    margin-top: 3%;
-    background-color: maroon;
+    margin-top: 5%;
+    //background-color: maroon;
     display: flex;
     flex-direction: row;
+    background-image: url('../public/static/maroonPoster2.png');
+    background-size: cover;
     
 }
 .item-section1{
@@ -224,7 +227,9 @@ background-size: cover;
 }
 
 .book-item-profile{
-    background-color: maroon;
+    //background-color: maroon;
+    background-image: url('../public/static/maroonPoster2.png');
+    background-size: cover;
     height: 200px;
     width: 94%;
     max-width: 400px;
