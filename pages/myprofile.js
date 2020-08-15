@@ -176,15 +176,14 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     
                 </div>
                 <br/>
-                   
+                    <div className='myprofile-header'>
+                        <p>This is your collection<br/> You currently have {books.length} posts</p>
+                    </div>
                 </div>
                 
             </div>
                 
 
-            <div className='library-header'>
-                <p style={{letterSpacing:'1px'}}><b><u>{firstname}'s Library</u></b></p>
-            </div>
             
             <div className='book-list'>
                   

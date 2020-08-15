@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { withRouter } from 'next/router';
 
 
-const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName}}, books} ) => {
+const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName, bookTitle}}, books} ) => {
     const [defaultText, setDefaultText] = useState('');
 
     // Assign constant names to values obtained from 'booklist' via withRouter
@@ -97,7 +97,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             <textarea type="text" 
                 id="lname" 
                 name="lname" 
-                value= {'Hi there, '+ownerFirstName}
+                value= {'Hi there '+ownerFirstName+', I am interested in your book, '+bookTitle+'!'}
                 className='contact-textBox'
                 />
             <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>
