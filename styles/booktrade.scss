@@ -93,7 +93,10 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: orange;
+    //background-color: orange;
+    background-image: url('../public/static/searchPic.jpg');
+    background-attachment: fixed;
+    background-size: cover;
     
 }
 .booklist-page{
