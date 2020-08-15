@@ -94,7 +94,7 @@ background-size: cover;
     flex-direction: column;
     height: 100vh;
     //background-color: orange;
-    background-image: url('../public/static/searchPic.jpg');
+    background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
     background-size: cover;
     
@@ -104,6 +104,10 @@ background-size: cover;
     flex-direction: column;
     height: 100vh;
     background-color: white;
+    background-image: url('../public/static/searchBookPhone.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    
 }
 .profile-page{
     display: flex;
