@@ -1,33 +1,28 @@
-import { withRouter } from "next/router";
-import Router from "next/router";
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 
-//Getting book data from database
+import Link from 'next/link';
+import Router from 'next/router';
+import { useRouter } from 'next/router';
+import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 
-import { useState, useEffect } from "react";
 
+const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle}}, books} ) => {
+    const [defaultText, setDefaultText] = useState('');
+    const [booklist, setBooklist] = useState([]);
 
+    // Assign constant names to values obtained from 'booklist' via withRouter
+    useEffect(() => {
+        const userName = name;
+        const userID = id;
+        const userFirstname = firstname;
 
+        setBooklist(books)
+        console.log('booklist is')
+        console.log(booklist)
 
-const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
-    
+    })
 
-    // User chooses to view all available books
-    const viewAll = () => {
-
-        Router.push({
-            pathname: '/booklist',
-            query: { 
-                name: name,
-                id: id,
-                firstname: firstname,
-                mytitle: '',
-                author: ''
-                    
-            }
-        });
-    }
 
     const myProfile = () => {
         Router.push({
@@ -67,36 +62,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
-    // Redirect to contact page
-    // Information transferred are user, book and bookowner information
-    const Contact = (bookID, bookOwnerName, bookTitle) => {
-        var splitFullName = bookOwnerName.split(" ");
-        var ownerFirstName = splitFullName[0];
 
-        Router.push({
-            pathname: '/contact',
-            query: { 
-                    //User information
-                    id: id,
-                    name: name,
-                    firstname: firstname,
-                    //Book information
-                    bookID: bookID,
-                    bookTitle: bookTitle,
-                    //book owner information
-                    bookOwnerName: bookOwnerName,
-                    ownerFirstName: ownerFirstName
-            }
-        });
-    }
 
 
     return(
-
-    <div className='booklist-page'>
-
-
-        <div className='book-greeting'>
+        <div className='contact-page'>
+            <div className='book-greeting'>
             <div className='greeting-text'>
             <div className='icon-box'>
                     <Link href='/'>
@@ -124,78 +95,56 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
             </div>
             
         </div>
+
+
         
-        <div className='book-list'>
-              
-      
-        {books.map( book => {
-            //processing image data
-            var imageData;
-
-            if (book.imageFront){
-                console.log('image')
-                console.log(book.imageFront.contentType)
-                
-                imageData = book.imageFront.data;
-                console.log(imageData)
-                console.log('length: '+ imageData.length);
-            }
-            else{
-                console.log('no image');
-                //using dummy data if image data is not present
-                imageData='eweffwf';
-            }
-            
-    
-                return (
-
-                    <div key={book._id} className='book-item'>
-                        <div className='item-section1'>
-                        <img src={imageData}  style={{ width:'110px', height:'110px', borderRadius:'10px', marginTop:'10px', marginLeft:'10px'}}/>
-                        </div>
-                        <div className='item-section2'>
-                        <p>{book.title}</p>
-                        <p>{book.author}</p>
-                        <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title)}><b>Contact {book.ownerName}</b></a>
-                        </div>
-                        
-                    </div>
-                )
-        
-            
-        })}
-
-    
-    
-        </div>        
-    </div>
-)
 
 
+        <div className='bookInfo'>
+            <p>Name: {name}</p>
+            <p>Book id: {bookID}</p>
+            <p>Owner name: {bookOwnerName}</p>
+            <p>Owner ID: {bookOwnerID}</p>
+        </div>
+        <form style={{ width:'90%', marginTop:'7%' }}>
+            <textarea type="text" 
+                id="lname" 
+                name="lname" 
+                value= {'Hi there '+ownerFirstName+', I am interested in your book, '+bookTitle+'!'}
+                className='contact-textBox'
+                />
+            <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>
+        </form>
+
+        </div>
+    )
 
 });
 
 
-posts.getInitialProps = async (ctx) =>{
-    
+contact.getInitialProps = async (ctx) =>{
+
+    try {
+
         //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-        const res = await fetch('http://localhost:3000/api/books', {
-        headers: {
-            title: ctx.query.mytitle,
-            author: ctx.query.author
-        }
-    });
-
-    
-  
-        const { data } = await res.json();
-
+            const res = await fetch('http://localhost:3000/api/books', {
+                headers: {
+                    title: '',
+                    author: '',
+                    id: ctx.query.ownerID
+                }
+            });
+            const { data } = await res.json();
         
-
-        return{ books: data }
-   
+           
+           return{ books:data }
+           
+       } catch (error) {
     
-}
+        return { books: [] }
+           
+       }
+     
+ }
 
-    
-export default posts;
+export default contact;

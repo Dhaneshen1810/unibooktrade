@@ -159,7 +159,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 <h2 style={{ marginTop:'5%' }}>Hi, {firstname}!</h2>
 
                 <p>Find your book by entering 
-                    the <b>Author</b> or/and <b>Book name</b> below.
+                    the <b>Author</b> or/and <b>book title</b> below.
                 </p>
             </div>
                 

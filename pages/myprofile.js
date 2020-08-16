@@ -26,6 +26,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
     useEffect(() => {
         setBooklist(books)
+        console.log('books are: ');
+        console.log(booklist)
 
 
 

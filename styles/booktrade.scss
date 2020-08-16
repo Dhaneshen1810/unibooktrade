@@ -111,6 +111,8 @@ background-size: cover;
     
 }
 .profile-page{
+    background-image: url('../public/static/skyspiralPhone.jpg');
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -119,6 +121,8 @@ background-size: cover;
 }
 // Contact page
 .contact-page{
+    background-image: url('../public/static/gradientbgPhone.jpg');
+    background-attachment: fixed;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;

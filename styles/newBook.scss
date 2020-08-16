@@ -2,8 +2,10 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: orange;
+    //background-color: orange;
     align-items: center;
+    background-image: url('../public/static/gradientbgPhone.jpg');
+    background-size: cover;
 }
 
 .create-book-form{
