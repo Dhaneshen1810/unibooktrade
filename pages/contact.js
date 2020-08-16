@@ -113,8 +113,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     imageData='';
                 }
                 
-    
-                
+
                         return (
                                
                             <div key={bookID} className='book-item-profile'>
