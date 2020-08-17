@@ -122,10 +122,9 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                             
                             <div key={book._id} className='bookInfo'>
                                 <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
-                                <p>Name: {name}</p>
-                                <p>Book id: {bookID}</p>
-                                <p>Owner name: {bookOwnerName}</p>
-                                <p>Owner ID: {bookOwnerID}</p>
+                                <p>Title: {book.title}</p>
+                                <p>Author: {book.author}</p>
+                                <p>Owned by {bookOwnerName}</p>
                             </div>
     
                             </div>
@@ -142,12 +141,6 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         
 
 
-        <div className='bookInfo'>
-            <p>Name: {name}</p>
-            <p>Book id: {bookID}</p>
-            <p>Owner name: {bookOwnerName}</p>
-            <p>Owner ID: {bookOwnerID}</p>
-        </div>
         <form style={{ width:'90%', marginTop:'7%' }}>
             <textarea type="text" 
                 id="lname" 
