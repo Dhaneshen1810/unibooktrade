@@ -13,7 +13,7 @@ import Resizer from 'react-image-file-resizer';
 const fileUpload = require('fuctbase64');
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -260,6 +260,15 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                     className="form-control new-book-input" 
                     placeholder="Enter Author"
                     name='author'
+                    onChange={handleChange}
+                    required
+                    />
+
+                <input 
+                    type="number" 
+                    className="form-control new-book-input" 
+                    placeholder="Price"
+                    name='price'
                     onChange={handleChange}
                     required
                     />

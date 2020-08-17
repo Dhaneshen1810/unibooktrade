@@ -23,7 +23,11 @@ const BookSchema = new mongoose.Schema({
     { 
         data: String, 
         contentType: String 
+    },
+    price:{
+        type: Number
     }
+
 
 })
 

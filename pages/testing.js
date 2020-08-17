@@ -7,9 +7,55 @@ import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 
 
+
+
 const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle}}, books} ) => {
-    const [defaultText, setDefaultText] = useState('');
+    const [defaultText, setDefaultText] = useState('Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!');
     const [booklist, setBooklist] = useState([]);
+
+
+    /* Deal with AWS SES */
+    // Load the AWS SDK for Node.js
+    var AWS = require('aws-sdk');
+    // Set the region 
+    AWS.config.update({region: 'us-east-2'});
+
+    // Create sendBulkTemplatedEmail params 
+    var params = {
+        Destinations: [ /* required */
+        {
+            Destination: { /* required */
+            CcAddresses: [
+                'booksexchangemessenger.com',
+            /* more items */
+            ],
+            ToAddresses: [
+                'booksexchangemessenger.com'
+                //'EMAIL_ADDRESS'
+                /* more items */
+            ]
+            },
+            ReplacementTemplateData: '{ \"REPLACEMENT_TAG_NAME\":\"REPLACEMENT_VALUE\" }'
+        },
+        ],
+        Source: 'booksexchangemessenger.com', /* required */
+        Template: 'TEMPLATE_NAME', /* required */
+        DefaultTemplateData: '{ \"REPLACEMENT_TAG_NAME\":\"REPLACEMENT_VALUE\" }',
+        ReplyToAddresses: [
+        'booksexchangemessenger.com'
+        ]
+    };
+  
+  
+    // Create the promise and SES service object
+    var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendBulkTemplatedEmail(params).promise();
+
+    /* End of AWS SES */
+  
+
+
+
+
 
     // Assign constant names to values obtained from 'booklist' via withRouter
     useEffect(() => {
@@ -64,6 +110,37 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         });
     }
 
+    // Handle text in textArea
+    const handleChange = (e) => { 
+        const value = e.target.value;
+
+        setDefaultText(value);
+    }
+
+    //Send email 
+    const handleSubmit = (e) => { 
+        e.preventDefault();
+
+        const From = 'booksexchnagemessenger@gmail.com';
+        const To = 'dan.moonian@gmail.com';
+
+        console.log('Text: '+ defaultText)
+        
+        console.log('sending mail');
+
+
+        // Handle promise's fulfilled/rejected states
+        sendPromise.then(
+            function(data) {
+            console.log(data);
+            }).catch(
+            function(err) {
+            console.log(err, err.stack);
+            });
+
+
+
+    }
 
     // Display on screen
     return(
@@ -147,11 +224,12 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         
 
 
-        <form style={{ width:'90%', marginTop:'7%' }}>
+        <form style={{ width:'90%', marginTop:'7%' }}  onSubmit={handleSubmit}>
             <textarea type="text" 
                 id="lname" 
                 name="lname" 
-                value= {'Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!'}
+                value= {defaultText}
+                onChange={handleChange}
                 className='contact-textBox'
                 />
             <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>

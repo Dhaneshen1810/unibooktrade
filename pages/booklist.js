@@ -122,7 +122,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     
                 <p style={{ fontSize:'18px' }}>This is a collection of all the books matching your search 
                 
-                <br/><span style={{ fontSize: '16px' }}>Once you find the one you want, get in contact with the owner.</span></p>
+                <br/>We had {books.length} results</p>
                 
                 </div>
             </div>

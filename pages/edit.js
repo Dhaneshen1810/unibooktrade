@@ -12,8 +12,8 @@ import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
-const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:{data:'/static/default-image.svg', contentType:'image/png'}}
+const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor, price}}} ) => {
+    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:{data:'/static/default-image.svg', contentType:'image/png'}, price:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
