@@ -23,7 +23,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
     })
 
-
+    // Redirect to myprofile
     const myProfile = () => {
         Router.push({
             pathname: '/myprofile',
@@ -38,6 +38,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         });
     }
 
+    // Redirect to new for creating new post
     const myBooks = () => {
         Router.push({
             pathname: '/new',
@@ -50,6 +51,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         });
     }
 
+    // Redirect posts
     const Search = () => {
         Router.push({
             pathname: '/posts',
@@ -63,8 +65,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
     }
 
 
-
-
+    // Display on screen
     return(
         <div className='contact-page'>
             <div className='book-greeting'>
@@ -112,11 +113,11 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     console.log('no image');
                     imageData='';
                 }
-                
+
 
                         return (
-                               
-                            <div key={bookID} className='book-item-profile'>
+                               <div>
+                            <div key={book._id} className='book-item-profile'>
     
                                 <div className='section1'>
                                     <div className='section1-image'>
@@ -135,8 +136,17 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                             
                                 
                             </div>
-    
                             
+                            
+                            <div className='bookInfo'>
+                                <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
+                                <p>Name: {name}</p>
+                                <p>Book id: {bookID}</p>
+                                <p>Owner name: {bookOwnerName}</p>
+                                <p>Owner ID: {bookOwnerID}</p>
+                            </div>
+    
+                            </div>
     
                             
                         )
@@ -173,18 +183,21 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 });
 
 
+// Get content from database 
 contact.getInitialProps = async (ctx) =>{
     console.log('ctx is');
     console.log(ctx.query.bookOwnerID)
+    console.log(ctx.query.bookID)
 
     try {
 
         const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-            //const res = await fetch('http://localhost:3000/api/books', {
+        //const res = await fetch('http://localhost:3000/api/books', {
                 headers: {
                     title: '',
                     author: '',
-                    id: ctx.query.bookOwnerID
+                    id: ctx.query.bookOwnerID,
+                    bookID: ctx.query.bookID
                 }
             });
             const { data } = await res.json();

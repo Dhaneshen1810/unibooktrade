@@ -193,21 +193,45 @@ export default async (req, res) => {
         switch(method){
             
             case 'GET':
+                console.log(req.headers.bookid)
                 if (req.headers.id){
-                try {
-                    console.log('awaiting book now:')
+                    // bookID has been provided
+                    // We will use bookID to find book
+                    if(req.headers.bookid){
+                        try {
+                            console.log('Book id present')
+        
+                            const books = await Book.find({
+                                _id: req.headers.bookid
+                            });
+        
+                            console.log('Got books');
+                            
+            
+                            res.status(200).json({ success: true, data: books })
+                        } catch (error) {
+                            res.status(400).json({ success: false });
+                        }
+                    }
+                    // No book id is provided
+                    // Get all books from the owner
+                    else{
+                        try {
+                            console.log('Book id not present')
+        
+                            const books = await Book.find({
+                                ownerID: req.headers.id
+                            });
+        
+                            console.log('Got books');
+                            
+            
+                            res.status(200).json({ success: true, data: books })
+                        } catch (error) {
+                            res.status(400).json({ success: false });
+                        }
 
-                    const books = await Book.find({
-                        ownerID: req.headers.id
-                    });
-
-                    console.log('Got books');
-                    
-    
-                    res.status(200).json({ success: true, data: books })
-                } catch (error) {
-                    res.status(400).json({ success: false });
-                }
+                    }
 
             }
             else{

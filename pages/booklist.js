@@ -29,6 +29,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
+    // Redirect to myprofile
     const myProfile = () => {
         Router.push({
             pathname: '/myprofile',
@@ -43,6 +44,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
+    // Redirect to new
     const myBooks = () => {
         Router.push({
             pathname: '/new',
@@ -55,6 +57,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
+    // Redirect to posts
     const Search = () => {
         Router.push({
             pathname: '/posts',
@@ -176,11 +179,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
 });
 
-
+// Get content from database
 posts.getInitialProps = async (ctx) =>{
     
         const res = await fetch('https://unibooktrade.vercel.app/api/books', {
         //const res = await fetch('http://localhost:3000/api/books', {
+            
         headers: {
             title: ctx.query.mytitle,
             author: ctx.query.author
