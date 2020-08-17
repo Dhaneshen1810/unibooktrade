@@ -121,10 +121,16 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                             
                             
                             <div key={book._id} className='bookInfo'>
-                                <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
-                                <p>Title: {book.title}</p>
-                                <p>Author: {book.author}</p>
-                                <p>Owned by {bookOwnerName}</p>
+                                <div className='contact-bookinfo-pic'>
+                                    <img src={imageData}  style={{ width:'200px', height:'200px', borderRadius:'20px'}}/>
+
+                                </div>
+                                <div className='contact-bookinfo-text'>
+                                    <p>Title: <b>{book.title}</b></p>
+                                    <p>Author: <b>{book.author}</b></p>
+                                    <p>Owned by <b>{bookOwnerName}</b></p>
+                                </div>
+                                
                             </div>
     
                             </div>
@@ -145,7 +151,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             <textarea type="text" 
                 id="lname" 
                 name="lname" 
-                value= {'Hi there '+ownerFirstName+', I am interested in your book, '+bookTitle+'!'}
+                value= {'Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!'}
                 className='contact-textBox'
                 />
             <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>

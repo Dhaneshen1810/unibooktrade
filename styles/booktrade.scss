@@ -289,13 +289,13 @@ background-size: cover;
 
 // Contact page
 .bookInfo{
-    width: 94%;
+    width: 300px;
     max-width: 400px;
     height: auto;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     margin-top: 4%;
-    padding: 5px;
+    padding: 30px;
 }
 
 .contact-textBox{
@@ -315,16 +315,19 @@ background-size: cover;
 }
 .contact-bookinfo-pic{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    flex: 1;
-    background-color: red;
 }
 
 .contact-bookinfo-text{
+    margin-top: 13%;
     display: flex;
+    flex-direction: column;
     width: 100%;
-    flex: 1;
-    background-color: blue;
+    font-size: 16px;
+    color: white;
+    letter-spacing: 1px;
 }
 
 @media only screen and (min-width: 750px){

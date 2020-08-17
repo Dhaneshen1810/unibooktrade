@@ -117,37 +117,23 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
                         return (
                                <div>
-                            <div key={book._id} className='book-item-profile'>
-    
-                                <div className='section1'>
-                                    <div className='section1-image'>
-                                        <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
-                                    </div>
-                                    <div className='section1-info'>
-                                        <p><b>{book.title}</b></p>
-                                        <p>{book.author}</p>
-                                        <p>{book._id}</p>
-                                        <p>BookID: {bookID}</p>
-                                        <p>$50</p>
-                                    </div>
-                                
+                            
+                            
+                            
+                            <div key={book._id} className='bookInfo'>
+                                <div className='contact-bookinfo-pic'>
+                                    <img src={imageData}  style={{ width:'200px', height:'200px', borderRadius:'20px'}}/>
+
                                 </div>
-    
-                            
+                                <div className='contact-bookinfo-text'>
+                                    <p>Title: <b>{book.title}</b></p>
+                                    <p>Author: <b>{book.author}</b></p>
+                                    <p>Owned by <b>{bookOwnerName}</b></p>
+                                </div>
                                 
                             </div>
-                            
-                            
-                            <div className='bookInfo'>
-                                <img src={imageData}  style={{ width:'100px', height:'100px', borderRadius:'20px'}}/>
-                                <p>Name: {name}</p>
-                                <p>Book id: {bookID}</p>
-                                <p>Owner name: {bookOwnerName}</p>
-                                <p>Owner ID: {bookOwnerID}</p>
-                            </div>
     
                             </div>
-    
                             
                         )
                         
@@ -161,17 +147,11 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         
 
 
-        <div className='bookInfo'>
-            <p>Name: {name}</p>
-            <p>Book id: {bookID}</p>
-            <p>Owner name: {bookOwnerName}</p>
-            <p>Owner ID: {bookOwnerID}</p>
-        </div>
         <form style={{ width:'90%', marginTop:'7%' }}>
             <textarea type="text" 
                 id="lname" 
                 name="lname" 
-                value= {'Hi there '+ownerFirstName+', I am interested in your book, '+bookTitle+'!'}
+                value= {'Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!'}
                 className='contact-textBox'
                 />
             <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>
@@ -192,7 +172,7 @@ contact.getInitialProps = async (ctx) =>{
     try {
 
         const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-        //const res = await fetch('http://localhost:3000/api/books', {
+            //const res = await fetch('http://localhost:3000/api/books', {
                 headers: {
                     title: '',
                     author: '',
