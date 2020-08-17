@@ -79,7 +79,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 author: bookAuthor,
                  ownerID: id,
                  ownerName: name,
-                 imageFront:''
+                 imageFront:'',
+                 price: price
         })
 
         
@@ -124,6 +125,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     ownerID: id,
                     ownerName: name,
                     imageFront: form.imageFront,
+                    price: form.price
                 })
                
             })
@@ -336,6 +338,15 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     className="form-control new-book-input" 
                     placeholder="Enter Author"
                     name='author'
+                    onChange={handleChange}
+                    required
+                    />
+
+                <input 
+                    type="text" 
+                    className="form-control new-book-input" 
+                    placeholder="Price"
+                    name='price'
                     onChange={handleChange}
                     required
                     />

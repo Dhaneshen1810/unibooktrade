@@ -160,6 +160,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <div className='item-section2'>
                         <p>{book.title}</p>
                         <p>{book.author}</p>
+                        <p>${book.price}</p>
                         <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         
