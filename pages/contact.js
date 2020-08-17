@@ -18,7 +18,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
     // Load the AWS SDK for Node.js
     var AWS = require('aws-sdk');
     // Set the region 
-    AWS.config.update({region: 'us-east-2'});
+    AWS.config.update({region: 'ca-central-1'});
 
     // Create sendBulkTemplatedEmail params 
     var params = {
