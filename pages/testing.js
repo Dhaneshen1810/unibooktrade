@@ -5,6 +5,7 @@ import Router from 'next/router';
 import { useRouter } from 'next/router';
 import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
+import { Credentials } from 'aws-sdk';
 
 
 
@@ -16,9 +17,41 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
     /* Deal with AWS SES */
     // Load the AWS SDK for Node.js
+    
     var AWS = require('aws-sdk');
+
     // Set the region 
-    AWS.config.update({region: 'us-east-2'});
+    /*
+    AWS.config.update({
+        region: 'ca-central-1'
+        
+    });
+    */
+
+
+   AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: "us-east-2"    
+});
+
+
+
+/*
+    AWS.config.update({region: 'ca-central-1'});
+    const credteAWS.config.credentials;
+*/
+    /*
+    AWS.config.getCredentials(function(err) {
+        if (err) console.log(err.stack);
+        // credentials not loaded
+        else {
+          console.log("Access key:", AWS.config.credentials.accessKeyId);
+          console.log("Secret access key:", AWS.config.credentials.secretAccessKey);
+        }
+      });
+*/
+    
 
     // Create sendBulkTemplatedEmail params 
     var params = {
@@ -250,7 +283,7 @@ contact.getInitialProps = async (ctx) =>{
     try {
 
         //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-            const res = await fetch('http://localhost:3000/api/books', {
+        const res = await fetch('http://localhost:3000/api/books', {
                 headers: {
                     title: '',
                     author: '',
