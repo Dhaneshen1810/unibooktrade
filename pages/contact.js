@@ -20,6 +20,8 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
     
     var AWS = require('aws-sdk');
 
+    //AWS.config.loadFromPath('./config.json');
+
     // Set the region 
     /*
     AWS.config.update({
@@ -37,51 +39,16 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
 
 
-/*
-    AWS.config.update({region: 'ca-central-1'});
-    const credteAWS.config.credentials;
-*/
-    /*
-    AWS.config.getCredentials(function(err) {
-        if (err) console.log(err.stack);
-        // credentials not loaded
-        else {
-          console.log("Access key:", AWS.config.credentials.accessKeyId);
-          console.log("Secret access key:", AWS.config.credentials.secretAccessKey);
-        }
-      });
-*/
-    
 
-    // Create sendBulkTemplatedEmail params 
-    var params = {
-        Destinations: [ /* required */
-        {
-            Destination: { /* required */
-            CcAddresses: [
-                'booksexchangemessenger.com',
-            /* more items */
-            ],
-            ToAddresses: [
-                'booksexchangemessenger.com'
-                //'EMAIL_ADDRESS'
-                /* more items */
-            ]
-            },
-            ReplacementTemplateData: '{ \"REPLACEMENT_TAG_NAME\":\"REPLACEMENT_VALUE\" }'
-        },
-        ],
-        Source: 'booksexchangemessenger.com', /* required */
-        Template: 'TEMPLATE_NAME', /* required */
-        DefaultTemplateData: '{ \"REPLACEMENT_TAG_NAME\":\"REPLACEMENT_VALUE\" }',
-        ReplyToAddresses: [
-        'booksexchangemessenger.com'
-        ]
-    };
+
+
+
+
+    
   
   
     // Create the promise and SES service object
-    var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendBulkTemplatedEmail(params).promise();
+    //var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendBulkTemplatedEmail(params).promise();
 
     /* End of AWS SES */
   
@@ -161,7 +128,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         
         console.log('sending mail');
 
-
+/*
         // Handle promise's fulfilled/rejected states
         sendPromise.then(
             function(data) {
@@ -170,6 +137,52 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             function(err) {
             console.log(err, err.stack);
             });
+            */
+           const sender = "booksexchangemessenger@gmail.com"
+            const recipient = "booksexchangemessenger@gmail.com"
+            //const configuration_set = "ConfigSet"
+            const subject = "Amazon SES test"
+            const body_text = defaultText
+            const body_html = '<html><body><p>'+body_text+'</p></body></html>'
+            const charset = "UTF-8"
+            var ses = new AWS.SES();
+
+
+            // Specify the parameters to pass to the API.
+            var params = { 
+                Source: sender, 
+                Destination: { 
+                  ToAddresses: [
+                    recipient 
+                  ],
+                },
+                Message: {
+                  Subject: {
+                    Data: subject,
+                    Charset: charset
+                  },
+                  Body: {
+                    Text: {
+                      Data: body_text,
+                      Charset: charset 
+                    },
+                    Html: {
+                      Data: body_html,
+                      Charset: charset
+                    }
+                  }
+                },
+                //ConfigurationSetName: configuration_set
+              };
+
+           ses.sendEmail(params, function(err, data) {
+            // If something goes wrong, print an error message.
+            if(err) {
+              console.log(err.message);
+            } else {
+              console.log("Email sent! Message ID: ", data.MessageId);
+            }
+          });
 
 
 
