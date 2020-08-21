@@ -1,147 +1,108 @@
 import { withRouter } from "next/router";
+import Router from "next/router";
 import Link from 'next/link';
 
-import React, { useState, useEffect } from 'react';
+//Getting book data from database
 import fetch from 'isomorphic-unfetch';
 
-import Router from 'next/router';
-import { useRouter } from 'next/router';
-
-import Cors from 'cors';
+import { useState, useEffect } from "react";
 
 
 
-const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
 
-        const [form, setForm] = useState({ title: '', author:'' });
-        const [isSubmitting, setIsSubmitting] = useState(false);
-        const [errors, setErrors] = useState();
-        const router = useRouter;
+const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
+    
 
-        // Initializing the cors middleware
-        const cors = Cors({
-        methods: ['GET', 'HEAD'],
-    })
+    // User chooses to view all available books
+    const viewAll = () => {
 
-        
-        useEffect(() => {
-
-            // We are directed to the booklist page
-            // Forwarding the following data to booklist
-            // Fullname, firstname, id, book author and book title
-            if (isSubmitting){
-
-                if (Object.keys(errors).length ===0){
-
-                    Router.push({
-                        pathname: '/booklist',
-                        query: { 
-                                mytitle: form.title,
-                                author: form.author,
-                                name: name,
-                                id: id,
-                                firstname: firstname
-                                
-                        }
-                    });
-                  
-                }
-                else{
-                    setIsSubmitting(false);
-                }
+        Router.push({
+            pathname: '/booklist',
+            query: { 
+                name: name,
+                id: id,
+                firstname: firstname,
+                mytitle: '',
+                author: ''
+                    
             }
-        }, [errors])
+        });
+    }
 
-
-        // When th user submits
-        const handleSubmit = (e) => { 
-            e.preventDefault();
-            let errs = validate();
-            setErrors(errs);
-            setIsSubmitting(true);
-
-
-        }
-
-        // Handle changes made to the input box
-        // That is, when the user types in the box
-        const handleChange = (e) => { 
-            setForm({
-                ...form,
-                    [e.target.name]: e.target.value
-                
-            })
-        }
-
-        const validate = () => {
-            let err = {};
-
-            
-            return err;
-        }
-
-
-        // User chooses to view all available books
-        const viewAll = () => {
-
-            Router.push({
-                pathname: '/booklist',
-                query: { 
+    // Redirect to myprofile
+    const myProfile = () => {
+        Router.push({
+            pathname: '/myprofile',
+            query: { 
+                    mytitle: '',
+                    author: '',
                     name: name,
                     id: id,
+                    firstname: firstname
+                    
+            }
+        });
+    }
+
+    // Redirect to new
+    const myBooks = () => {
+        Router.push({
+            pathname: '/new',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname
+                    
+            }
+        });
+    }
+
+    // Redirect to posts
+    const Search = () => {
+        Router.push({
+            pathname: '/posts',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname
+                    
+            }
+        });
+    }
+
+    // Redirect to contact page
+    // Information transferred are user, book and bookowner information
+    const Contact = (bookID, bookOwnerName, bookTitle, bookOwnerID) => {
+        var splitFullName = bookOwnerName.split(" ");
+        var ownerFirstName = splitFullName[0];
+
+        Router.push({
+            pathname: '/contact',
+            query: { 
+                    //User information
+                    id: id,
+                    name: name,
                     firstname: firstname,
-                    mytitle: '',
-                    author: ''
-                        
-                }
-            });
-        }
+                    //Book information
+                    bookID: bookID,
+                    bookTitle: bookTitle,
+                    //book owner information
+                    bookOwnerName: bookOwnerName,
+                    ownerFirstName: ownerFirstName,
+                    bookOwnerID: bookOwnerID
+            }
+        });
+    }
 
-        const myProfile = () => {
-            Router.push({
-                pathname: '/myprofile',
-                query: { 
-                        mytitle: '',
-                        author: '',
-                        name: name,
-                        id: id,
-                        firstname: firstname
-                        
-                }
-            });
-        }
-
-        const myBooks = () => {
-            Router.push({
-                pathname: '/new',
-                query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname
-                        
-                }
-            });
-        }
-
-        const Search = () => {
-            Router.push({
-                pathname: '/posts',
-                query: { 
-                        id: id,
-                        name: name,
-                        firstname: firstname
-                        
-                }
-            });
-        }
 
     return(
-    <div className='option-page'>
-        
+
+    <div className='booklist-page'>
+
 
         <div className='book-greeting'>
             <div className='greeting-text'>
-                <div className='icon-box'>
+            <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
@@ -156,60 +117,89 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                     
                 </div>
 
-                
-                <h2 className='icon-box-text'>Hi, {firstname}!</h2>
 
-                <p>Find your book by entering 
-                    the <b>Author</b> or/and <b>book title</b> below.
-                </p>
-            </div>
-                
-            <form className='my-form' onSubmit={handleSubmit}>
-                <div className="form-group my-group">
-                <label>Title</label>
-                <input 
-                    type="text" 
-                    className="form-control my-form-control" 
-                    id="exampleInputEmail1" 
-                    placeholder="Enter book title"
-                    name="title"
-                    onChange={handleChange}/>
                     
-                </div>
-                <br/>
-                <div className="form-group my-group">
-                <label>Author</label>
-                <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Enter Author"
-                    name='author'
-                    onChange={handleChange}
-                    />
+                <p className='icon-box-text'>This is a collection of all the books matching your search 
                 
-  
-                <button type="submit" className="btn btn-primary my-btn">Search</button>
-                </div>
-                </form>
-
-                <div className='view-all-box'>
-                    <div className='btn btn-success my-btn-viewall' onClick={viewAll}>View all</div>
-                </div>
+                <br/>We currently have {books.length} available</p>
+                
+            </div>
             
         </div>
+        
+        <div className='book-list'>
+              
+      
+        {books.map( book => {
+            //processing image data
+            var imageData;
 
+            if (book.imageFront){
+                console.log('image')
+                console.log(book.imageFront.contentType)
+                
+                imageData = book.imageFront.data;
+                console.log(imageData)
+                console.log('length: '+ imageData.length);
+            }
+            else{
+                console.log('no image');
+                //using dummy data if image data is not present
+                imageData='eweffwf';
+            }
+            
+    
+                return (
+
+                    <div key={book._id} className='book-item'>
+                        <div className='item-section1'>
+                        <img src={imageData}  style={{ width:'110px', height:'110px', borderRadius:'10px', marginTop:'10px', marginLeft:'10px'}}/>
+                        </div>
+                        <div className='item-section2'>
+                        <p>{book.title}</p>
+                        <p>{book.author}</p>
+                        <p>${book.price}</p>
+                        <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID)}><b>Contact {book.ownerName}</b></a>
+                        </div>
+                        
+                    </div>
+                )
+        
+            
+        })}
+
+    
+    
+        </div>        
+    </div>
+)
+
+
+
+});
+
+// Get content from database
+posts.getInitialProps = async (ctx) =>{
+    
+        //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        const res = await fetch('http://localhost:3000/api/books', {
+            
+        headers: {
+            title: ctx.query.mytitle,
+            author: ctx.query.author
+        }
+    });
+
+    
+  
+        const { data } = await res.json();
 
         
-    </div>
 
-    )
+        return{ books: data }
+   
     
-});
-  
-
-
+}
 
     
 export default posts;
-
-

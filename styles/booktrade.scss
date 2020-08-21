@@ -110,14 +110,14 @@ background-size: cover;
     flex-direction: column;
     height: 100vh;
     background-color: white;
-    background-image: url('../public/static/stars.jpg');
+    background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
     background-size: cover;
     overflow: scroll;
     
 }
 .profile-page{
-    background-image: url('../public/static/skyspiralPhone.jpg');
+    background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
     display: flex;
     flex-direction: column;
@@ -359,6 +359,19 @@ background-size: cover;
     .my-form{
         margin-top: 10%;
     }
+    .option-page{
+        background-image: url('../public/static/searchBook.jpg');
+    }
 
+
+    //Booklist
+    .booklist-page{
+        background-image: url('../public/static/searchBook.jpg');
+    }
+
+    //myprofile
+    .profile-page{
+        background-image: url('../public/static/searchBook.jpg');
+    }
     
 }
