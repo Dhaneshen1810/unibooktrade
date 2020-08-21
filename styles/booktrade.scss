@@ -74,6 +74,9 @@ background-size: cover;
 
     
 }
+.icon-box-text{
+    margin-top: 5%;
+}
 
 .my-icon{
     width: 20px;
@@ -93,10 +96,13 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 100%;
     //background-color: orange;
     background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
     background-size: cover;
+    align-items: center;
+    
     
 }
 .booklist-page{
@@ -157,9 +163,11 @@ background-size: cover;
     margin-top: 50%;
     width: 100%;
     align-items: center;
+ 
 }
 .my-group{
     width: 80%;
+    max-width: 600px;
 }
 
 .my-btn{
@@ -167,19 +175,18 @@ background-size: cover;
     margin-top:5%
 }
 
-.my-divider{
-    width: 80%;
-    border: 1px solid white;
-    border-radius: 50%;
-    height: 0.4px;
-    margin-left: 10%;
-    margin-top: 6%;
+
+.view-all-box{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .my-btn-viewall{
     margin-top: 5%;
     align-self: center;
     width: 50%;
-    margin-left: 25%;
+    max-width: 600px;
 }
 
 
@@ -331,6 +338,27 @@ background-size: cover;
     letter-spacing: 1px;
 }
 
-@media only screen and (min-width: 750px){
+@media only screen and (min-width: 1050px){
+    //Login page
+    .my-intro{
+        margin-top: 2%;
+    }
+    .btn-fb{
+        margin-top: 2%;
+        margin-left: 5%;
+    }
+
+
+    //posts 
+    .icon-box{
+        margin-top: 1%;
+    }
+    .icon-box-text{
+        margin-top: 1.5%;
+    }
+    .my-form{
+        margin-top: 10%;
+    }
+
     
 }

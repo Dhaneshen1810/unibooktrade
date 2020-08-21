@@ -137,6 +137,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
 
     return(
     <div className='option-page'>
+        
 
         <div className='book-greeting'>
             <div className='greeting-text'>
@@ -156,7 +157,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 </div>
 
                 
-                <h2 style={{ marginTop:'5%' }}>Hi, {firstname}!</h2>
+                <h2 className='icon-box-text'>Hi, {firstname}!</h2>
 
                 <p>Find your book by entering 
                     the <b>Author</b> or/and <b>book title</b> below.
@@ -191,8 +192,9 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 </div>
                 </form>
 
-                <div className='my-divider'></div>
+                <div className='view-all-box'>
                     <div className='btn btn-success my-btn-viewall' onClick={viewAll}>View all</div>
+                </div>
             
         </div>
 
