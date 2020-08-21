@@ -11,7 +11,8 @@
 .create-book-form{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 98%;
+    max-width: 500px;
     align-items: center;
     border-radius: 5%;
     background-color: rgba(0,0,0,0.4);

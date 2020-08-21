@@ -241,7 +241,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 
         </div>
            
-        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'3%' }}>
+        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'10%' }}>
         <img src={prevImage} alt='default-image' className='image-preview'/>
         <div className="form-group my-group" style={{marginTop:'8%'}}>
                 <input 
@@ -265,10 +265,11 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                     />
 
                 <input 
-                    type="number" 
+                    type="text" 
                     className="form-control new-book-input" 
                     placeholder="Price"
                     name='price'
+                    style={{ marginTop:'5%' }}
                     onChange={handleChange}
                     required
                     />
