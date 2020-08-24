@@ -12,8 +12,8 @@ import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
-const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor, price}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:id, ownerName:name, imageFront:{data:'/static/default-image.svg', contentType:'image/png'}, price:''}
+const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bookTitle, bookAuthor, price, userEmail}}} ) => {
+    const [form, setForm] = useState({ title:bookTitle, author:bookAuthor, ownerID:id, ownerName:name, imageFront:{data:'/static/default-image.svg', contentType:'image/png'}, price:price, userEmail: userEmail}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -33,7 +33,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 title: bookTitle,
                 author: bookAuthor,
                 ownerID: id,
-                ownerName: name
+                ownerName: name,
+                userEmail: userEmail
         })
 
         console.log(form);
@@ -80,7 +81,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                  ownerID: id,
                  ownerName: name,
                  imageFront:'',
-                 price: price
+                 price: price,
+                 userEmail: userEmail
         })
 
         
@@ -125,7 +127,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     ownerID: id,
                     ownerName: name,
                     imageFront: form.imageFront,
-                    price: form.price
+                    price: form.price,
+                    userEmail: userEmail
                 })
                
             })
@@ -141,7 +144,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                         name: name,
                         firstname: firstname,
                         mytitle: '',
-                        author: ''
+                        author: '',
+                        userEmail: userEmail
+
                         
                 }
             });
@@ -198,7 +203,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                         author: '',
                         name: name,
                         id: id,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail: userEmail
+
                         
                 }
             });
@@ -211,7 +218,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail: userEmail
+
                         
                 }
             });
@@ -223,7 +232,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail: userEmail
+
                         
                 }
             });
@@ -328,6 +339,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     id="exampleInputEmail1" 
                     placeholder="Enter book title"
                     name="title"
+                    value={form.title}
                     required
                     onChange={handleChange}/>
                     
@@ -339,6 +351,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     placeholder="Enter Author"
                     name='author'
                     onChange={handleChange}
+                    value={form.author}
                     required
                     />
 
@@ -348,6 +361,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                     placeholder="Price"
                     name='price'
                     style={{ marginTop:'5%' }}
+                    value={form.price}
                     onChange={handleChange}
                     required
                     />

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 
 
-const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
+const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author, userEmail}}, books} ) => {
     
 
     // User chooses to view all available books
@@ -23,7 +23,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 id: id,
                 firstname: firstname,
                 mytitle: '',
-                author: ''
+                author: '',
+                userEmail:userEmail
                     
             }
         });
@@ -38,7 +39,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     author: '',
                     name: name,
                     id: id,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -51,7 +53,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -64,7 +67,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -72,9 +76,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
     // Redirect to contact page
     // Information transferred are user, book and bookowner information
-    const Contact = (bookID, bookOwnerName, bookTitle, bookOwnerID) => {
+    const Contact = (bookID, bookOwnerName, bookTitle, bookOwnerID, ownerEmail) => {
         var splitFullName = bookOwnerName.split(" ");
         var ownerFirstName = splitFullName[0];
+
+        var ownerEmail = ownerEmail;
+        console.log(ownerEmail);
 
         Router.push({
             pathname: '/contact',
@@ -89,7 +96,9 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     //book owner information
                     bookOwnerName: bookOwnerName,
                     ownerFirstName: ownerFirstName,
-                    bookOwnerID: bookOwnerID
+                    bookOwnerID: bookOwnerID,
+                    userEmail:userEmail,
+                    ownerEmail: ownerEmail
             }
         });
     }
@@ -100,7 +109,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
     <div className='booklist-page'>
 
 
-        <div className='book-greeting'>
+        <div className='book-greeting' style={{ padding:'5px' }}>
             <div className='greeting-text'>
             <div className='icon-box'>
                     <Link href='/'>
@@ -135,15 +144,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
             var imageData;
 
             if (book.imageFront){
-                console.log('image')
-                console.log(book.imageFront.contentType)
                 
                 imageData = book.imageFront.data;
-                console.log(imageData)
-                console.log('length: '+ imageData.length);
             }
             else{
-                console.log('no image');
                 //using dummy data if image data is not present
                 imageData='eweffwf';
             }
@@ -159,7 +163,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <p>{book.title}</p>
                         <p>{book.author}</p>
                         <p>${book.price}</p>
-                        <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID)}><b>Contact {book.ownerName}</b></a>
+                        <p>{book.userEmail}</p>
+                        <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID, book.userEmail)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         
                     </div>

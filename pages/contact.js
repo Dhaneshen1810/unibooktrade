@@ -10,7 +10,7 @@ import { Credentials } from 'aws-sdk';
 
 
 
-const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle}}, books} ) => {
+const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle, userEmail, ownerEmail}}, books} ) => {
     const [defaultText, setDefaultText] = useState('Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!');
     const [booklist, setBooklist] = useState([]);
 
@@ -39,7 +39,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
 
 
-
+    console.log('email is '+ownerEmail)
 
 
 
@@ -78,7 +78,8 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     author: '',
                     name: name,
                     id: id,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -91,7 +92,8 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -104,7 +106,8 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -139,7 +142,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             });
             */
            const sender = "booksexchangemessenger@gmail.com"
-            const recipient = "booksexchangemessenger@gmail.com"
+            const recipient = ownerEmail
             //const configuration_set = "ConfigSet"
             const subject = "Amazon SES test"
             const body_text = defaultText
@@ -181,6 +184,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
               console.log(err.message);
             } else {
               console.log("Email sent! Message ID: ", data.MessageId);
+              console.log('email sent to '+ownerEmail)
             }
           });
 
@@ -222,6 +226,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
 <div className='book-list'>
         {booklist.map( book => {
+
                 
                 //var imageBase64 = book.imageFront.contentType;
                 var imageData;

@@ -11,7 +11,7 @@ import Cors from 'cors';
 
 
 
-const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) => {
+const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, books} ) => {
 
         const [form, setForm] = useState({ title: '', author:'' });
         const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,7 +91,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                     id: id,
                     firstname: firstname,
                     mytitle: '',
-                    author: ''
+                    author: '',
+                    userEmail:userEmail
                         
                 }
             });
@@ -105,7 +106,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                         author: '',
                         name: name,
                         id: id,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail: userEmail
                         
                 }
             });
@@ -117,7 +119,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });
@@ -129,7 +132,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname}}, books} ) =>
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });

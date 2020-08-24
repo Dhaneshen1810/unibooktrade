@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 
 
-const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author}}, books} ) => {
+const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, author, userEmail}}, books} ) => {
 
 
     const [booklist, setBooklist] = useState([]);
@@ -90,7 +90,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     // The user clicks on the edit button
     // The user is sent to the edit page
     // The data about this particular book post is the to the page as well
-    const handleEdit = (myBookID, myTitle, myAuthor, imageData, price) => {
+    const handleEdit = (myBookID, myTitle, myAuthor, imageData, price, userEmail) => {
         //Update bookID
         //setBookID(e.target.id);
         //console.log('Book id: '+e.target.id);
@@ -107,7 +107,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 bookID: myBookID,
                 bookTitle: myTitle,
                 bookAuthor: myAuthor,
-                price: price
+                price: price,
+                userEmail:userEmail
                     
             }
         });
@@ -126,7 +127,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     author: '',
                     name: name,
                     id: id,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -139,7 +141,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname  
+                    firstname: firstname,
+                    userEmail:userEmail  
             }
         });
     }
@@ -150,7 +153,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
             query: { 
                     id: id,
                     name: name,
-                    firstname: firstname
+                    firstname: firstname,
+                    userEmail:userEmail
                     
             }
         });
@@ -220,7 +224,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                                 <div className='section1-info'>
                                     <p><b>{book.title}</b></p>
                                     <p>{book.author}</p>
-                                    <p>{book.price}</p>
+                                    <p>${book.price}</p>
                                 </div>
                             
                             </div>

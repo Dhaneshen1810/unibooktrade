@@ -26,6 +26,9 @@ const BookSchema = new mongoose.Schema({
     },
     price:{
         type: Number
+    },
+    userEmail:{
+        type: String
     }
 
 

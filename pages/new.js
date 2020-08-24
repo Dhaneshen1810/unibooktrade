@@ -12,8 +12,8 @@ import Resizer from 'react-image-file-resizer';
 
 const fileUpload = require('fuctbase64');
 
-const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:''}
+const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} ) => {
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:'', userEmail:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
@@ -77,7 +77,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                         author: '',
                         name: name,
                         id: id,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });
@@ -97,7 +98,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
             ...form,
                  ownerID: id,
                  ownerName: name,
-                
+                 userEmail:userEmail
 
         })
 
@@ -132,7 +133,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                         author: '',
                         name: name,
                         id: id,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });
@@ -145,7 +147,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });
@@ -157,7 +160,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname}}} ) => {
                 query: { 
                         id: id,
                         name: name,
-                        firstname: firstname
+                        firstname: firstname,
+                        userEmail:userEmail
                         
                 }
             });

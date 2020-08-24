@@ -99,9 +99,12 @@ background-size: cover;
     width: 100%;
     //background-color: orange;
     background-image: url('../public/static/searchBookPhone.jpg');
-    background-attachment: fixed;
-    background-size: cover;
     align-items: center;
+    background-size: cover;
+    overflow: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     
     
 }
@@ -114,16 +117,24 @@ background-size: cover;
     background-attachment: fixed;
     background-size: cover;
     overflow: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     
 }
 .profile-page{
     background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    overflow: scroll;
 }
 // Contact page
 .contact-page{
@@ -133,7 +144,10 @@ background-size: cover;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    align-items: center;;
+    align-items: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
 .book-greeting{
