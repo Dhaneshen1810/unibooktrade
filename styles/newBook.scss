@@ -4,7 +4,7 @@
     flex-direction: column;
     //background-color: orange;
     align-items: center;
-    background-image: url('../public/static/gradientbgPhone.jpg');
+    background-image: url('../public/static/new-bg.jpg');
     background-size: cover;
 }
 
@@ -35,6 +35,10 @@
     border-radius: 20px;
 }
 
-@media only screen and (min-width: 750px){
+@media only screen and (min-width: 1050px){
+    .newBook-page{
+        background-image: url('../public/static/new-bg-big.jpg');
+
+    }
     
 }
