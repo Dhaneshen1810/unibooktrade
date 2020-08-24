@@ -124,6 +124,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
     const handleSubmit = (e) => { 
         e.preventDefault();
 
+        /*
         const From = 'booksexchnagemessenger@gmail.com';
         const To = 'dan.moonian@gmail.com';
 
@@ -131,16 +132,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         
         console.log('sending mail');
 
-/*
-        // Handle promise's fulfilled/rejected states
-        sendPromise.then(
-            function(data) {
-            console.log(data);
-            }).catch(
-            function(err) {
-            console.log(err, err.stack);
-            });
-            */
+
            const sender = "booksexchangemessenger@gmail.com"
             const recipient = ownerEmail
             //const configuration_set = "ConfigSet"
@@ -187,6 +179,10 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
               console.log('email sent to '+ownerEmail)
             }
           });
+          */
+
+          //Send mail using mailto function
+
 
 
 
@@ -223,6 +219,10 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
             </div>
             
         </div>
+
+        <h1>Send mail</h1>
+        <a href="mailto:dan.moonian@gmail.com">Email Us</a>
+
 
 <div className='book-list'>
         {booklist.map( book => {
