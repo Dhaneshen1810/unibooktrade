@@ -1,196 +1,228 @@
-import React, { useState, useEffect } from 'react';
-
 import Link from 'next/link';
-import Router from 'next/router';
-import { useRouter } from 'next/router';
-import { withRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { Credentials } from 'aws-sdk';
+import { useRouter, withRouter } from 'next/router';
+import Router from 'next/router';
 
+import { Form } from 'react-bootstrap';
+import { Label } from 'semantic-ui-react';
 
+//Image resize
+import Resizer from 'react-image-file-resizer';
 
+const fileUpload = require('fuctbase64');
 
-const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle, userEmail, ownerEmail}}, books} ) => {
-    const [defaultText, setDefaultText] = useState('Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!');
-    const [booklist, setBooklist] = useState([]);
+const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} ) => {
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:'', userEmail:''}
+    );
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errors, setErrors] = useState({});
 
+    //state of the preview image
+    const [prevImage, setPrevImage] = useState('/static/default-image.svg');
 
-    /* Deal with AWS SES */
-    // Load the AWS SDK for Node.js
-    
-    var AWS = require('aws-sdk');
-
-    //AWS.config.loadFromPath('./config.json');
-
-    // Set the region 
-    /*
-    AWS.config.update({
-        region: 'ca-central-1'
-        
-    });
-    */
-
-
-   AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: "us-east-2"    
-});
-
-
-
-    console.log('email is '+ownerEmail)
-
-
-
+    const router = useRouter();
 
     
-  
-  
-    // Create the promise and SES service object
-    //var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendBulkTemplatedEmail(params).promise();
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let day = newDate.getDay().toLocaleString
+    let month = newDate.getMonth()
 
-    /* End of AWS SES */
-  
-
+    console.log('Date is',day, date, month)
 
 
-
-
-    // Assign constant names to values obtained from 'booklist' via withRouter
     useEffect(() => {
-        const userName = name;
-        const userID = id;
-        const userFirstname = firstname;
+        if (isSubmitting){
+            if (Object.keys(errors).length ===0){
+                //bookmatch();
 
-        setBooklist(books)
-        console.log('booklist is')
-        console.log(booklist)
+                //alert('New book created')
 
-    })
 
-    // Redirect to myprofile
-    const myProfile = () => {
-        Router.push({
-            pathname: '/myprofile',
-            query: { 
-                    mytitle: '',
-                    author: '',
-                    name: name,
-                    id: id,
-                    firstname: firstname,
-                    userEmail:userEmail
-                    
+                createBook();
+                /*
+                Router.push({
+                    pathname: '/booklist',
+                    query: { 
+                            mytitle: form.title,
+                            author: form.author
+                            
+                    }
+                });*/
+              
             }
-        });
-    }
-
-    // Redirect to new for creating new post
-    const myBooks = () => {
-        Router.push({
-            pathname: '/new',
-            query: { 
-                    id: id,
-                    name: name,
-                    firstname: firstname,
-                    userEmail:userEmail
-                    
+            else{
+                setIsSubmitting(false);
             }
-        });
+        }
+    }, [errors])
+
+
+    //Create new book post
+    const createBook = async () => {
+        try {
+            
+            
+            const res = await fetch('http://localhost:3000/api/books', {
+            //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+
+                method: 'POST',
+                
+                headers: {
+                    "Accept": 'application/json',
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+               
+            })
+
+            //Redirect to my profile
+            Router.push({
+                pathname: '/myprofile',
+                query: { 
+                        mytitle: '',
+                        author: '',
+                        name: name,
+                        id: id,
+                        firstname: firstname,
+                        userEmail:userEmail
+                        
+                }
+            });
+
+        } catch (error) {
+            console.log(error)
+
+        }
     }
 
-    // Redirect posts
-    const Search = () => {
-        Router.push({
-            pathname: '/posts',
-            query: { 
-                    id: id,
-                    name: name,
-                    firstname: firstname,
-                    userEmail:userEmail
-                    
-            }
-        });
-    }
-
-    // Handle text in textArea
-    const handleChange = (e) => { 
-        const value = e.target.value;
-
-        setDefaultText(value);
-    }
-
-    //Send email 
     const handleSubmit = (e) => { 
         e.preventDefault();
 
-        /*
-        const From = 'booksexchnagemessenger@gmail.com';
-        const To = 'dan.moonian@gmail.com';
+        console.log(form.imageFront)
 
-        console.log('Text: '+ defaultText)
-        
-        console.log('sending mail');
+        setForm({
+            ...form,
+                 ownerID: id,
+                 ownerName: name,
+                 userEmail:userEmail
 
-
-           const sender = "booksexchangemessenger@gmail.com"
-            const recipient = ownerEmail
-            //const configuration_set = "ConfigSet"
-            const subject = "Amazon SES test"
-            const body_text = defaultText
-            const body_html = '<html><body><p>'+body_text+'</p></body></html>'
-            const charset = "UTF-8"
-            var ses = new AWS.SES();
+        })
 
 
-            // Specify the parameters to pass to the API.
-            var params = { 
-                Source: sender, 
-                Destination: { 
-                  ToAddresses: [
-                    recipient 
-                  ],
-                },
-                Message: {
-                  Subject: {
-                    Data: subject,
-                    Charset: charset
-                  },
-                  Body: {
-                    Text: {
-                      Data: body_text,
-                      Charset: charset 
-                    },
-                    Html: {
-                      Data: body_html,
-                      Charset: charset
-                    }
-                  }
-                },
-                //ConfigurationSetName: configuration_set
-              };
-
-           ses.sendEmail(params, function(err, data) {
-            // If something goes wrong, print an error message.
-            if(err) {
-              console.log(err.message);
-            } else {
-              console.log("Email sent! Message ID: ", data.MessageId);
-              console.log('email sent to '+ownerEmail)
-            }
-          });
-          */
-
-          //Send mail using mailto function
-
-
+        let errs = validate();
+        setErrors(errs);
+        setIsSubmitting(true);
 
 
     }
+    const handleChange = (e) => { 
+        setForm({
+            ...form,
+                [e.target.name]: e.target.value
+            
+        })
+    }
 
-    // Display on screen
-    return(
-        <div className='contact-page'>
+    const validate = () => {
+        let err = {};
+
+        
+        return err;
+    }
+
+        //Handle page switch for header icons
+        const myProfile = () => {
+            Router.push({
+                pathname: '/myprofile',
+                query: { 
+                        mytitle: '',
+                        author: '',
+                        name: name,
+                        id: id,
+                        firstname: firstname,
+                        userEmail:userEmail
+                        
+                }
+            });
+        }
+    
+        //Go to section to create new listing
+        const myBooks = () => {
+            Router.push({
+                pathname: '/new',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstname,
+                        userEmail:userEmail
+                        
+                }
+            });
+        }
+
+        const Search = () => {
+            Router.push({
+                pathname: '/posts',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstname,
+                        userEmail:userEmail
+                        
+                }
+            });
+        }
+
+        //Handle image upload
+        const image1Upload = (e) => {
+
+          
+       var fileInput = false;
+       if (e.target.files[0]){
+           fileInput = true;
+       }
+       if (fileInput) {
+           Resizer.imageFileResizer(
+            event.target.files[0],
+            300,
+            300,
+            'png',
+            100,
+            0,
+            uri => {
+                console.log(uri)
+
+                //Update form with new image data
+                setForm({
+                    ...form,
+                 imageFront:{
+                     data: uri, 
+                     contentType: 'image/png'
+                 }
+            
+            })
+
+            //Update image preview
+            setPrevImage(uri);
+
+            
+            },
+            'base64'
+
+           );
+       }
+
+       
+        
+        }
+
+        
+           
+
+    return (
+        <div className='newBook-page'>
             <div className='book-greeting'>
             <div className='greeting-text'>
             <div className='icon-box'>
@@ -202,123 +234,80 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
-                    <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
                     
+                    <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
                     </div>
                     
-                </div>
 
 
-                <div style={{ marginTop:'4%', padding:'10px' }}>
                     
-                <p style={{ fontSize:'18px' }}>This is a collection of all the books matching your search 
-                
-                <br/><span style={{ fontSize: '16px' }}>Once you find the one you want, get in contact with the owner.</span></p>
-                
-                </div>
             </div>
+
+
+            
+           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Add a new book posting.</p></div>
+
+
+                
+            </div>
+                
+        </div>
+           
+        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'10%' }}>
+        <img src={prevImage} alt='default-image' className='image-preview'/>
+        <div className="form-group my-group" style={{marginTop:'8%'}}>
+                <input 
+                    type="text" 
+                    className="form-control new-book-input" 
+                    id="exampleInputEmail1" 
+                    placeholder="Enter book title"
+                    name="title"
+                    required
+                    onChange={handleChange}/>
+                    
+                </div>
+                <div className="form-group my-group">
+                <input 
+                    type="text" 
+                    className="form-control new-book-input" 
+                    placeholder="Enter Author"
+                    name='author'
+                    onChange={handleChange}
+                    required
+                    />
+
+                <input 
+                    type="text" 
+                    className="form-control new-book-input" 
+                    placeholder="Price"
+                    name='price'
+                    style={{ marginTop:'5%' }}
+                    onChange={handleChange}
+                    required
+                    />
+                
+                <label className='input-file-btn'>
+                <input
+                type="file"
+                name="file"
+                id="input-files"
+                className='input-file-btn'
+                onChange={image1Upload}
+              />
+              </label>
+
+              <label htmlFor="file-upload" className="input-file-btn" >
+            </label>
+            
+
+            
+  
+                <button type="submit" className="btn btn-primary my-btn">POST</button>
+                </div>
+                </form>
             
         </div>
-
-        <h1>Send mail</h1>
-        <a href="mailto:dan.moonian@gmail.com" target="_blank" rel="noopener noreferrer">Email Us</a>
-
-<div className='book-list'>
-        {booklist.map( book => {
-
-                
-                //var imageBase64 = book.imageFront.contentType;
-                var imageData;
-                var base64data;
-    
-                if (book.imageFront){
-                    
-                    imageData = book.imageFront.data;
-    
-                }
-                else{
-                    console.log('no image');
-                    imageData='';
-                }
-
-
-                        return (
-                               <div>
-                            
-                            
-                            
-                            <div key={book._id} className='bookInfo'>
-                                <div className='contact-bookinfo-pic'>
-                                    <img src={imageData}  style={{ width:'200px', height:'200px', borderRadius:'20px'}}/>
-
-                                </div>
-                                <div className='contact-bookinfo-text'>
-                                    <p>Title: <b>{book.title}</b></p>
-                                    <p>Author: <b>{book.author}</b></p>
-                                    <p>Owned by <b>{bookOwnerName}</b></p>
-                                </div>
-                                
-                            </div>
-    
-                            </div>
-                            
-                        )
-                        
-                    
-                }
-                
-                
-                )}
-                </div>
-
-        
-
-
-        <form style={{ width:'90%', marginTop:'7%' }}  onSubmit={handleSubmit}>
-            <textarea type="text" 
-                id="lname" 
-                name="lname" 
-                value= {defaultText}
-                onChange={handleChange}
-                className='contact-textBox'
-                />
-            <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>
-        </form>
-
-        </div>
     )
-
 });
 
-
-// Get content from database 
-contact.getInitialProps = async (ctx) =>{
-    console.log('ctx is');
-    console.log(ctx.query.bookOwnerID)
-    console.log(ctx.query.bookID)
-
-    try {
-
-        //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-            const res = await fetch('http://localhost:3000/api/books', {
-                headers: {
-                    title: '',
-                    author: '',
-                    id: ctx.query.bookOwnerID,
-                    bookID: ctx.query.bookID
-                }
-            });
-            const { data } = await res.json();
-        
-           
-           return{ books:data }
-           
-       } catch (error) {
-    
-        return { books: [] }
-           
-       }
-     
- }
-
-export default contact;
+export default NewBook;

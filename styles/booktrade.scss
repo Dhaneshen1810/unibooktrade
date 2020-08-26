@@ -138,13 +138,14 @@ background-size: cover;
 }
 // Contact page
 .contact-page{
-    background-image: url('../public/static/gradientbgPhone.jpg');
-    background-attachment: fixed;
+    background-image: url('../public/static/brickwall2.jpg');
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-size: cover;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -256,7 +257,8 @@ background-size: cover;
     //background-color: maroon;
     background-image: url('../public/static/maroonPoster2.png');
     background-size: cover;
-    height: 200px;
+    height: auto;
+    min-height: 200px;
     width: 94%;
     max-width: 400px;
     color: white;
@@ -311,22 +313,32 @@ background-size: cover;
 
 // Contact page
 .bookInfo{
-    width: 300px;
+    max-width: 500px;
+    width: 96%;
     max-width: 400px;
     height: auto;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     margin-top: 4%;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .contact-textBox{
-    width: 100%;
+    width: 50%;
     height: 150px;
     text-emphasis: none;
     padding: 5px;
     border: solid 1px black;
 } 
+
+.email-btn{
+    margin-top: 3%;
+    width: 80%;
+    max-width: 300px;
+}
 
 .contact-bookinfo{
     width: 100px;

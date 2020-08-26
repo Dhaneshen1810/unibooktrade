@@ -11,7 +11,6 @@ import { Credentials } from 'aws-sdk';
 
 
 const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle, userEmail, ownerEmail}}, books} ) => {
-    const [defaultText, setDefaultText] = useState('Hi there '+ownerFirstName+', I am interested in your book, "'+bookTitle+'"!');
     const [booklist, setBooklist] = useState([]);
 
 
@@ -113,80 +112,11 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         });
     }
 
-    // Handle text in textArea
-    const handleChange = (e) => { 
-        const value = e.target.value;
-
-        setDefaultText(value);
-    }
-
-    //Send email 
-    const handleSubmit = (e) => { 
-        e.preventDefault();
-
-        /*
-        const From = 'booksexchnagemessenger@gmail.com';
-        const To = 'dan.moonian@gmail.com';
-
-        console.log('Text: '+ defaultText)
-        
-        console.log('sending mail');
-
-
-           const sender = "booksexchangemessenger@gmail.com"
-            const recipient = ownerEmail
-            //const configuration_set = "ConfigSet"
-            const subject = "Amazon SES test"
-            const body_text = defaultText
-            const body_html = '<html><body><p>'+body_text+'</p></body></html>'
-            const charset = "UTF-8"
-            var ses = new AWS.SES();
-
-
-            // Specify the parameters to pass to the API.
-            var params = { 
-                Source: sender, 
-                Destination: { 
-                  ToAddresses: [
-                    recipient 
-                  ],
-                },
-                Message: {
-                  Subject: {
-                    Data: subject,
-                    Charset: charset
-                  },
-                  Body: {
-                    Text: {
-                      Data: body_text,
-                      Charset: charset 
-                    },
-                    Html: {
-                      Data: body_html,
-                      Charset: charset
-                    }
-                  }
-                },
-                //ConfigurationSetName: configuration_set
-              };
-
-           ses.sendEmail(params, function(err, data) {
-            // If something goes wrong, print an error message.
-            if(err) {
-              console.log(err.message);
-            } else {
-              console.log("Email sent! Message ID: ", data.MessageId);
-              console.log('email sent to '+ownerEmail)
-            }
-          });
-          */
-
-          //Send mail using mailto function
 
 
 
 
-    }
+    
 
     // Display on screen
     return(
@@ -209,19 +139,18 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                 </div>
 
 
-                <div style={{ marginTop:'4%', padding:'10px' }}>
+                <div style={{ marginTop:'3%', padding:'10px' }}>
                     
-                <p style={{ fontSize:'18px' }}>This is a collection of all the books matching your search 
+                <p style={{ fontSize:'18px' }}>Here is all the information we have.
                 
-                <br/><span style={{ fontSize: '16px' }}>Once you find the one you want, get in contact with the owner.</span></p>
+                <br/><span style={{ fontSize: '16px' }}>Contact {bookOwnerName} for more.</span></p>
+                
                 
                 </div>
+                
             </div>
             
         </div>
-
-        <h1>Send mail</h1>
-        <a href="mailto:dan.moonian@gmail.com">Email Us</a>
 
 
 <div className='book-list'>
@@ -230,7 +159,6 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                 
                 //var imageBase64 = book.imageFront.contentType;
                 var imageData;
-                var base64data;
     
                 if (book.imageFront){
                     
@@ -272,19 +200,16 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                 )}
                 </div>
 
+                <button className='btn btn-primary email-btn'>
+                <a style={{ color:'white' }} href="mailto:dan.moonian@gmail.com">Contact {bookOwnerName}</a>
+
+                </button>
+
+
         
 
 
-        <form style={{ width:'90%', marginTop:'7%' }}  onSubmit={handleSubmit}>
-            <textarea type="text" 
-                id="lname" 
-                name="lname" 
-                value= {defaultText}
-                onChange={handleChange}
-                className='contact-textBox'
-                />
-            <button style={{ marginTop: '4%' }} className='btn btn-primary'>Send message</button>
-        </form>
+        
 
         </div>
     )

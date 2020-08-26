@@ -20,8 +20,12 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
 
     //state of the preview image
     const [prevImage, setPrevImage] = useState('/static/default-image.svg');
+    const date = Date().toLocaleString()
 
     const router = useRouter();
+
+    console.log('Date is', date)
+    console.log(Date)
 
 
     useEffect(() => {

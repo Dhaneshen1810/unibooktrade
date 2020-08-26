@@ -4,7 +4,7 @@
     flex-direction: column;
     //background-color: orange;
     align-items: center;
-    background-image: url('../public/static/new-bg.jpg');
+    background-image: url('../public/static/library-bg.jpg');
     background-size: cover;
 }
 
@@ -15,7 +15,6 @@
     max-width: 500px;
     align-items: center;
     border-radius: 5%;
-    background-color: rgba(0,0,0,0.6);
 }
 
 .image-preview{
@@ -37,7 +36,7 @@
 
 @media only screen and (min-width: 1050px){
     .newBook-page{
-        background-image: url('../public/static/new-bg-big.jpg');
+        background-image: url('../public/static/library-bg.jpg');
 
     }
     

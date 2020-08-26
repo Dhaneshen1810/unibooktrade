@@ -186,6 +186,8 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     <div className='myprofile-header'>
                         <p>This is your collection<br/> You currently have {books.length} posts</p>
                     </div>
+                    <br/>
+                    
                 </div>
                 
             </div>
