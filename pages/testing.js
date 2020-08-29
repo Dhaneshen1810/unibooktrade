@@ -1,138 +1,104 @@
+import { withRouter } from "next/router";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Head from 'next/head'
+
+import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import { useRouter, withRouter } from 'next/router';
+
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 
-import { Form } from 'react-bootstrap';
-import { Label } from 'semantic-ui-react';
-
-//Image resize
-import Resizer from 'react-image-file-resizer';
-
-const fileUpload = require('fuctbase64');
-
-const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:'', userEmail:''}
-    );
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errors, setErrors] = useState({});
-
-    //state of the preview image
-    const [prevImage, setPrevImage] = useState('/static/default-image.svg');
-
-    const router = useRouter();
-
-    
-    let newDate = new Date()
-    let date = newDate.getDate();
-    let day = newDate.getDay().toLocaleString
-    let month = newDate.getMonth()
-
-    console.log('Date is',day, date, month)
+import Cors from 'cors';
 
 
-    useEffect(() => {
-        if (isSubmitting){
-            if (Object.keys(errors).length ===0){
-                //bookmatch();
 
-                //alert('New book created')
+const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, books} ) => {
 
+        const [form, setForm] = useState({ title: '', author:'' });
+        const [isSubmitting, setIsSubmitting] = useState(false);
+        const [errors, setErrors] = useState();
+        const router = useRouter;
 
-                createBook();
-                /*
-                Router.push({
-                    pathname: '/booklist',
-                    query: { 
-                            mytitle: form.title,
-                            author: form.author
-                            
-                    }
-                });*/
-              
+        // Initializing the cors middleware
+        const cors = Cors({
+        methods: ['GET', 'HEAD'],
+    })
+
+        
+        useEffect(() => {
+
+            // We are directed to the booklist page
+            // Forwarding the following data to booklist
+            // Fullname, firstname, id, book author and book title
+            if (isSubmitting){
+
+                if (Object.keys(errors).length ===0){
+
+                    Router.push({
+                        pathname: '/booklist',
+                        query: { 
+                                mytitle: form.title,
+                                author: form.author,
+                                name: name,
+                                id: id,
+                                firstname: firstname
+                                
+                        }
+                    });
+                  
+                }
+                else{
+                    setIsSubmitting(false);
+                }
             }
-            else{
-                setIsSubmitting(false);
-            }
+        }, [errors])
+
+
+        // When th user submits
+        const handleSubmit = (e) => { 
+            e.preventDefault();
+            let errs = validate();
+            setErrors(errs);
+            setIsSubmitting(true);
+
+
         }
-    }, [errors])
 
-
-    //Create new book post
-    const createBook = async () => {
-        try {
-            
-            
-            const res = await fetch('http://localhost:3000/api/books', {
-            //const res = await fetch('https://unibooktrade.vercel.app/api/books', {
-
-                method: 'POST',
+        // Handle changes made to the input box
+        // That is, when the user types in the box
+        const handleChange = (e) => { 
+            setForm({
+                ...form,
+                    [e.target.name]: e.target.value
                 
-                headers: {
-                    "Accept": 'application/json',
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(form)
-               
             })
+        }
 
-            //Redirect to my profile
+        const validate = () => {
+            let err = {};
+
+            
+            return err;
+        }
+
+
+        // User chooses to view all available books
+        const viewAll = () => {
+
             Router.push({
-                pathname: '/myprofile',
+                pathname: '/booklist',
                 query: { 
-                        mytitle: '',
-                        author: '',
-                        name: name,
-                        id: id,
-                        firstname: firstname,
-                        userEmail:userEmail
+                    name: name,
+                    id: id,
+                    firstname: firstname,
+                    mytitle: '',
+                    author: '',
+                    userEmail:userEmail
                         
                 }
             });
-
-        } catch (error) {
-            console.log(error)
-
         }
-    }
 
-    const handleSubmit = (e) => { 
-        e.preventDefault();
-
-        console.log(form.imageFront)
-
-        setForm({
-            ...form,
-                 ownerID: id,
-                 ownerName: name,
-                 userEmail:userEmail
-
-        })
-
-
-        let errs = validate();
-        setErrors(errs);
-        setIsSubmitting(true);
-
-
-    }
-    const handleChange = (e) => { 
-        setForm({
-            ...form,
-                [e.target.name]: e.target.value
-            
-        })
-    }
-
-    const validate = () => {
-        let err = {};
-
-        
-        return err;
-    }
-
-        //Handle page switch for header icons
         const myProfile = () => {
             Router.push({
                 pathname: '/myprofile',
@@ -142,13 +108,12 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         name: name,
                         id: id,
                         firstname: firstname,
-                        userEmail:userEmail
+                        userEmail: userEmail
                         
                 }
             });
         }
-    
-        //Go to section to create new listing
+
         const myBooks = () => {
             Router.push({
                 pathname: '/new',
@@ -175,139 +140,87 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
             });
         }
 
-        //Handle image upload
-        const image1Upload = (e) => {
-
-          
-       var fileInput = false;
-       if (e.target.files[0]){
-           fileInput = true;
-       }
-       if (fileInput) {
-           Resizer.imageFileResizer(
-            event.target.files[0],
-            300,
-            300,
-            'png',
-            100,
-            0,
-            uri => {
-                console.log(uri)
-
-                //Update form with new image data
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: uri, 
-                     contentType: 'image/png'
-                 }
-            
-            })
-
-            //Update image preview
-            setPrevImage(uri);
-
-            
-            },
-            'base64'
-
-           );
-       }
-
-       
+    return(
+    <div className='option-page'>
+        <Head>
+            <title>Search, MacEwan Book Trade</title>
+        </Head>
         
-        }
 
-        
-           
-
-    return (
-        <div className='newBook-page'>
-            <div className='book-greeting'>
+        <div className='book-greeting'>
             <div className='greeting-text'>
-            <div className='icon-box'>
+                <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
-                    
+
+
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
                     
                     <img src="/icons/plus.png" alt="Add book" className='my-icon' onClick={myBooks}/>
-                    
                     <img src="/icons/search.png" alt="Search" className='my-icon' onClick={Search}/>
+                    
                     </div>
                     
-
-
-                    
-            </div>
-
-
-            
-           <div style={{ marginTop:'65px', fontSize:'18px', textAlign:'center', width:'100%' }}><p>Add a new book posting.</p></div>
-
+                </div>
 
                 
+                <h2 className='icon-box-text'>Hi, {firstname}!</h2>
+
+                <p>Find your book by entering 
+                    the <b>Author</b> or/and <b>book title</b> below.
+                </p>
             </div>
                 
-        </div>
-           
-        <form className='create-book-form' onSubmit={handleSubmit} style={{ marginTop:'10%' }}>
-        <img src={prevImage} alt='default-image' className='image-preview'/>
-        <div className="form-group my-group" style={{marginTop:'8%'}}>
+            <form className='my-form' onSubmit={handleSubmit}>
+                <div className="form-group my-group">
+                <label>Title</label>
                 <input 
                     type="text" 
-                    className="form-control new-book-input" 
+                    className="form-control my-form-control" 
                     id="exampleInputEmail1" 
                     placeholder="Enter book title"
                     name="title"
-                    required
                     onChange={handleChange}/>
                     
                 </div>
+                <br/>
                 <div className="form-group my-group">
+                <label>Author</label>
                 <input 
                     type="text" 
-                    className="form-control new-book-input" 
+                    className="form-control" 
                     placeholder="Enter Author"
                     name='author'
                     onChange={handleChange}
-                    required
-                    />
-
-                <input 
-                    type="text" 
-                    className="form-control new-book-input" 
-                    placeholder="Price"
-                    name='price'
-                    style={{ marginTop:'5%' }}
-                    onChange={handleChange}
-                    required
                     />
                 
-                <label className='input-file-btn'>
-                <input
-                type="file"
-                name="file"
-                id="input-files"
-                className='input-file-btn'
-                onChange={image1Upload}
-              />
-              </label>
-
-              <label htmlFor="file-upload" className="input-file-btn" >
-            </label>
-            
-
-            
   
-                <button type="submit" className="btn btn-primary my-btn">POST</button>
+                <button type="submit" className="btn btn-primary my-btn">Search</button>
                 </div>
                 </form>
+
+                <div className='view-all-box'>
+                    <div className='btn btn-success my-btn-viewall' onClick={viewAll}>View all</div>
+                </div>
+
+
             
         </div>
-    )
-});
 
-export default NewBook;
+
+        
+    </div>
+
+    )
+    
+});
+  
+
+
+
+    
+export default posts;
+
+

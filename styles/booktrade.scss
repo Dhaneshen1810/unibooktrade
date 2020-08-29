@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 $maroon: rgb(128,0,0);
+$shadow: -1px 1px 5px 0px rgba(107,106,107,1);
 
 body{
     height: 100%;
@@ -66,7 +67,7 @@ background-size: cover;
 //Book page
 .icon-box{
     width: 96%;
-    height: 20px;
+    height: 30px;
     margin-top: 4%;
     display: flex;
     flex-direction: row;
@@ -112,15 +113,16 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: white;
+    overflow: scroll;
+    /*
     background-image: url('../public/static/searchBookPhone.jpg');
     background-attachment: fixed;
     background-size: cover;
-    overflow: scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    
+    */
+    background-color: white;
 }
 .profile-page{
     background-image: url('../public/static/searchBookPhone.jpg');
@@ -151,8 +153,17 @@ background-size: cover;
     -o-background-size: cover;
 }
 
+.about-page{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+
+}
+
 .book-greeting{
-    //background-color: rgb(128,0,0);
+    background-color: rgb(128,0,0);
     background-image: url('../public/static/maroonPoster.png');
     background-size: cover;
     width: 100%;
@@ -189,7 +200,9 @@ background-size: cover;
     align-self: start;
     margin-top:5%
 }
-
+.btn-aboutUs{
+    margin-left: 7px;
+}
 
 .view-all-box{
     width: 100%;
@@ -223,15 +236,27 @@ background-size: cover;
     //height:130px;
     height: auto;
     min-height: 130px;
-    max-height: 300px;
     margin-top: 5%;
     //background-color: maroon;
     display: flex;
     flex-direction: row;
     background-image: url('../public/static/maroonPoster2.png');
     background-size: cover;
+
+
+    -webkit-box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
+-moz-box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
+box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
     
 }
+.item-pic{
+    width:110px;
+    height:110px;
+    border-radius:10px;
+    margin-top:10px;
+    margin-left:10px;
+}
+
 .item-section1{
     flex: 1;
 }
@@ -354,6 +379,13 @@ background-size: cover;
     width: 100%;
 }
 
+.contact-book-pic{
+    width:200px;
+    height:200px;
+    border-radius: 20px
+
+}
+
 .contact-bookinfo-text{
     margin-top: 13%;
     display: flex;
@@ -363,6 +395,17 @@ background-size: cover;
     color: white;
     letter-spacing: 1px;
 }
+
+// About us page
+.aboutus-header{
+    font-size: 30px;
+    color: $maroon;
+    margin-top: 3%;
+}
+.feedback-section{
+    background-color: rgb(1, 1, 43);
+}
+
 
 @media only screen and (min-width: 1050px){
     //Login page
@@ -383,7 +426,7 @@ background-size: cover;
         margin-top: 1.5%;
     }
     .my-form{
-        margin-top: 10%;
+        margin-top: 20%;
     }
     .option-page{
         background-image: url('../public/static/searchBook.jpg');
@@ -391,14 +434,39 @@ background-size: cover;
 
 
     //Booklist
+    
     .booklist-page{
-        background-image: url('../public/static/searchBook.jpg');
+        //background-image: url('../public/static/searchBook.jpg');
+        align-items: center;
+    }
+    .book-greeting{
+        max-width: 800px;
+        min-height: 150px;
+        //position: fixed;
+    }
+
+    .book-item{
+        margin-top: 2%;
+        max-width: 600px;
+    }
+    .item-pic{
+        width:130px;
+        height:130px;
+        border-radius:10px;
+        margin-top:5px;
+        margin-left:10px;
     }
 
     //myprofile
     .profile-page{
         background-image: url('../public/static/searchBook.jpg');
+        align-items: center;
     }
     
+    //Contact
+    .contact-book-pic{
+        width: 240px;
+        height: 240px;
+    }
 
 }

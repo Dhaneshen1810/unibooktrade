@@ -29,6 +29,9 @@ const BookSchema = new mongoose.Schema({
     },
     userEmail:{
         type: String
+    },
+    postedOn:{
+        type:String
     }
 
 

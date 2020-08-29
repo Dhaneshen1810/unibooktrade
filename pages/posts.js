@@ -1,5 +1,6 @@
 import { withRouter } from "next/router";
 import Link from 'next/link';
+import Head from 'next/head'
 
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
@@ -139,8 +140,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
             });
         }
 
+
     return(
     <div className='option-page'>
+        <Head>
+            <title>Search, MacEwan Book Trade</title>
+        </Head>
         
 
         <div className='book-greeting'>
@@ -149,6 +154,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
+                    <img onClick={aboutUs} src="/icons/info.svg" alt="About us" className='my-icon btn-aboutUs'/>
                     
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { useRouter, withRouter } from 'next/router';
 import Router from 'next/router';
+import Head from 'next/head'
 
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
@@ -109,7 +110,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
             
             //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
             //const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
-            const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+            const res = await fetch('https://usedbooksexchange.com/api/books', {
              //const res = await fetch('http://localhost:3000/api/books', {
 
 
@@ -300,6 +301,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
     return (
         <div className='newBook-page'>
+            <Head>
+                <title>Edit post, MacEwan Book Trade</title>
+            </Head>
             <div className='book-greeting'>
             <div className='greeting-text'>
             <div className='icon-box'>

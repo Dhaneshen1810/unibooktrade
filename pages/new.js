@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { useRouter, withRouter } from 'next/router';
 import Router from 'next/router';
+import Head from 'next/head'
 
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
@@ -13,22 +14,93 @@ import Resizer from 'react-image-file-resizer';
 const fileUpload = require('fuctbase64');
 
 const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} ) => {
-    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:'', userEmail:''}
+    const [form, setForm] = useState({ title:'', author:'', ownerID:'', ownerName:'', imageFront:'', price:'', userEmail:'', postedOn:''}
     );
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
 
     //state of the preview image
     const [prevImage, setPrevImage] = useState('/static/default-image.svg');
-    const date = Date().toLocaleString()
+    
 
     const router = useRouter();
 
-    console.log('Date is', date)
-    console.log(Date)
+    // Get current date
+    
+    
+    var date = new Date().getDate()
+    var year = new Date().getFullYear()
+
+    //Get day
+    var day;
+    switch (new Date().getDay()) {
+        case 0:
+          day = "Sunday";
+          break;
+        case 1:
+          day = "Monday";
+          break;
+        case 2:
+           day = "Tuesday";
+          break;
+        case 3:
+          day = "Wednesday";
+          break;
+        case 4:
+          day = "Thursday";
+          break;
+        case 5:
+          day = "Friday";
+          break;
+        case 6:
+          day = "Saturday";
+      }
+
+      //Get mobth
+    var month;
+    switch (new Date().getMonth()) {
+        case 0:
+          month = "December";
+          break;
+        case 1:
+          month = "January";
+          break;
+        case 2:
+           month = "March";
+          break;
+        case 3:
+          month = "April";
+          break;
+        case 4:
+          month = "May";
+          break;
+        case 5:
+          month = "June";
+          break;
+        case 6:
+          month = "July";
+        case 6:
+            month = "July";
+        case 7:
+            month = "August";
+        case 8:
+            month = "September";
+        case 9:
+            month = "October";
+        case 10:
+            month = "November";
+        case 11:
+            month = "December";
+      }
+
+      var DayDateMonth = ""+day+" "+date+" "+month+" "+year;
+      
 
 
     useEffect(() => {
+        
+
+
         if (isSubmitting){
             if (Object.keys(errors).length ===0){
                 //bookmatch();
@@ -61,7 +133,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
             
             
             //const res = await fetch('http://localhost:3000/api/books', {
-            const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+            const res = await fetch('https://usedbooksexchange.com/api/books', {
 
                 method: 'POST',
                 
@@ -102,7 +174,9 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
             ...form,
                  ownerID: id,
                  ownerName: name,
-                 userEmail:userEmail
+                 userEmail:userEmail,
+                 postedOn: DayDateMonth
+
 
         })
 
@@ -199,6 +273,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                  }
             
             })
+        
 
             //Update image preview
             setPrevImage(uri);
@@ -219,6 +294,9 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
 
     return (
         <div className='newBook-page'>
+            <Head>
+                <title>Create post, MacEwan Book Trade</title>
+            </Head>
             <div className='book-greeting'>
             <div className='greeting-text'>
             <div className='icon-box'>

@@ -1,10 +1,8 @@
 import { withRouter } from "next/router";
 import Router from "next/router";
 import Link from 'next/link';
-
-//Getting book data from database
+import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
-
 import { useState, useEffect } from "react";
 
 
@@ -107,6 +105,9 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
     return(
 
     <div className='booklist-page'>
+        <Head>
+            <title>Books available, MacEwan Book Trade</title>
+        </Head>
 
 
         <div className='book-greeting' style={{ padding:'5px' }}>
@@ -157,13 +158,12 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 
                     <div key={book._id} className='book-item'>
                         <div className='item-section1'>
-                        <img src={imageData}  style={{ width:'110px', height:'110px', borderRadius:'10px', marginTop:'10px', marginLeft:'10px'}}/>
+                        <img src={imageData}  className='item-pic'/>
                         </div>
                         <div className='item-section2'>
                         <p>{book.title}</p>
                         <p>{book.author}</p>
-                        <p>${book.price}</p>
-                        <p>{book.userEmail}</p>
+                        <p style={{ fontSize:'18px', color:'rgb(107, 177, 2)' }}>${book.price}</p>
                         <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID, book.userEmail)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         
@@ -186,7 +186,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
 // Get content from database
 posts.getInitialProps = async (ctx) =>{
     
-        const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        const res = await fetch('https://usedbooksexchange.com/api/books', {
         //const res = await fetch('http://localhost:3000/api/books', {
             
         headers: {

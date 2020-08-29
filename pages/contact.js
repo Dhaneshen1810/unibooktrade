@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
+import Head from 'next/head'
 import { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import { Credentials } from 'aws-sdk';
@@ -12,6 +13,7 @@ import { Credentials } from 'aws-sdk';
 
 const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle, userEmail, ownerEmail}}, books} ) => {
     const [booklist, setBooklist] = useState([]);
+    const [sendTo, setSendTo] = useState('mailto:'+userEmail)
 
 
     /* Deal with AWS SES */
@@ -121,6 +123,9 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
     // Display on screen
     return(
         <div className='contact-page'>
+        <Head>
+            <title>Contact owner, MacEwan Book Trade</title>
+        </Head>
             <div className='book-greeting'>
             <div className='greeting-text'>
             <div className='icon-box'>
@@ -178,13 +183,16 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                             
                             <div key={book._id} className='bookInfo'>
                                 <div className='contact-bookinfo-pic'>
-                                    <img src={imageData}  style={{ width:'200px', height:'200px', borderRadius:'20px'}}/>
+                                    <img src={imageData}  className='contact-book-pic'/>
 
                                 </div>
                                 <div className='contact-bookinfo-text'>
                                     <p>Title: <b>{book.title}</b></p>
                                     <p>Author: <b>{book.author}</b></p>
                                     <p>Owned by <b>{bookOwnerName}</b></p>
+                                    <p>Asking price: <b>${book.price}</b></p>
+                                    <p>Posted on: <b>{book.postedOn}</b></p>
+
                                 </div>
                                 
                             </div>
@@ -201,7 +209,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                 </div>
 
                 <button className='btn btn-primary email-btn'>
-                <a style={{ color:'white' }} href="mailto:dan.moonian@gmail.com">Contact {bookOwnerName}</a>
+                <a style={{ color:'white' }} href={sendTo}>{bookOwnerName}</a>
 
                 </button>
 
@@ -225,7 +233,7 @@ contact.getInitialProps = async (ctx) =>{
 
     try {
 
-        const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+        const res = await fetch('https://usedbooksexchange.com/api/books', {
             //const res = await fetch('http://localhost:3000/api/books', {
                 headers: {
                     title: '',

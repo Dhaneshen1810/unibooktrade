@@ -1,6 +1,7 @@
 import { withRouter, useRouter } from "next/router";
 import Link from 'next/link';
 import Router from "next/router";
+import Head from 'next/head'
 
 //Getting book data from database
 import fetch from 'isomorphic-unfetch';
@@ -41,7 +42,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
         console.log(bookID)
         try {
-            const deleted = await fetch('https://unibooktrade.vercel.app/api/books',{
+            const deleted = await fetch('https://usedbooksexchange.com/api/books',{
             //const deleted = await fetch('http://localhost:3000/api/books',{
                 method:'DELETE',
                 headers:{
@@ -164,6 +165,9 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
     return(
 
         <div className='profile-page'>
+            <Head>
+                <title>My profile, MacEwan Book Trade</title>
+            </Head>
     
             <div className='book-greeting'>
                 
@@ -276,7 +280,7 @@ myprofile.getInitialProps = async (mytitle) =>{
 
    try {
 
-    const res = await fetch('https://unibooktrade.vercel.app/api/books', {
+    const res = await fetch('https://usedbooksexchange.com/api/books', {
         //const res = await fetch('http://localhost:3000/api/books', {
             headers: {
                 title: mytitle.query.mytitle,
