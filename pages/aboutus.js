@@ -57,7 +57,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
             <Head>
             <title>About us</title>
         </Head>
-            <div className='book-greeting' style={{ height:'auto', minHeight:'0px' }}>
+            <div className='book-greeting' style={{ height:'auto', minHeight:'40px' }}>
             <div className='greeting-text'>
             <div className='icon-box'>
                     <Link href='/'>
@@ -81,8 +81,48 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
             
         </div>
             <div className='aboutus-header'>About us</div> 
-            <div className='feedback'>
-                <textarea ></textarea>
+            <div className='about-box1'>
+                <div className='about-boxb'>
+                    <p>pic ture goes here</p>
+                </div>
+                <div className='about-boxa'>
+                    <h2 className='about-title'>Our goal</h2>
+                    <div className='about-text'>
+                        <p>We want to make trading your university used books as quick, 
+                            easy and effortless as possible. This app combines the focused search radius 
+                            of university facebook groups and the search ability
+                            of wider browsing systems to provide you with exactly what 
+                            you need, finding your university books and selling your old ones. 
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div className='about-box2'>
+                <div className='about-boxa'>
+                <h2 className='about-title'>Improvements</h2>
+                    <div className='about-text'>
+                        <p>This app is constantly being monitored and improved 
+                            to deliver the best experience. We encourage users to drop feedbacks 
+                            as we actively listen and build on those.
+                        </p>
+                    </div>                </div>
+                <div className='about-boxa'>
+                <h2 className='about-title'>How it works</h2>
+                    <div className='about-text'>
+                        <p>No registration is required. Log in using facebook and 
+                            you are all set. There are 3 page options: Search for a book, 
+                            create a new post or take a look at your personal post collection.
+                        </p>
+                    </div>                </div>
+
+            </div>
+            <div className='feedback-section'>
+                <div  className='feedback-title'>
+                    <h2>Drop us a feedback!</h2>
+                    <p>Help us provide a better experience for you.</p>
+                </div>
+                <textarea className='about-textarea' placeholder='Type your feedback here'></textarea>
             </div>
         </div>
     )

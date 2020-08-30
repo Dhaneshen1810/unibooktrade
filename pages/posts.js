@@ -141,6 +141,20 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
         }
 
 
+        const aboutUs = () => {
+            Router.push({
+                pathname: '/aboutus',
+                query: { 
+                        id: id,
+                        name: name,
+                        firstname: firstname,
+                        userEmail:userEmail
+                        
+                }
+            });
+        }
+
+
     return(
     <div className='option-page'>
         <Head>
