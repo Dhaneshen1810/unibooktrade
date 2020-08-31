@@ -101,6 +101,19 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         });
     }
 
+    const aboutUs = () => {
+        Router.push({
+            pathname: '/aboutus',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname,
+                    userEmail:userEmail
+                    
+            }
+        });
+    }
+
 
     return(
 
@@ -110,12 +123,14 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         </Head>
 
 
-        <div className='book-greeting' style={{ padding:'5px' }}>
+        <div className='book-greeting-fixed' style={{ padding:'5px' }}>
             <div className='greeting-text'>
             <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
+                    <img onClick={aboutUs} src="/icons/info.svg" alt="About us" className='my-icon btn-aboutUs'/>
+
                     
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
@@ -161,7 +176,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <img src={imageData}  className='item-pic'/>
                         </div>
                         <div className='item-section2'>
-                        <p>{book.title}</p>
+                        <p style={{ color:'rgb(128,0,0)' }}><b>{book.title}</b></p>
                         <p>{book.author}</p>
                         <p style={{ fontSize:'18px', color:'rgb(107, 177, 2)' }}>${book.price}</p>
                         <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID, book.userEmail)}><b>Contact {book.ownerName}</b></a>

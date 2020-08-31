@@ -176,6 +176,10 @@ background-size: cover;
     font-size: 15px;
     top: 0;
 }
+.book-greeting-fixed{
+    @extend .book-greeting;
+    position: fixed;
+}
 
 .greeting-text{
     margin-left: 4%;
@@ -225,12 +229,12 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 45%;
 }
 
 //Booklist book item
 .book-item{
-    width: 90%;
+    width: 98%;
     max-width: 400px;
     border-radius: 20px;
     //height:130px;
@@ -240,8 +244,12 @@ background-size: cover;
     //background-color: maroon;
     display: flex;
     flex-direction: row;
-    background-image: url('../public/static/maroonPoster2.png');
-    background-size: cover;
+    //background-image: url('../public/static/maroonPoster2.png');
+    //background-size: cover;
+    background-color: whitesmoke;
+
+ 
+
 
 
     -webkit-box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
@@ -265,7 +273,7 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
     margin-left: 10px;
     margin-top: 10px;
     font-family: "Bookman Old Style";
-    color: white;
+    color: black;
 
 }
 
@@ -475,6 +483,13 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
 
 }
 
+@media only screen and (min-width: 700px){
+    .book-list{
+        margin-top: 17%;
+    }
+
+}
+
 @media only screen and (min-width: 1050px){
     //Login page
     .my-intro{
@@ -523,6 +538,10 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
         border-radius:10px;
         margin-top:5px;
         margin-left:10px;
+    }
+
+    .book-list{
+        margin-top: 10%;
     }
 
     //myprofile

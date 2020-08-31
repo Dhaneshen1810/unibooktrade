@@ -161,6 +161,19 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
         });
     }
 
+    const aboutUs = () => {
+        Router.push({
+            pathname: '/aboutus',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname,
+                    userEmail:userEmail
+                    
+            }
+        });
+    }
+
     if (books){
     return(
 
@@ -169,13 +182,15 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 <title>My profile, MacEwan Book Trade</title>
             </Head>
     
-            <div className='book-greeting'>
+            <div className='book-greeting-fixed'>
                 
                 <div className='greeting-text'>
                 <div className='icon-box'>
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
+                    <img onClick={aboutUs} src="/icons/info.svg" alt="About us" className='my-icon btn-aboutUs'/>
+
                     
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>

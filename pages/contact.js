@@ -114,6 +114,18 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         });
     }
 
+    const aboutUs = () => {
+        Router.push({
+            pathname: '/aboutus',
+            query: { 
+                    id: id,
+                    name: name,
+                    firstname: firstname,
+                    userEmail:userEmail
+                    
+            }
+        });
+    }
 
 
 
@@ -132,6 +144,8 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     <Link href='/'>
                         <img src="/icons/sign-out.png" alt="my image" className='my-icon'/>
                     </Link>
+                    <img onClick={aboutUs} src="/icons/info.svg" alt="About us" className='my-icon btn-aboutUs'/>
+
                     
                     <div className='my-icon-end'>
                     <img src="/icons/four-square.png" alt="my books" className='my-icon' onClick={myProfile}/>
