@@ -123,7 +123,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
         </Head>
 
 
-        <div className='book-greeting' style={{ padding:'5px' }}>
+        <div className='book-greeting-fixed' style={{ padding:'5px' }}>
             <div className='greeting-text'>
             <div className='icon-box'>
                     <Link href='/'>

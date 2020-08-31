@@ -3,9 +3,11 @@ import Router from "next/router";
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from "react";
+//import mainImage from '../public/static/aboutUs.png'
 
 
 const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} ) => {
+
 
     // Redirect to myprofile
     const myProfile = () => {
@@ -98,7 +100,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
             <div className='aboutus-header'>About us</div> 
             <div className='about-box1'>
                 <div className='about-boxb'>
-                    <p>pic ture goes here</p>
+                    <img src='/static/aboutPic.png' className='about-pic'/>
                 </div>
                 <div className='about-boxa'>
                     <h2 className='about-title'>Our goal</h2>

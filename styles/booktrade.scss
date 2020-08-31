@@ -247,6 +247,7 @@ background-size: cover;
     //background-image: url('../public/static/maroonPoster2.png');
     //background-size: cover;
     background-color: whitesmoke;
+    border: 3px solid $maroon;
 
  
 
@@ -441,6 +442,10 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
     width: 98%;
     font-family: "Bookman Old Style";
 
+}
+.about-pic{
+    //width: 100%;
+    //height: 100%;
 }
 .feedback-section{
     background-color: rgb(14, 150, 155);
