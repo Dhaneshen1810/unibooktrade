@@ -11,6 +11,11 @@ import { useRouter } from 'next/router';
 import Cors from 'cors';
 
 
+import Check from '../pages/components/logincheck';
+
+const check = Check();
+
+
 
 const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, books} ) => {
 
@@ -25,6 +30,10 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
     })
 
         
+    console.log('check is', check)
+
+
+
         useEffect(() => {
 
             // We are directed to the booklist page
@@ -159,6 +168,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
     <div className='option-page'>
         <Head>
             <title>Search, MacEwan Book Trade</title>
+            <meta property="og:title" content="Search" key="Search"/>
         </Head>
         
 

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { View } from 'react';
 import { FacebookProvider, LoginButton } from 'react-facebook';
+import Check from '../pages/components/logincheck'
 
 import Router from 'next/router';
 
@@ -13,6 +14,9 @@ const Index = () => {
 
     const handleResponse = (data) => {
         console.log(data);
+
+        //Toggle logincheck
+
 
         
 

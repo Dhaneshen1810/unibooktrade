@@ -117,10 +117,11 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
             </div>
             <div className='about-box2'>
                 <div className='about-boxa'>
-                <h2 className='about-title'>Improvements</h2>
+                <h2 className='about-title'>Updates</h2>
                     <div className='about-text'>
                         <p>This app is constantly being monitored and improved 
                             to deliver the best experience. We encourage users to drop feedbacks 
+                            at booksexchangemessenger.com
                             as we actively listen and build on those.
                         </p>
                     </div>                </div>

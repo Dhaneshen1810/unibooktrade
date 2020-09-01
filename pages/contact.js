@@ -13,7 +13,7 @@ import { Credentials } from 'aws-sdk';
 
 const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, bookOwnerName, ownerFirstName,bookOwnerID, bookTitle, userEmail, ownerEmail}}, books} ) => {
     const [booklist, setBooklist] = useState([]);
-    const [sendTo, setSendTo] = useState('mailto:'+userEmail)
+    const [sendTo, setSendTo] = useState('mailto:'+ownerEmail)
 
 
     /* Deal with AWS SES */
@@ -41,6 +41,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
 
     console.log('email is '+ownerEmail)
+    console.log('Owner email:',userEmail)
 
 
 
@@ -172,7 +173,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
         </div>
 
 
-<div className='book-list'>
+<div className='contact-item'>
         {booklist.map( book => {
 
                 
@@ -191,9 +192,6 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
 
                         return (
-                               <div>
-                            
-                            
                             
                             <div key={book._id} className='bookInfo'>
                                 <div className='contact-bookinfo-pic'>
@@ -211,7 +209,6 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                                 
                             </div>
     
-                            </div>
                             
                         )
                         
@@ -223,9 +220,10 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                 </div>
 
                 <button className='btn btn-primary email-btn'>
-                <a style={{ color:'white' }} href={sendTo}>{bookOwnerName}</a>
+                <a style={{ color:'white' }} href={sendTo}>Contact {bookOwnerName}</a>
 
                 </button>
+                <br/><br/>
 
 
         
