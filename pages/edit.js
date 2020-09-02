@@ -25,6 +25,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
     const router = useRouter();
 
 
+    console.log('Email is', form.userEmail)
+
 
     
     useEffect(() => {
@@ -89,27 +91,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
         
         try {
 
-            // Use default image as book image if no image has been given
-            /*
-            if (form.imageFront==''){
-                console.log('default image is given')
-                console.log(prevImage)
-                setForm({
-                    ...form,
-                 imageFront:{
-                     data: prevImage, 
-                     contentType: 'image/png'
-                 }
             
-            })
-            }
-            */
 
-            console.log(form.imageFront.data);
-            console.log(form)
             
-            //const res = await fetch('http://localhost:3000/api/books/'+bookID, {
-            //const res = await fetch('https://unibooktrade.vercel.app/api/books/'+bookID, {
             const res = await fetch('https://usedbooksexchange.com/api/books', {
              //const res = await fetch('http://localhost:3000/api/books', {
 
@@ -133,6 +117,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 })
                
             })
+            
+
 
             
             
@@ -150,7 +136,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            });
+            },'/myprofile');
             
 
         } catch (error) {
@@ -209,7 +195,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            });
+            },'/myprofile');
         }
     
         //Go to section to create new listing
@@ -224,7 +210,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            });
+            },'/new');
         }
 
         const Search = () => {
@@ -238,7 +224,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            });
+            },'/search');
         }
 
         //Handle image upload

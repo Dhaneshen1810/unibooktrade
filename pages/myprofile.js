@@ -23,7 +23,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
 
     
 
-
+console.log('Email in myprofile is',userEmail)
 
     useEffect(() => {
         setBooklist(books)
@@ -112,7 +112,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                 userEmail:userEmail
                     
             }
-        });
+        },'/edit');
         
         
         
@@ -132,7 +132,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     userEmail:userEmail
                     
             }
-        });
+        },'/myprofile');
     }
 
     //Go to section to create new listing
@@ -145,7 +145,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     firstname: firstname,
                     userEmail:userEmail  
             }
-        });
+        },'/new');
     }
 
     const Search = () => {
@@ -158,7 +158,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     userEmail:userEmail
                     
             }
-        });
+        },'/search');
     }
 
     const aboutUs = () => {
@@ -171,7 +171,7 @@ const myprofile = withRouter(({ router:  { query:{name, id, firstname, mytitle, 
                     userEmail:userEmail
                     
             }
-        });
+        }, '/aboutus');
     }
 
     if (books){

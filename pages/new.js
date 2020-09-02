@@ -25,6 +25,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
 
     const router = useRouter();
 
+    console.log('userEmail is ', userEmail)
+
     // Get current date
     
     
@@ -157,7 +159,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            });
+            },'/myprofile');
 
         } catch (error) {
             console.log(error)
@@ -215,7 +217,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            });
+            },'/myprofile');
         }
     
         //Go to section to create new listing
@@ -229,7 +231,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            });
+            },'/new');
         }
 
         const Search = () => {
@@ -242,7 +244,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            });
+            },'/search');
         }
 
         //Handle image upload

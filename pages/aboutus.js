@@ -22,7 +22,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        });
+        },'/myprofile');
     }
 
     // Redirect to new
@@ -36,7 +36,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        });
+        },'/new');
     }
 
     // Redirect to posts
@@ -50,7 +50,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        });
+        },'/search');
     }
 
     const aboutUs = () => {
@@ -63,7 +63,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        });
+        },'/aboutus');
     }
 
 

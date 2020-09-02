@@ -9,6 +9,8 @@ import { useState, useEffect } from "react";
 
 
 const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, author, userEmail}}, books} ) => {
+
+    console.log('useremail is', userEmail)
     
 
     // User chooses to view all available books
@@ -25,7 +27,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 userEmail:userEmail
                     
             }
-        });
+        },'/booklist');
     }
 
     // Redirect to myprofile
@@ -41,7 +43,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        });
+        },'/myprofile');
     }
 
     // Redirect to new
@@ -55,7 +57,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        });
+        },'/new');
     }
 
     // Redirect to posts
@@ -69,7 +71,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        });
+        },'/search');
     }
 
     // Redirect to contact page
@@ -98,7 +100,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail,
                     ownerEmail: ownerEmail
             }
-        });
+        },'/contact');
     }
 
     const aboutUs = () => {
@@ -111,7 +113,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        });
+        },'/aboutus');
     }
 
 
@@ -179,6 +181,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <p style={{ color:'rgb(128,0,0)' }}><b>{book.title}</b></p>
                         <p>{book.author}</p>
                         <p style={{ fontSize:'18px', color:'rgb(107, 177, 2)' }}>${book.price}</p>
+                        <p>{book.userEmail}</p>
                         <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID, book.userEmail)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         

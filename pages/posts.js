@@ -50,7 +50,8 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                                 author: form.author,
                                 name: name,
                                 id: id,
-                                firstname: firstname
+                                firstname: firstname,
+                                userEmail: userEmail
                                 
                         }
                     });
@@ -105,7 +106,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                     userEmail:userEmail
                         
                 }
-            });
+            }, '/booklist');
         }
 
         const myProfile = () => {
@@ -120,7 +121,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail: userEmail
                         
                 }
-            });
+            }, '/profile');
         }
 
         const myBooks = () => {
@@ -133,7 +134,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail:userEmail
                         
                 }
-            });
+            }, 'new');
         }
 
         const Search = () => {
@@ -146,7 +147,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail:userEmail
                         
                 }
-            });
+            }, '/search');
         }
 
 
@@ -160,7 +161,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail:userEmail
                         
                 }
-            });
+            }, '/aboutus');
         }
 
 

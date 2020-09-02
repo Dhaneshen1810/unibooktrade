@@ -32,8 +32,10 @@ const Index = () => {
                     id: myID,
                     firstname: firstName,
                     userEmail: userEmail
-            }
-        })
+            },
+            asPath:'/search'
+                  
+          },'/search')
       };
 
      const handleError = (error) => {
