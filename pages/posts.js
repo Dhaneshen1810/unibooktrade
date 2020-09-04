@@ -54,7 +54,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                                 userEmail: userEmail
                                 
                         }
-                    });
+                    },'/booklist');
                   
                 }
                 else{

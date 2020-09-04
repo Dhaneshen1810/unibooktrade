@@ -7,6 +7,9 @@ import Head from 'next/head'
 
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
+//Toast
+import { ToastContainer, toast } from 'react-toastify';
+
 
 //Image resize
 import Resizer from 'react-image-file-resizer';
@@ -133,7 +136,9 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
     const createBook = async () => {
         try {
             
-            
+            // notify function
+            notify();
+
             //const res = await fetch('http://localhost:3000/api/books', {
             const res = await fetch('https://usedbooksexchange.com/api/books', {
 
@@ -147,7 +152,14 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                
             })
 
+            // notify function
+            notifyDone();
+
+            //setTimeout(() => myProfile(), 1200)
+
+
             //Redirect to my profile
+            
             Router.push({
                 pathname: '/myprofile',
                 query: { 
@@ -160,6 +172,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         
                 }
             },'/myprofile');
+            
 
         } catch (error) {
             console.log(error)
@@ -304,6 +317,10 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
             });
         }
 
+        //Toast functions
+        const notify = () => toast.warning("Adding new post");
+        const notifyDone = () => toast.success("Post added");
+
         
            
 
@@ -396,6 +413,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                 <button type="submit" className="btn btn-primary my-btn">POST</button>
                 </div>
                 </form>
+
+                <ToastContainer/>
             
         </div>
     )

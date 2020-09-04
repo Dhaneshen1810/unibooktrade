@@ -8,6 +8,10 @@ import Head from 'next/head'
 import { Form } from 'react-bootstrap';
 import { Label } from 'semantic-ui-react';
 
+//Toast
+import { ToastContainer, toast } from 'react-toastify';
+
+
 //Image resize
 import Resizer from 'react-image-file-resizer';
 
@@ -91,7 +95,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
         
         try {
 
-            
+            notify();
 
             
             const res = await fetch('https://usedbooksexchange.com/api/books', {
@@ -119,11 +123,19 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
             })
             
 
+            notifyDone()
+            setTimeout(() => myProfile(), 1200)
+                
+            //setTimeout(myProfile(),3000)
+           
 
             
             
             
+            
+            
             //Redirect to profile
+            /*
             Router.push({
                 pathname: '/myprofile',
                 query: { 
@@ -136,7 +148,10 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            },'/myprofile');
+            },'/myprofile')
+            */
+            
+            
             
 
         } catch (error) {
@@ -296,6 +311,9 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
         }
 
         
+        //Toast functions
+        const notify = () => toast.warning("Updating post");
+        const notifyDone = () => toast.success("Post updated");
            
 
     return (
@@ -388,6 +406,8 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                 <button type="submit" className="btn btn-success my-btn">Update</button>
                 </div>
                 </form>
+
+                <ToastContainer/>
             
         </div>
     )

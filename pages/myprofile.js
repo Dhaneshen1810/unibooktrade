@@ -62,21 +62,24 @@ console.log('Email in myprofile is',userEmail)
             
         }
 
-        /*
+
+        
         Router.push({
-            pathname: '/myprofile',
+            pathname: '/myprofile2',
             query: { 
-                    mytitle: '',
-                    author: '',
-                    name: name,
-                    id: id,
-                    firstname: firstname
+                mytitle: '',
+                author: '',
+                name: name,
+                id: id,
+                firstname: firstname,
+                userEmail:userEmail
                     
             }
-        })
-        */
+        }, '/profile')
+        
+        
 
-        window.location.reload(false);
+        //window.location.reload(false);
 
     }
 

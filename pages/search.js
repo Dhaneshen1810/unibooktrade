@@ -1,0 +1,80 @@
+import React, { useState, useEffect } from 'react';
+import { FacebookProvider, LoginButton, FacebookLogin, facebookActions } from 'react-facebook';
+import Login from 'react-facebook/dist/Login';
+import Router from 'next/router';
+import { useRouter } from 'next/router';
+import { withRouter } from "next/router";
+
+
+
+const searchRedirect= () => {
+    
+
+    const handleResponse = (data) => {
+        console.log(data);
+
+
+        var myID = data.profile.id;
+        var myName = data.profile.name;
+        var firstName = data.profile.first_name;
+        var userEmail = data.profile.email;
+        console.log(userEmail)
+        
+        Router.push({
+            pathname: '/posts',
+            query: { name: myName,
+                    id: myID,
+                    firstname: firstName,
+                    userEmail: userEmail
+            },
+            asPath:'/search'
+                  
+          },'/search')
+      };
+
+     const handleError = (error) => {
+        this.setState({ error });
+      };
+
+
+      const simulateClick = (e) =>{
+          //e.click()
+          console.log(e)
+      }
+
+    useEffect(() =>{
+        console.log('Redirecting');
+
+        var tag = document.getElementsByTagName(FacebookProvider)
+        console.log(tag)
+        simulateClick(tag)
+       
+        
+    })
+
+    return(
+        <div className='redirect-page'>
+        <h2>For security purposes, please</h2>
+
+        <FacebookProvider appId="2605624903036488">
+    
+            <LoginButton
+              scope="email"
+              onCompleted={handleResponse}
+              onError={handleError}
+              className="btn btn-primary"
+            >
+              <span><b>Click here</b></span>
+            </LoginButton>
+    
+        </FacebookProvider>
+
+      
+
+      </div>
+    )
+
+
+}
+
+export default searchRedirect;

@@ -163,6 +163,13 @@ background-size: cover;
 
 }
 
+.redirect-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
 .book-greeting{
     background-color: rgb(128,0,0);
     background-image: url('../public/static/maroonPoster.png');
