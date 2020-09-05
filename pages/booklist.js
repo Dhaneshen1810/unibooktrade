@@ -181,7 +181,6 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                         <p style={{ color:'rgb(128,0,0)' }}><b>{book.title}</b></p>
                         <p>{book.author}</p>
                         <p style={{ fontSize:'18px', color:'rgb(107, 177, 2)' }}>${book.price}</p>
-                        <p>{book.userEmail}</p>
                         <a style={{ cursor:'pointer' }} onClick={() => Contact(book._id, book.ownerName, book.title, book.ownerID, book.userEmail)}><b>Contact {book.ownerName}</b></a>
                         </div>
                         

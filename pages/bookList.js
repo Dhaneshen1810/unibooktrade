@@ -21,7 +21,7 @@ const bookList= () => {
         console.log(userEmail)
         
         Router.push({
-            pathname: '/booklist',
+            pathname: '/posts',
             query: { name: myName,
                     id: myID,
                     firstname: firstName,
@@ -29,7 +29,7 @@ const bookList= () => {
                     author:'',
                     userEmail: userEmail
             } 
-          },'/BookList')
+          },'/search')
       };
 
      const handleError = (error) => {
