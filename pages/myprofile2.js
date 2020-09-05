@@ -7,6 +7,8 @@ import Head from 'next/head'
 import fetch from 'isomorphic-unfetch';
 import { Confirm, Butto, Loader } from 'semantic-ui-react';
 import { useState, useEffect } from "react";
+//Toast
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -30,6 +32,8 @@ console.log('Email in myprofile is',userEmail)
         console.log('books are: ');
         console.log(booklist)
 
+        //Notification for post deletion
+        console.log('Post has been deleted.')
 
 
         if (isDeleting) {
@@ -115,7 +119,7 @@ console.log('Email in myprofile is',userEmail)
                 userEmail:userEmail
                     
             }
-        },'/edit');
+        },'/Edit');
         
         
         
@@ -135,7 +139,7 @@ console.log('Email in myprofile is',userEmail)
                     userEmail:userEmail
                     
             }
-        },'/myprofile');
+        },'/profile');
     }
 
     //Go to section to create new listing
@@ -148,7 +152,7 @@ console.log('Email in myprofile is',userEmail)
                     firstname: firstname,
                     userEmail:userEmail  
             }
-        },'/new');
+        },'/New');
     }
 
     const Search = () => {
@@ -174,8 +178,11 @@ console.log('Email in myprofile is',userEmail)
                     userEmail:userEmail
                     
             }
-        }, '/aboutus');
+        }, '/aboutUs');
     }
+
+    const notifyDelete = () => toast.success("Post has been deleted");
+
 
     if (books){
     return(

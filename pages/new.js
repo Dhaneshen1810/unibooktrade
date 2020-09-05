@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 //Image resize
 import Resizer from 'react-image-file-resizer';
+import { resolveHref } from 'next/dist/next-server/lib/router/router';
 
 const fileUpload = require('fuctbase64');
 
@@ -171,7 +172,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            },'/myprofile');
+            },'/profile');
             
 
         } catch (error) {
@@ -230,7 +231,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            },'/myprofile');
+            },'/profile');
         }
     
         //Go to section to create new listing
@@ -244,7 +245,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            },'/new');
+            },'/New');
         }
 
         const Search = () => {
@@ -262,6 +263,8 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
 
         //Handle image upload
         const image1Upload = (e) => {
+            console.log('uploading image')
+            console.log(event.target.files[0])
 
           
        var fileInput = false;
@@ -269,6 +272,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
            fileInput = true;
        }
        if (fileInput) {
+           console.log('Resizing the image now.')
            Resizer.imageFileResizer(
             event.target.files[0],
             300,
@@ -277,9 +281,11 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
             100,
             0,
             uri => {
-                console.log(uri)
 
+                console.log('uri below')
+                console.log(uri)
                 //Update form with new image data
+                console.log(uri)
                 setForm({
                     ...form,
                  imageFront:{
@@ -314,7 +320,7 @@ const NewBook = withRouter(({ router:  { query:{name, id, firstname, userEmail}}
                         userEmail:userEmail
                         
                 }
-            });
+            }, 'aboutUS');
         }
 
         //Toast functions

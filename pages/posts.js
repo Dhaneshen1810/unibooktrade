@@ -54,7 +54,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                                 userEmail: userEmail
                                 
                         }
-                    },'/booklist');
+                    },'/bookList');
                   
                 }
                 else{
@@ -106,7 +106,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                     userEmail:userEmail
                         
                 }
-            }, '/booklist');
+            }, '/bookList');
         }
 
         const myProfile = () => {
@@ -134,7 +134,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail:userEmail
                         
                 }
-            }, 'new');
+            }, 'New');
         }
 
         const Search = () => {
@@ -161,7 +161,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, userEmail}}, 
                         userEmail:userEmail
                         
                 }
-            }, '/aboutus');
+            }, '/aboutUs');
         }
 
 

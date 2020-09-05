@@ -210,7 +210,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            },'/myprofile');
+            },'/profile');
         }
     
         //Go to section to create new listing
@@ -225,7 +225,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
 
                         
                 }
-            },'/new');
+            },'/New');
         }
 
         const Search = () => {
@@ -307,7 +307,7 @@ const EditBook = withRouter(({ router:  { query:{name, id, firstname, bookID, bo
                         userEmail:userEmail
                         
                 }
-            });
+            }, 'aboutUs');
         }
 
         

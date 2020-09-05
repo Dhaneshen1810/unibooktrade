@@ -7,7 +7,7 @@ import { withRouter } from "next/router";
 
 
 
-const searchRedirect= () => {
+const aboutUs= () => {
     
 
     const handleResponse = (data) => {
@@ -21,13 +21,13 @@ const searchRedirect= () => {
         console.log(userEmail)
         
         Router.push({
-            pathname: '/posts',
+            pathname: '/aboutus',
             query: { name: myName,
                     id: myID,
                     firstname: firstName,
                     userEmail: userEmail
             }                  
-          },'/search')
+          },'/aboutUs')
       };
 
      const handleError = (error) => {
@@ -68,4 +68,4 @@ const searchRedirect= () => {
 
 }
 
-export default searchRedirect;
+export default aboutUs;

@@ -22,7 +22,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        },'/myprofile');
+        },'/profile');
     }
 
     // Redirect to new
@@ -36,7 +36,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        },'/new');
+        },'/New');
     }
 
     // Redirect to posts
@@ -63,7 +63,7 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                     userEmail:userEmail
                     
             }
-        },'/aboutus');
+        },'/aboutUs');
     }
 
 

@@ -21,13 +21,15 @@ const searchRedirect= () => {
         console.log(userEmail)
         
         Router.push({
-            pathname: '/posts',
+            pathname: '/myprofile',
             query: { name: myName,
                     id: myID,
                     firstname: firstName,
+                    mytitle: '',
+                    author: '',
                     userEmail: userEmail
             }                  
-          },'/search')
+          },'/profile')
       };
 
      const handleError = (error) => {

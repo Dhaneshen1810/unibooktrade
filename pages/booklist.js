@@ -27,7 +27,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                 userEmail:userEmail
                     
             }
-        },'/booklist');
+        },'/bookList');
     }
 
     // Redirect to myprofile
@@ -43,7 +43,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        },'/myprofile');
+        },'/profile');
     }
 
     // Redirect to new
@@ -57,7 +57,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        },'/new');
+        },'/New');
     }
 
     // Redirect to posts
@@ -100,7 +100,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail,
                     ownerEmail: ownerEmail
             }
-        },'/contact');
+        },'/Contact');
     }
 
     const aboutUs = () => {
@@ -113,7 +113,7 @@ const posts = withRouter(({ router:  { query:{name, id, firstname, mytitle, auth
                     userEmail:userEmail
                     
             }
-        },'/aboutus');
+        },'/aboutUs');
     }
 
 

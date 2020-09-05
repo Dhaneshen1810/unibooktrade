@@ -115,7 +115,7 @@ console.log('Email in myprofile is',userEmail)
                 userEmail:userEmail
                     
             }
-        },'/edit');
+        },'/Edit');
         
         
         
@@ -135,7 +135,7 @@ console.log('Email in myprofile is',userEmail)
                     userEmail:userEmail
                     
             }
-        },'/myprofile');
+        },'/profile');
     }
 
     //Go to section to create new listing
@@ -148,7 +148,7 @@ console.log('Email in myprofile is',userEmail)
                     firstname: firstname,
                     userEmail:userEmail  
             }
-        },'/new');
+        },'/New');
     }
 
     const Search = () => {
@@ -174,7 +174,7 @@ console.log('Email in myprofile is',userEmail)
                     userEmail:userEmail
                     
             }
-        }, '/aboutus');
+        }, '/aboutUs');
     }
 
     if (books){

@@ -84,7 +84,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     userEmail:userEmail
                     
             }
-        },'/myprofile');
+        },'/profile');
     }
 
     // Redirect to new for creating new post
@@ -98,7 +98,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     userEmail:userEmail
                     
             }
-        },'/new');
+        },'/New');
     }
 
     // Redirect posts
@@ -125,7 +125,7 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
                     userEmail:userEmail
                     
             }
-        },'/aboutus');
+        },'/aboutUs');
     }
 
 
