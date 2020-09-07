@@ -119,18 +119,16 @@ const about = withRouter(({ router:  { query:{name, id, firstname, userEmail}}} 
                 <div className='about-boxa'>
                 <h2 className='about-title'>Updates</h2>
                     <div className='about-text'>
-                        <p>This app is constantly being monitored and improved 
+                        <p>This app is currently on version 1.0, constantly being monitored and improved 
                             to deliver the best experience. We encourage users to drop feedbacks 
-                            at booksexchangemessenger.com
-                            as we actively listen and build on those.
+                            at <a href='mailto:booksexchangemessenger.com'>booksexchangemessenger.com</a> as we actively listen and build on those.
                         </p>
                     </div>                </div>
                 <div className='about-boxa'>
                 <h2 className='about-title'>How it works</h2>
                     <div className='about-text'>
                         <p>No registration is required. Log in using facebook and 
-                            you are all set. There are 3 page options: Search for a book, 
-                            create a new post or take a look at your personal post collection.
+                            you are all set. Post and search for used books with only a couple of clicks.
                         </p>
                     </div>                </div>
 

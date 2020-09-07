@@ -242,16 +242,17 @@ background-size: cover;
 
 //Booklist book item
 .book-item{
+    display: flex;
+    flex-direction: row;
     width: 98%;
     max-width: 400px;
     border-radius: 20px;
     //height:130px;
-    height: auto;
+    height: auto!important;
     min-height: 150px;
     margin-top: 6.3%;
     //background-color: maroon;
-    display: flex;
-    flex-direction: row;
+    
     //background-image: url('../public/static/maroonPoster2.png');
     //background-size: cover;
     background-color: whitesmoke;
@@ -422,31 +423,34 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
 .aboutus-header{
     font-size: 30px;
     color: $maroon;
-    margin-top: 3%;
+    margin-top: 5%;
+}
+.about-main-box{
+    background-color: blue;
+    height: 150vh;
 }
 .about-box1{
-    width: 94%;
-    height: auto;
     display: flex;
     flex-direction: column;
+    width: 94%;
+    height: 400px;
     margin-top: 10%;
 }
 .about-box2{
     @extend .about-box1;
-    margin-top: 0;
+    margin-top: 5%;
 }
 .about-boxa{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 200px;
     margin-top: 5%;
     //background-color: white;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 .about-boxb{
     @extend .about-boxa;
-    box-shadow: none;
 }
 .about-title{
     color: $maroon;
@@ -594,10 +598,17 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
     }
 
     //Aboutus
+    .aboutus-header{
+        margin-top: 3%;
+    }
     .about-box1{
         flex-direction: row;
         justify-content: space-around;
         max-width: 1000px;
+        height: auto;
+    }
+    .about-box2{
+        margin-top: 2%;
     }
     .about-boxa{
         width: 450px;
