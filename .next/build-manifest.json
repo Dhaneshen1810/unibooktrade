@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/aboutus.js"
     ],
-    "/bookList": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/bookList.js"
-    ],
     "/posts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
