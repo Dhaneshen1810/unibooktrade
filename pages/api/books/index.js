@@ -49,7 +49,7 @@ export default async (req, res) => {
                     const books = await Book.find({
                         //Sort here
                         //'author': myAuthor
-                        'author': {'$regex': myAuthor}
+                        'author': {'$regex': myAuthor, '$options':'i'}
                     });
                     
                     
@@ -95,7 +95,7 @@ export default async (req, res) => {
                     const books = await Book.find({
                         //Sort here
                         //'title': myTitle
-                        'title': {'$regex': myTitle}
+                        'title': {'$regex': myTitle, '$options':'i'}
                     });
                     
     
@@ -137,8 +137,8 @@ export default async (req, res) => {
 
                     const books = await Book.find({
                         //Sort here
-                        'title': {'$regex': myTitle},
-                        'author': {'$regex': myAuthor}
+                        'title': {'$regex': myTitle, '$options':'i'},
+                        'author': {'$regex': myAuthor, '$options':'i'}
                     });
                     console.log('books are ready')
     

@@ -139,18 +139,19 @@ background-size: cover;
 }
 // Contact page
 .contact-page{
-    background-image: url('../public/static/plain.jpg');
+    //background-image: url('../public/static/plain.jpg');
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-size: cover;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    //background-size: cover;
+    //background-attachment: fixed;
+    //-webkit-background-size: cover;
+    //-moz-background-size: cover;
+    //-o-background-size: cover;
     overflow: scroll;
+    background-color: white;
 }
 
 .about-page{
@@ -237,7 +238,7 @@ background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 45%;
+    margin-top: 48%;
 }
 
 //Booklist book item
@@ -249,7 +250,7 @@ background-size: cover;
     border-radius: 20px;
     //height:130px;
     height: auto!important;
-    min-height: 150px;
+    min-height: 155px;
     margin-top: 6.3%;
     //background-color: maroon;
     
@@ -576,7 +577,9 @@ box-shadow: -1px 1px 5px 0px rgba(107,106,107,1);
     
     //Contact
     .contact-page{
-        background-image: url('../public/static/paperbg.jpg');
+        background-image: url('../public/static/searchBook.jpg');
+        //background-image: none;
+        //background-color: white;
     }
     .contact-book-pic{
         width: 240px;

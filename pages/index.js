@@ -48,7 +48,7 @@ const Index = () => {
         <title>MacEwan Book Trade</title>
     </Head>
     <div className='my-title'>
-        <div><p>MacEwan</p></div>
+        <div><p>Uni</p></div>
         <div><p>Used books</p></div>
         <div><p>Exchange</p></div>
       </div>

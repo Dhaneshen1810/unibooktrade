@@ -161,9 +161,9 @@ const contact = withRouter(({ router:  { query:{name, id, firstname, bookID, boo
 
                 <div style={{ marginTop:'3%', padding:'10px' }}>
                     
-                <p style={{ fontSize:'18px' }}>Here is all the information we have.
+                <p style={{ fontSize:'18px' }}>
                 
-                <br/><span style={{ fontSize: '16px' }}>Contact {bookOwnerName} for more.</span></p>
+                <br/><span style={{ fontSize: '16px' }}>Contact {bookOwnerName} to trade this book</span></p>
                 
                 
                 </div>
